@@ -1,8 +1,11 @@
 const puppeteer = require('puppeteer');
 const auth = require('../config/auth.json');
 
+const args = process.argv.slice(2);
+const launchSettings = args.includes('--debug') ? {headless: false}: {};
+
 (async () => {
-  const browser = await puppeteer.launch({headless: false});
+  const browser = await puppeteer.launch(launchSettings);
   const page = await browser.newPage();
   await page.goto('https://www.muscoop.com/index.php?topic=35990.0');
   
