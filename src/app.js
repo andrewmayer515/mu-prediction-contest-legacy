@@ -17,5 +17,13 @@ const launchSettings = args.includes('--debug') ? {headless: false}: {};
 
   await page.click('#guest_form > input.button_submit');
   await page.waitForNavigation();
-  // await browser.close();
+
+  // Total length of posts on a page
+  //const elements = await page.$$('#quickModForm > div')
+  //console.log(elements.length);
+
+  // Gets the text on a post (need to figure out how to loop through them all on a page)
+  //const text = await page.evaluate(() => document.querySelector('#msg_448588').innerText);
+  //console.log(text);
+  //await browser.close();
 })();
