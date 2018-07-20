@@ -8,6 +8,7 @@ const isDebug = args.includes('--debug');
 const launchSettings = isDebug ? { headless: false } : {};
 const bar = new ProgressBar(':token [:bar] :elapsed', {
   total: 10,
+  incomplete: ' ',
 });
 
 (async () => {
