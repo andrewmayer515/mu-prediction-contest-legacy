@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/andrewmayer515/mu-prediction-contest#readme",
   "dependencies": {
+    "progress": "^2.0.0",
     "puppeteer": "^1.6.0"
   },
   "devDependencies": {

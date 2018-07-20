@@ -1,17 +1,25 @@
 const puppeteer = require('puppeteer');
+const ProgressBar = require('progress');
 const auth = require('../config/auth.json');
+const results = require('../config/results.json');
 
 const args = process.argv.slice(2);
 const isDebug = args.includes('--debug');
 const launchSettings = isDebug ? { headless: false } : {};
+const bar = new ProgressBar(':token [:bar] :elapsed', {
+  total: 10,
+});
 
 (async () => {
+  bar.tick({
+    token: 'Logging in...',
+  });
   const browser = await puppeteer.launch(launchSettings);
   const page = await browser.newPage();
   if (isDebug) { // Forces the browser view to fill the viewport size while running as debug
     await page._client.send('Emulation.clearDeviceMetricsOverride'); // eslint-disable-line no-underscore-dangle
   }
-  await page.goto('https://www.muscoop.com/index.php?topic=35990.0');
+  await page.goto(results.url);
 
   await page.click('#guest_form > input.input_text');
   await page.keyboard.type(auth.username);
@@ -21,13 +29,22 @@ const launchSettings = isDebug ? { headless: false } : {};
 
   await page.click('#guest_form > input.button_submit');
   await page.waitForNavigation();
+  await bar.tick({
+    token: 'Gathering predictions...',
+  });
 
   // Total length of posts on a page
-  // const elements = await page.$$('#quickModForm > div');
+  const elements = await page.$$('#quickModForm > div');
   // console.log(elements.length);
 
-  // Gets the text on a post (need to figure out how to loop through them all on a page)
-  // const text = await page.evaluate(() => document.querySelector('#msg_448588').innerText);
-  // console.log(text);
-  // await browser.close();
+  const textArray = await page.evaluate(() => [...document.querySelectorAll('.post > .inner')].map(elem => elem.innerText)); // eslint-disable-line no-undef
+  // console.log(textArray);
+
+  if (!isDebug) { // Keep browser open while running as debug
+    await browser.close();
+  }
+
+  await bar.tick({
+    token: 'Done!',
+  });
 })();
