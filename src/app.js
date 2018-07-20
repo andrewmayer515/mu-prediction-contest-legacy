@@ -2,11 +2,15 @@ const puppeteer = require('puppeteer');
 const auth = require('../config/auth.json');
 
 const args = process.argv.slice(2);
-const launchSettings = args.includes('--debug') ? { headless: false } : {};
+const isDebug = args.includes('--debug');
+const launchSettings = isDebug ? { headless: false } : {};
 
 (async () => {
   const browser = await puppeteer.launch(launchSettings);
   const page = await browser.newPage();
+  if (isDebug) { // Forces the browser view to fill the viewport size while running as debug
+    await page._client.send('Emulation.clearDeviceMetricsOverride'); // eslint-disable-line no-underscore-dangle
+  }
   await page.goto('https://www.muscoop.com/index.php?topic=35990.0');
 
   await page.click('#guest_form > input.input_text');
@@ -19,7 +23,7 @@ const launchSettings = args.includes('--debug') ? { headless: false } : {};
   await page.waitForNavigation();
 
   // Total length of posts on a page
-  // const elements = await page.$$('#quickModForm > div')
+  // const elements = await page.$$('#quickModForm > div');
   // console.log(elements.length);
 
   // Gets the text on a post (need to figure out how to loop through them all on a page)
