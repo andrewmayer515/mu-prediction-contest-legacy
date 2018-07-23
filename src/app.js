@@ -2,10 +2,11 @@ const puppeteer = require('puppeteer');
 // const ProgressBar = require('progress');
 const auth = require('../config/auth.json');
 const results = require('../config/results.json');
+const helpers = require('./common/helpers.js');
 
 const args = process.argv.slice(2);
 const isDebug = args.includes('--debug');
-const launchSettings = isDebug ? { headless: false } : {};
+const launchSettings = isDebug ? { headless: false, devtools: true } : {};
 const data = [];
 
 (async () => {
@@ -39,8 +40,11 @@ const data = [];
       comment: commentArray[index].split('\n'),
     });
   });
+  // console.log(data);
 
-  console.log(data);
+  // await page.evaluate(() => {debugger;});
+  const output = helpers.calculateWinners(data, results);
+  console.log(output);
 
   if (!isDebug) { // Keep browser open while running as debug
     await browser.close();
