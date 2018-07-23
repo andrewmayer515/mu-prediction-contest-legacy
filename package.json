@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/app",
     "debug": "node src/app --debug",
-    "eslint": "./node_modules/.bin/eslint --quiet src/**"
+    "eslint": "./node_modules/.bin/eslint --quiet src/**",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-config-airbnb-base": "^13.0.0",
-    "eslint-plugin-import": "^2.13.0"
+    "eslint-plugin-import": "^2.13.0",
+    "jest": "^23.4.1"
   }
 }

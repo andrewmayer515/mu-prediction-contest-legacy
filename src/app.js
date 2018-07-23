@@ -42,7 +42,6 @@ const data = [];
   });
   // console.log(data);
 
-  // await page.evaluate(() => {debugger;});
   const output = helpers.calculateWinners(data, results);
   console.log(output);
 

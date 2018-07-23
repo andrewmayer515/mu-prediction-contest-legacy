@@ -13,4 +13,7 @@ const calculateWinners = (data, results) => {
   return removePredictionsWithQuotes(data);
 };
 
-module.exports.calculateWinners = calculateWinners;
+module.exports = {
+  removePredictionsWithQuotes,
+  calculateWinners,
+};
