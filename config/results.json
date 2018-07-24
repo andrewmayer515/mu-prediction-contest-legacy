@@ -24,23 +24,35 @@
     "type": "number"
   },
   "question7": {
-    "answer": "Blue 18",
+    "answer": {
+      "player": ["Blue"],
+      "number": 18 
+    },
     "type": "playerNumber"
   },
   "question8": {
-    "answer": "Cadougan 6",
+    "answer": {
+      "player": ["Cadougan"],
+      "number": 6
+    },
     "type": "playerNumber"
   },
   "question9": {
-    "answer": "Otule Cadougan 5",
+    "answer": {
+      "player": ["Otule", "Cadougan"],
+      "number": 5
+    },
     "type": "playerNumber"
   },
   "question10": {
-    "answer": "Wilson 2",
+    "answer": {
+      "player": ["Wilson"],
+      "number": 2
+    },
     "type": "playerNumber"
   },
   "bonus": {
-    "answer": "56.4",
+    "answer": 56.4,
     "type": "number"
   },
   "url": "https://www.muscoop.com/index.php?topic=35990.0"

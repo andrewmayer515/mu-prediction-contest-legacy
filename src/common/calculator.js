@@ -1,6 +1,12 @@
 const _ = require('lodash');
 
-// Question result is a number
+/**
+ * Determines who had the closest prediction to a given number
+ * @param {*} prediction The value that was guessed for a given question
+ * @param {*} answer The value set in the results.json file for the given question
+ * @param {*} winnerData Comparison data on who the current winner is
+ * @param {*} username Username for the person who made the guess
+ */
 const number = ({
   prediction,
   answer,
@@ -34,7 +40,13 @@ const number = ({
   return winnerData;
 };
 
-// Question result is a player name followed by a number
+/**
+ * Determines who guess the player as well as had the closest prediction to a given number
+ * @param {*} prediction The value that was guessed for a given question
+ * @param {*} answer The value set in the results.json file for the given question
+ * @param {*} winnerData Comparison data on who the current winner is
+ * @param {*} username Username for the person who made the guess
+ */
 const playerNumber = ({
   prediction,
   answer,
