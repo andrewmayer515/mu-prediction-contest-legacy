@@ -1,14 +1,47 @@
 {
-  "question1": "",
-  "question2": "",
-  "question3": "",
-  "question4": "",
-  "question5": "",
-  "question6": "",
-  "question7": "",
-  "question8": "",
-  "question9": "",
-  "question10": "",
-  "bonus": "",
+  "question1": {
+    "answer": 167,
+    "type": "number"
+  },
+  "question2": {
+    "answer": 89,
+    "type": "number"
+  },
+  "question3": {
+    "answer": 78,
+    "type": "number"
+  },
+  "question4": {
+    "answer": 10,
+    "type": "number"
+  },
+  "question5": {
+    "answer": 9,
+    "type": "number"
+  },
+  "question6": {
+    "answer": 3,
+    "type": "number"
+  },
+  "question7": {
+    "answer": "Blue 18",
+    "type": "playerNumber"
+  },
+  "question8": {
+    "answer": "Cadougan 6",
+    "type": "playerNumber"
+  },
+  "question9": {
+    "answer": "Otule Cadougan 5",
+    "type": "playerNumber"
+  },
+  "question10": {
+    "answer": "Wilson 2",
+    "type": "playerNumber"
+  },
+  "bonus": {
+    "answer": "56.4",
+    "type": "number"
+  },
   "url": "https://www.muscoop.com/index.php?topic=35990.0"
 }
