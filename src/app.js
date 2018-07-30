@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 // const ProgressBar = require('progress');
 const auth = require('../config/auth.json');
-const results = require('../config/results.json');
+const key = require('../config/key');
 const helpers = require('./common/helpers.js');
 
 const args = process.argv.slice(2);
@@ -14,11 +14,11 @@ const data = [];
   // Loads prediction post from config
   const browser = await puppeteer.launch(launchSettings);
   const page = await browser.newPage();
-  await page.bringToFront();
   if (isDebug) { // Forces the browser view to fill the viewport size while running as debug
     await page._client.send('Emulation.clearDeviceMetricsOverride'); // eslint-disable-line no-underscore-dangle
   }
-  await page.goto(results.url);
+  await page.goto(key.results.url);
+  await page.bringToFront();
   await page.click('#guest_form > input.input_text');
   await page.keyboard.type(auth.username);
   await page.click('#guest_form > input.input_password');
@@ -41,7 +41,7 @@ const data = [];
     });
   });
 
-  await helpers.predictionator(data, results);
+  await helpers.predictionator(data, key.results);
 
   if (!isDebug) { // Keep browser open while running as debug
     await browser.close();

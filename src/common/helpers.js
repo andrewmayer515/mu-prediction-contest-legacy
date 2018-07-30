@@ -14,8 +14,8 @@ const removePredictionsWithQuotes = (data) => {
 /**
  * Cycle through predictions for a given question and call its calculation function
  * @param {*} data All comments data on the post
- * @param {*} result The current question being evaluated from the results.json file
- * @param {*} params Properties of result, taken from the results.json file
+ * @param {*} result The current question being evaluated from the key.js file
+ * @param {*} params Properties of result, taken from the key.js file
  */
 const determineQuestionWinner = (data, result, params) => {
   const number = result.replace(/[^0-9]/g, '');
