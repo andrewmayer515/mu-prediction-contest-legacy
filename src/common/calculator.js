@@ -87,7 +87,6 @@ const playerNumber = ({
     };
   }
 
-  console.log(winnerData);
   if (playerFormats.includes(predictionPlayer)) { // The player guess matches a reasonable result
     // Use the number calculator to determine who is closer to the correct number
     // if more than one user guessed the player
@@ -100,7 +99,21 @@ const playerNumber = ({
       },
       username,
     });
-    console.log(numberResult);
+
+    if (numberResult.username.includes(username)) {
+      if (numberResult.username.length === 1) {
+        return {
+          username: [username],
+          prediction: `${predictionPlayer} - ${predictionNumber}`,
+        }
+      }
+      const data = _.cloneDeep(winnerData);
+      data.username.push(username);
+      return {
+        username: data.username,
+        prediction: `${predictionPlayer} - ${predictionNumber}`,
+      }
+    }
   }
 
   // No winner, return what was passed in
