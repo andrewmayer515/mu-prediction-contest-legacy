@@ -1,4 +1,6 @@
 const puppeteer = require('puppeteer');
+const ora = require('ora');
+
 const auth = require('../config/auth.json');
 const key = require('../config/key');
 const helpers = require('./common/helpers.js');
@@ -11,12 +13,13 @@ const data = [];
 (async () => {
   // Open headless browser, logs in to MUSCOOP with auth credentials
   // Loads prediction post from config
+  const spinner = ora({ text: 'Calculating...', color: 'yellow' }).start();
   const browser = await puppeteer.launch(launchSettings);
   const page = await browser.newPage();
   if (isDebug) { // Forces the browser view to fill the viewport size while running as debug
     await page._client.send('Emulation.clearDeviceMetricsOverride'); // eslint-disable-line no-underscore-dangle
   }
-  await page.goto(key.results.url);
+  await page.goto(key.results.url, { waitUntil: 'networkidle2' });
   await page.bringToFront();
   await page.click('#guest_form > input.input_text');
   await page.keyboard.type(auth.username);
@@ -37,6 +40,7 @@ const data = [];
   });
 
   await helpers.predictionator(data, key.results);
+  spinner.stop();
 
   // Keep browser open while running as debug
   if (!isDebug) {

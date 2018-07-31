@@ -2,6 +2,8 @@
 const CONSTANTS = require('./constants');
 
 const displayResults = (results, key) => {
+  console.log('');
+  console.log('');
   console.log('Results:');
   console.log('-------');
 
