@@ -39,7 +39,7 @@ const determineQuestionWinner = (data, result, params) => {
   if (!winnerData) {
     winnerData = {
       username: ['No winner'],
-    }
+    };
   }
 
   return {

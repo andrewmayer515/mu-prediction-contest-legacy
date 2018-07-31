@@ -1,5 +1,4 @@
 /* eslint no-console: 0 */
-const _ = require('lodash');
 const CONSTANTS = require('./constants');
 
 const displayResults = (results, key) => {
@@ -13,7 +12,7 @@ const displayResults = (results, key) => {
       const prefix = question === 'bonus' ? 'Bonus:' : `${index + 1}.`;
       console.log(`${prefix} ${key[question].text} ${answer}`);
       const winner = results[index].username.join(', ');
-      console.log(`   ${winner}`)
+      console.log(`   ${winner}`);
     }
   });
 };
