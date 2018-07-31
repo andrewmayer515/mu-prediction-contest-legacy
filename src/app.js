@@ -1,5 +1,4 @@
 const puppeteer = require('puppeteer');
-// const ProgressBar = require('progress');
 const auth = require('../config/auth.json');
 const key = require('../config/key');
 const helpers = require('./common/helpers.js');
@@ -26,10 +25,6 @@ const data = [];
   await page.click('#guest_form > input.button_submit');
   await page.waitForNavigation();
 
-  // Total length of posts on a page
-  // const elements = await page.$$('#quickModForm > div');
-  // console.log(elements.length);
-
   const usernameArray = await page.evaluate(() => [...document.querySelectorAll('.poster > h4')].map(elem => elem.innerText)); // eslint-disable-line no-undef
   const commentArray = await page.evaluate(() => [...document.querySelectorAll('.post > .inner')].map(elem => elem.innerText)); // eslint-disable-line no-undef
 
@@ -43,7 +38,8 @@ const data = [];
 
   await helpers.predictionator(data, key.results);
 
-  if (!isDebug) { // Keep browser open while running as debug
+  // Keep browser open while running as debug
+  if (!isDebug) {
     await browser.close();
   }
 })();

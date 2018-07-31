@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const output = require('./output');
 const CONSTANTS = require('./constants');
 const calculator = require('./calculator');
 
@@ -35,6 +36,12 @@ const determineQuestionWinner = (data, result, params) => {
     }
   });
 
+  if (!winnerData) {
+    winnerData = {
+      username: ['No winner'],
+    }
+  }
+
   return {
     answer: params.answer,
     ...winnerData,
@@ -53,12 +60,10 @@ const getResults = (data, results) => {
   return resultsArray;
 };
 
-const predictionator = (data, results) => {
+const predictionator = (data, key) => {
   const sanitizedData = removePredictionsWithQuotes(data);
-  const output = getResults(sanitizedData, results);
-
-  console.log(output); // eslint-disable-line no-console
-  return output;
+  const results = getResults(sanitizedData, key);
+  output.displayResults(results, key);
 };
 
 module.exports = {

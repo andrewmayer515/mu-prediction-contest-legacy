@@ -79,24 +79,20 @@ const playerNumber = ({
   const predictionNumber = formattedPrediction.replace(/[^0-9]/gi, '');
   const playerFormats = reasonablePlayerGuesses(answer.player);
 
-  // If this is blank (first time through), automatically return results
-  if (!winnerData) {
-    return {
-      username: [username],
-      prediction: `${predictionPlayer} - ${predictionNumber}`,
-    };
-  }
-
-  if (playerFormats.includes(predictionPlayer)) { // The player guess matches a reasonable result
+  // The player guess matches a reasonable result
+  if (playerFormats.includes(predictionPlayer)) {
+    // If this is blank (first time through or no correct player guess),
+    // automatically return results
+    const numberWinnerData = winnerData ? {
+      username: winnerData.username,
+      prediction: parseInt(winnerData.prediction.replace(/[^0-9]/gi, ''), 10),
+    } : undefined;
     // Use the number calculator to determine who is closer to the correct number
     // if more than one user guessed the player
     const numberResult = number({
       prediction: predictionNumber,
       answer: answer.number,
-      winnerData: {
-        username: winnerData.username,
-        prediction: parseInt(winnerData.prediction.replace(/[^0-9]/gi, ''), 10),
-      },
+      winnerData: numberWinnerData,
       username,
     });
 
