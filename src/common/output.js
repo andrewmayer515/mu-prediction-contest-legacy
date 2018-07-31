@@ -10,7 +10,8 @@ const displayResults = (results, key) => {
     if (question.indexOf(CONSTANTS.QUESTION) !== -1 || question.indexOf(CONSTANTS.BONUS) !== -1) {
       const answer = key[question].type === CONSTANTS.PLAYER_NUMBER
         ? `${key[question].answer.player} - ${key[question].answer.number}` : key[question].answer;
-      console.log(`${index + 1}. ${key[question].text} ${answer}`);
+      const prefix = question === 'bonus' ? 'Bonus:' : `${index + 1}.`;
+      console.log(`${prefix} ${key[question].text} ${answer}`);
       const winner = results[index].username.join(', ');
       console.log(`   ${winner}`)
     }
