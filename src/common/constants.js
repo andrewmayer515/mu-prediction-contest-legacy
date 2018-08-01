@@ -7,6 +7,8 @@ module.exports = {
   NUMBER: 'number',
   PLAYER_NUMBER: 'playerNumber',
 
+  NO_WINNER: 'No winner',
+
   // ROSTER 2018-2019
   ROSTER: {
     MARKUS_HOWARD: 'Marcus Howard',
