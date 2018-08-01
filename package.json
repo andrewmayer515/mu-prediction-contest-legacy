@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node src/app",
-    "debug": "node src/app --debug",
+    "start:login": "npm start -- login",
+    "debug": "npm start -- debug",
+    "debug:login": "npm start -- debug login",
     "eslint": "./node_modules/.bin/eslint --quiet src/**",
     "test": "jest"
   },

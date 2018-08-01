@@ -6,9 +6,10 @@ const key = require('../config/key');
 const helpers = require('./common/helpers.js');
 
 const args = process.argv.slice(2);
-const isDebug = args.includes('--debug');
+const isDebug = args.includes('debug');
+const isLogin = args.includes('login');
+
 const launchSettings = isDebug ? { headless: false, args: ['about:blank'] } : { args: ['about:blank'] };
-const data = [];
 
 (async () => {
   // Open headless browser, logs in to MUSCOOP with auth credentials
@@ -21,17 +22,21 @@ const data = [];
   }
   await page.goto(key.results.url, { waitUntil: 'networkidle2' });
   await page.bringToFront();
-  await page.click('#guest_form > input.input_text');
-  await page.keyboard.type(auth.username);
-  await page.click('#guest_form > input.input_password');
-  await page.keyboard.type(auth.password);
-  await page.click('#guest_form > input.button_submit');
-  await page.waitForNavigation();
 
+  // Login if the arg was passed in
+  if (isLogin) {
+    await page.click('#guest_form > input.input_text');
+    await page.keyboard.type(auth.username);
+    await page.click('#guest_form > input.input_password');
+    await page.keyboard.type(auth.password);
+    await page.click('#guest_form > input.button_submit');
+    await page.waitForNavigation();
+  }
   const usernameArray = await page.evaluate(() => [...document.querySelectorAll('.poster > h4')].map(elem => elem.innerText)); // eslint-disable-line no-undef
   const commentArray = await page.evaluate(() => [...document.querySelectorAll('.post > .inner')].map(elem => elem.innerText)); // eslint-disable-line no-undef
 
   // Combine all posts to get prediction data
+  const data = [];
   await usernameArray.forEach((value, index) => {
     data.push({
       username: usernameArray[index],
