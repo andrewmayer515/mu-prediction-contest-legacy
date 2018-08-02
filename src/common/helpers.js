@@ -3,15 +3,6 @@ const output = require('./output');
 const CONSTANTS = require('./constants');
 const calculator = require('./calculator');
 
-// Not going to bother with posts that have quotes in them, skip
-const removePredictionsWithQuotes = (data) => {
-  const result = _.filter(data, (record) => {
-    const quoteFound = _.some(record.comment, commentLine => commentLine.indexOf('Quote from:') !== -1);
-    return !quoteFound;
-  });
-  return result;
-};
-
 /**
  * Cycle through predictions for a given question and call its calculation function
  * @param {*} data All comments data on the post
@@ -61,12 +52,10 @@ const getResults = (data, results) => {
 };
 
 const predictionator = (data, key) => {
-  const sanitizedData = removePredictionsWithQuotes(data);
-  const results = getResults(sanitizedData, key);
+  const results = getResults(data, key);
   output.displayResults(results, key);
 };
 
 module.exports = {
-  removePredictionsWithQuotes,
   predictionator,
 };
