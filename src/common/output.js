@@ -18,7 +18,7 @@ const questionWinners = (results, key) => {
       const winner = results[index].username.join(', ');
       const prediction = results[index].prediction
         ? `(${results[index].prediction})`
-        : ''; 
+        : '';
 
       console.log(`${prefix} ${key[question].text} ${answer}`);
       console.log(`   ${winner} ${prediction}`);
