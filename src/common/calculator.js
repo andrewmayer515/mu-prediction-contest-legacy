@@ -100,14 +100,14 @@ const playerNumber = ({
       if (numberResult.username.length === 1) {
         return {
           username: [username],
-          prediction: `${predictionPlayer} - ${predictionNumber}`,
+          prediction: `${answer.player} - ${predictionNumber}`,
         };
       }
       const data = _.cloneDeep(winnerData);
       data.username.push(username);
       return {
         username: data.username,
-        prediction: `${predictionPlayer} - ${predictionNumber}`,
+        prediction: `${answer.player} - ${predictionNumber}`,
       };
     }
   }

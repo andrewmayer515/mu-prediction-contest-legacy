@@ -12,8 +12,6 @@ const isLogin = args.includes('login');
 const launchSettings = isDebug ? { headless: false, args: ['about:blank'] } : { args: ['about:blank'] };
 
 (async () => {
-  // Open headless browser, logs in to MUSCOOP with auth credentials
-  // Loads prediction post from config
   const spinner = ora({ text: 'Calculating...', color: 'yellow' }).start();
   const browser = await puppeteer.launch(launchSettings);
   const page = await browser.newPage();

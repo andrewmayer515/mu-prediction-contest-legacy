@@ -12,12 +12,16 @@ const questionWinners = (results, key) => {
   Object.keys(key).forEach((question, index) => {
     if (question.indexOf(CONSTANTS.QUESTION) !== -1 || question.indexOf(CONSTANTS.BONUS) !== -1) {
       const answer = key[question].type === CONSTANTS.PLAYER_NUMBER
-        ? `${key[question].answer.player} - ${key[question].answer.number}` : key[question].answer;
+        ? `${key[question].answer.player} - ${key[question].answer.number}`
+        : key[question].answer;
       const prefix = question === 'bonus' ? 'Bonus:' : `${index + 1}.`;
       const winner = results[index].username.join(', ');
+      const prediction = results[index].prediction
+        ? `(${results[index].prediction})`
+        : ''; 
 
       console.log(`${prefix} ${key[question].text} ${answer}`);
-      console.log(`   ${winner}`);
+      console.log(`   ${winner} ${prediction}`);
     }
   });
 };
