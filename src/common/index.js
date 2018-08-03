@@ -1,7 +1,7 @@
 const _ = require('lodash');
-const output = require('./output');
+const output = require('../output');
 const CONSTANTS = require('./constants');
-const calculator = require('./calculator');
+const calcs = require('../calcs');
 
 /**
  * Cycle through predictions for a given question and call its calculation function
@@ -17,7 +17,7 @@ const determineQuestionWinner = (data, result, params) => {
     if (predictionLine && predictionLine.indexOf(':') !== -1) {
       const prediction = predictionLine.split(':')[1].trim();
       if (prediction !== '') {
-        winnerData = calculator[params.type]({
+        winnerData = calcs[params.type]({
           prediction,
           answer: params.answer,
           winnerData,

@@ -1,9 +1,9 @@
 const puppeteer = require('puppeteer');
 const ora = require('ora');
 
-const auth = require('../config/auth.json');
-const key = require('../config/key');
-const helpers = require('./common/helpers.js');
+const auth = require('../data/auth.json');
+const key = require('../data/key');
+const common = require('./common');
 
 const args = process.argv.slice(2);
 const isDebug = args.includes('debug');
@@ -42,7 +42,7 @@ const launchSettings = isDebug ? { headless: false, args: ['about:blank'] } : { 
     });
   });
 
-  await helpers.predictionator(data, key.results);
+  await common.predictionator(data, key.results);
   spinner.stop();
 
   // Keep browser open while running as debug

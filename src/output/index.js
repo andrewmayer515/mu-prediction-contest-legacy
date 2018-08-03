@@ -1,5 +1,5 @@
 /* eslint no-console: 0 */
-const CONSTANTS = require('./constants');
+const CONSTANTS = require('../common/constants');
 
 const header = () => {
   console.log('');

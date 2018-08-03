@@ -32,7 +32,7 @@ $ node run debug
 ```
 
 ### Login
-If you want/need the app to sign in to your [muscoop.com](https://www.muscoop.com/) profile, you can create an `auth.json` file under the config folderand provide your username/password (refer to `auth-example.json` for formatting). You must then append `:login` to the above node script commands:
+If you want/need the app to sign in to your [muscoop.com](https://www.muscoop.com/) profile, you can create an `auth.json` file under the data folder and provide your username/password (refer to `auth-example.json` for formatting). You must then append `:login` to the above node script commands:
 
 ```
 $ node run start:login

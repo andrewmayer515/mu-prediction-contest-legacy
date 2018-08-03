@@ -9,7 +9,8 @@
     "debug": "npm start -- debug",
     "debug:login": "npm start -- debug login",
     "eslint": "./node_modules/.bin/eslint --quiet src/**",
-    "test": "jest"
+    "test": "jest",
+    "totals": "node scripts/totals"
   },
   "repository": {
     "type": "git",
