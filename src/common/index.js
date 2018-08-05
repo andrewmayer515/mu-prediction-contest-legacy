@@ -51,11 +51,11 @@ const getResults = (data, results) => {
   return resultsArray;
 };
 
-const predictionator = (data, key) => {
+const main = (data, key) => {
   const results = getResults(data, key);
   output.displayResults(results, key);
 };
 
 module.exports = {
-  predictionator,
+  main,
 };

@@ -14,8 +14,11 @@ const number = ({
   username,
 }) => {
   const formattedPrediction = parseInt(prediction, 10);
-  // If this is blank (first time through), automatically return results
-  if (!winnerData || !_.isNumber(formattedPrediction)) {
+  // If the prediction is not a number or there is no winner data (first time through),
+  // automatically return the results
+  if (Number.isNaN(formattedPrediction)) {
+    return winnerData;
+  } else if (!winnerData) {
     return {
       username: [username],
       prediction: formattedPrediction,

@@ -13,7 +13,7 @@ const reasonablePlayerGuesses = (players) => {
       .toLowerCase()
       .split(' ');
     const initialLastName = `${playerData[0].charAt(0)}${playerData[1]}`;
-    results.push(`${playerData[0]}${playerData[1]}}`, playerData[0], playerData[1], initialLastName);
+    results.push(`${playerData[0]}${playerData[1]}`, playerData[0], playerData[1], initialLastName);
   });
 
   return results;
@@ -77,4 +77,7 @@ const playerNumber = ({
   return winnerData;
 };
 
-module.exports = playerNumber;
+module.exports = {
+  playerNumber,
+  reasonablePlayerGuesses,
+};

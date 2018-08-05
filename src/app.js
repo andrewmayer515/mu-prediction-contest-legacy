@@ -42,7 +42,7 @@ const launchSettings = isDebug ? { headless: false, args: ['about:blank'] } : { 
     });
   });
 
-  await common.predictionator(data, key.results);
+  await common.main(data, key.results);
   spinner.stop();
 
   // Keep browser open while running as debug
