@@ -2,13 +2,13 @@ const playerNumber = require('./index');
 
 describe('reasonablePlayerGuesses', () => {
   test('return an array of player names to match', () => {
-    const players = ['Marcus Howard'];
-    const expected = ['marcushoward', 'marcus', 'howard', 'mhoward'];
+    const players = ['Markus Howard'];
+    const expected = ['markushoward', 'markus', 'howard', 'mhoward'];
     expect(playerNumber.reasonablePlayerGuesses(players)).toEqual(expected);
   });
   test('return an array of player names to match when the answer lists more than one player', () => {
-    const players = ['Marcus Howard', 'Sam Hauser'];
-    const expected = ['marcushoward', 'marcus', 'howard', 'mhoward', 'samhauser', 'sam', 'hauser', 'shauser'];
+    const players = ['Markus Howard', 'Sam Hauser'];
+    const expected = ['markushoward', 'markus', 'howard', 'mhoward', 'samhauser', 'sam', 'hauser', 'shauser'];
     expect(playerNumber.reasonablePlayerGuesses(players)).toEqual(expected);
   });
 });

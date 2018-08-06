@@ -11,7 +11,7 @@ module.exports = {
 
   // ROSTER 2018-2019
   ROSTER: {
-    MARKUS_HOWARD: 'Marcus Howard',
+    MARKUS_HOWARD: 'Markus Howard',
     BRENDEN_BAILEY: 'Brenden Bailey',
     SACAR_ANIM: 'Sacar Anim',
     THEO_JOHN: 'Theo John',

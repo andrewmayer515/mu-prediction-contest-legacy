@@ -67,4 +67,7 @@ const displayResults = (results, key) => {
 
 module.exports = {
   displayResults,
+  header,
+  questionWinners,
+  summary,
 };

@@ -9,10 +9,9 @@
     "debug": "npm start -- debug",
     "debug:login": "npm start -- debug login",
     "eslint": "./node_modules/.bin/eslint --quiet src/**",
-    "test": "npm run eslint & npm run jest",
-    "totals": "node scripts/totals",
-    "jest": "jest",
-    "jest-watch": "jest --watch"
+    "test": "jest",
+    "test-watch": "jest --watch",
+    "totals": "node scripts/totals"
   },
   "repository": {
     "type": "git",

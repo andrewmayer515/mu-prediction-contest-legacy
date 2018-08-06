@@ -1,9 +1,15 @@
 const puppeteer = require('puppeteer');
 const ora = require('ora');
 
-const auth = require('../data/auth.json');
 const key = require('../data/key');
 const common = require('./common');
+
+let auth;
+try {
+  auth = require('../data/auth.json'); // eslint-disable-line global-require
+} catch (e) {
+  // Do nothing, login not required but could be passed in as an option
+}
 
 const args = process.argv.slice(2);
 const isDebug = args.includes('debug');
