@@ -1,5 +1,6 @@
 # mu-prediction-contest
 [![Build Status](https://travis-ci.org/andrewmayer515/mu-prediction-contest.svg?branch=master)](https://travis-ci.org/andrewmayer515/mu-prediction-contest)
+[![Coverage Status](https://coveralls.io/repos/github/andrewmayer515/mu-prediction-contest/badge.svg)](https://coveralls.io/github/andrewmayer515/mu-prediction-contest)
 
 A node.js script that scraps the contents of [muscoop.com](https://www.muscoop.com/) using [Puppeteer](https://github.com/GoogleChrome/puppeteer#readme) to calculate prediction contest winners
 
