@@ -7,3 +7,5 @@ before_script:
   - npm run eslint
 script:
   - npm run test
+after_success:
+  - jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
