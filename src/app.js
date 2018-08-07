@@ -1,15 +1,10 @@
 const puppeteer = require('puppeteer');
 const ora = require('ora');
+const fs = require('fs');
 
-const key = require('../data/key');
 const common = require('./common');
 
-let auth;
-try {
-  auth = require('../data/auth.json'); // eslint-disable-line global-require
-} catch (e) {
-  // Do nothing, login not required but could be passed in as an option
-}
+let key;
 
 const args = process.argv.slice(2);
 const isDebug = args.includes('debug');
@@ -21,14 +16,25 @@ const launchSettings = isDebug ? { headless: false, args: ['about:blank'] } : { 
   const spinner = ora({ text: 'Calculating...', color: 'yellow' }).start();
   const browser = await puppeteer.launch(launchSettings);
   const page = await browser.newPage();
-  if (isDebug) { // Forces the browser view to fill the viewport size while running as debug
+
+  // Forces the browser view to fill the viewport size while running as debug
+  if (isDebug) {
     await page._client.send('Emulation.clearDeviceMetricsOverride'); // eslint-disable-line no-underscore-dangle
+  }
+
+  // If the key is not set, default to the example until it is created
+  try {
+    key = await require('../data/key'); // eslint-disable-line global-require, import/no-unresolved
+  } catch (e) {
+    console.log('--- RUNNING WITH SAMPLE DATA, REFER TO README.MD ---'); // eslint-disable-line no-console
+    key = await require('../data/key-example'); // eslint-disable-line global-require
   }
   await page.goto(key.results.url, { waitUntil: 'networkidle2' });
   await page.bringToFront();
 
   // Login if the arg was passed in
   if (isLogin) {
+    const auth = await JSON.parse(fs.readFileSync('data/auth.json'));
     await page.click('#guest_form > input.input_text');
     await page.keyboard.type(auth.username);
     await page.click('#guest_form > input.input_password');

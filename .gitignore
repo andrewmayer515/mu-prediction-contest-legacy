@@ -1,4 +1,4 @@
 node_modules
 data/auth.json
 data/key.js
-data/totals.txt
+scripts/totals.txt
