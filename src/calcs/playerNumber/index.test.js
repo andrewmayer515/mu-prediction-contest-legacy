@@ -62,6 +62,25 @@ describe('playerNumber', () => {
     };
     expect(playerNumber.playerNumber(params)).toEqual(expected);
   });
+  test('return updated winner data when the player and the current winner have the same guess', () => {
+    const params = {
+      prediction: 'Vander Blue - 10',
+      answer: {
+        player: ['Vander Blue'],
+        number: 5,
+      },
+      winnerData: {
+        username: ['test2'],
+        prediction: 'Vander Blue - 10',
+      },
+      username: 'test',
+    };
+    const expected = {
+      username: ['test2', 'test'],
+      prediction: 'Vander Blue - 10',
+    };
+    expect(playerNumber.playerNumber(params)).toEqual(expected);
+  });
   test('return unmodified winner data when the player was correct, but the number was not closer', () => {
     const params = {
       prediction: 'Vander Blue - 15',

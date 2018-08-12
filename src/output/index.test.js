@@ -85,7 +85,7 @@ describe('output', () => {
       expect(console.log.mock.calls[9][0]).toBe('   Andrew (16)');
       expect(console.log.mock.calls[10][0]).toBe('4. MU top rebounder and how many: Sam Hauser - 5');
       expect(console.log.mock.calls[11][0]).toBe('   No winner ');
-      expect(console.log.mock.calls[12][0]).toBe('Bonus: Predict Marquette\'s shooting percentage: 56.4');
+      expect(console.log.mock.calls[12][0]).toBe('Bonus. Predict Marquette\'s shooting percentage: 56.4');
       expect(console.log.mock.calls[13][0]).toBe('   Other (57)');
       expect(console.log.mock.calls[14][0]).toBe('');
       expect(console.log.mock.calls[15][0]).toBe('');
@@ -120,8 +120,22 @@ describe('output', () => {
       expect(console.log.mock.calls[5][0]).toBe('   Andrew (16)');
       expect(console.log.mock.calls[6][0]).toBe('4. MU top rebounder and how many: Sam Hauser - 5');
       expect(console.log.mock.calls[7][0]).toBe('   No winner ');
-      expect(console.log.mock.calls[8][0]).toBe('Bonus: Predict Marquette\'s shooting percentage: 56.4');
+      expect(console.log.mock.calls[8][0]).toBe('Bonus. Predict Marquette\'s shooting percentage: 56.4');
       expect(console.log.mock.calls[9][0]).toBe('   Other (57)');
+    });
+    test('return console log of error summary if the key file was not set correctly', () => {
+      const badKey = {
+        wrongFormat: {
+          text: 'Total Game Points:',
+          answer: 167,
+          type: CONSTANTS.NUMBER,
+        },
+      };
+      console.log = jest.fn();
+      output.questionWinners(results, badKey);
+
+      expect(console.log.mock.calls[0][0]).toBe('Error with the following question: Total Game Points:');
+      expect(console.log.mock.calls[1][0]).toBe('Verify key.js file has been set correctly');
     });
   });
   describe('summary', () => {

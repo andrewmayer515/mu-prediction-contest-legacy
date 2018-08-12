@@ -5,6 +5,7 @@ const fs = require('fs');
 const common = require('./common');
 
 let key;
+let spinner;
 
 const args = process.argv.slice(2);
 const isDebug = args.includes('debug');
@@ -13,7 +14,15 @@ const isLogin = args.includes('login');
 const launchSettings = isDebug ? { headless: false, args: ['about:blank'] } : { args: ['about:blank'] };
 
 (async () => {
-  const spinner = ora({ text: 'Calculating...', color: 'yellow' }).start();
+  // If the key is not set, default to the example until it is created
+  try {
+    key = await require('../data/key'); // eslint-disable-line global-require, import/no-unresolved
+    spinner = ora({ text: 'Calculating...', color: 'yellow' }).start();
+  } catch (e) {
+    key = await require('../data/key-example'); // eslint-disable-line global-require
+    spinner = ora({ text: '--- RUNNING WITH SAMPLE DATA, REFER TO README.MD ---', color: 'yellow' }).start();
+  }
+
   const browser = await puppeteer.launch(launchSettings);
   const page = await browser.newPage();
 
@@ -22,13 +31,6 @@ const launchSettings = isDebug ? { headless: false, args: ['about:blank'] } : { 
     await page._client.send('Emulation.clearDeviceMetricsOverride'); // eslint-disable-line no-underscore-dangle
   }
 
-  // If the key is not set, default to the example until it is created
-  try {
-    key = await require('../data/key'); // eslint-disable-line global-require, import/no-unresolved
-  } catch (e) {
-    console.log('--- RUNNING WITH SAMPLE DATA, REFER TO README.MD ---'); // eslint-disable-line no-console
-    key = await require('../data/key-example'); // eslint-disable-line global-require
-  }
   await page.goto(key.results.url, { waitUntil: 'networkidle2' });
   await page.bringToFront();
 

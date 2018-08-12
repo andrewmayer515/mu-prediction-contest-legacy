@@ -2,7 +2,7 @@
   "name": "mu-prediction-contest",
   "version": "1.0.0",
   "description": "Web scrapper for muscoop",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "start": "node src/app",
     "start:login": "npm start -- login",
@@ -11,7 +11,7 @@
     "eslint": "./node_modules/.bin/eslint --quiet src/**",
     "test": "jest",
     "test-watch": "jest --watch",
-    "test-coverage": "jest --coverage",
+    "test-coverage": "jest --coverage --coverageReporters=text",
     "totals": "node scripts/totals"
   },
   "repository": {

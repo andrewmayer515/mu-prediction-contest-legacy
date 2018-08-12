@@ -14,7 +14,7 @@ const questionWinners = (results, key) => {
       const answer = key[question].type === CONSTANTS.PLAYER_NUMBER
         ? `${key[question].answer.player} - ${key[question].answer.number}`
         : key[question].answer;
-      const prefix = question === 'bonus' ? 'Bonus:' : `${index + 1}.`;
+      const prefix = question === 'bonus' ? 'Bonus.' : `${index + 1}.`;
       const winner = results[index].username.join(', ');
       const prediction = results[index].prediction
         ? `(${results[index].prediction})`
@@ -22,6 +22,9 @@ const questionWinners = (results, key) => {
 
       console.log(`${prefix} ${key[question].text} ${answer}`);
       console.log(`   ${winner} ${prediction}`);
+    } else {
+      console.log(`Error with the following question: ${key[question].text}`);
+      console.log('Verify key.js file has been set correctly');
     }
   });
 };
