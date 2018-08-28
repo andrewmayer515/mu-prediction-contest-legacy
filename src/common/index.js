@@ -4,22 +4,22 @@ const CONSTANTS = require('./constants');
 const calcs = require('../calcs');
 
 /**
- * Cycle through predictions for a given question and call its calculation function
+ * Loop through predictions for a given question and call its calculation function
  * @param {*} data All comments data on the post
- * @param {*} result The current question being evaluated from the key.js file
- * @param {*} params Properties of result, taken from the key.js file
+ * @param {*} question The current question being evaluated from the key.js file
+ * @param {*} props Properties of question, taken from the key.js file
  */
-const determineQuestionWinner = (data, result, params) => {
-  const number = result.replace(/[^0-9]/g, '');
+const determineQuestionWinner = (data, question, props) => {
+  const number = question.replace(/[^0-9]/g, '');
   let winnerData;
   data.forEach((record) => {
     const predictionLine = _.find(record.comment, commentLine => commentLine.indexOf(`${number}.`) !== -1);
     if (predictionLine && predictionLine.indexOf(':') !== -1) {
       const prediction = predictionLine.split(':')[1].trim();
       if (prediction !== '') {
-        winnerData = calcs[params.type]({
+        winnerData = calcs[props.type]({
           prediction,
-          answer: params.answer,
+          answer: props.answer,
           winnerData,
           username: record.username,
         });
@@ -34,28 +34,30 @@ const determineQuestionWinner = (data, result, params) => {
   }
 
   return {
-    answer: params.answer,
+    answer: props.answer,
     ...winnerData,
   };
 };
 
-const getResults = (data, results) => {
-  const resultsArray = [];
-  // Cycle through each question in the config
-  Object.keys(results).forEach((result) => {
-    if (result.indexOf(CONSTANTS.QUESTION) !== -1 || result.indexOf(CONSTANTS.BONUS) !== -1) {
-      resultsArray.push(determineQuestionWinner(data, result, results[result]));
+/**
+ * Loop through each question in the config, determine winners, send to output
+ * @param {*} data All comments data on the post
+ * @param {*} key Contents of the answer file (key.js)
+ */
+const main = (data, key) => {
+  const results = [];
+
+  // Loop through each question in the config
+  Object.keys(key).forEach((question) => {
+    if (question.indexOf(CONSTANTS.QUESTION) !== -1 || question.indexOf(CONSTANTS.BONUS) !== -1) {
+      results.push(determineQuestionWinner(data, question, key[question]));
     }
   });
 
-  return resultsArray;
-};
-
-const main = (data, key) => {
-  const results = getResults(data, key);
   output.displayResults(results, key);
 };
 
 module.exports = {
+  determineQuestionWinner,
   main,
 };

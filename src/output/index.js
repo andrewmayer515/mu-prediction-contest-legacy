@@ -22,7 +22,7 @@ const questionWinners = (results, key) => {
 
       console.log(`${prefix} ${key[question].text} ${answer}`);
       console.log(`   ${winner} ${prediction}`);
-    } else {
+    } else if (question !== 'url') {
       console.log(`Error with the following question: ${key[question].text}`);
       console.log('Verify key.js file has been set correctly');
     }

@@ -137,6 +137,15 @@ describe('output', () => {
       expect(console.log.mock.calls[0][0]).toBe('Error with the following question: Total Game Points:');
       expect(console.log.mock.calls[1][0]).toBe('Verify key.js file has been set correctly');
     });
+    test('return no console log if the line being read is the url', () => {
+      const badKey = {
+        url: 'https://www.muscoop.com/index.php?topic=35990.0;all',
+      };
+      console.log = jest.fn();
+      output.questionWinners(results, badKey);
+
+      expect(console.log).not.toHaveBeenCalled();
+    });
   });
   describe('summary', () => {
     test('return console log of summarized game total points for each username', () => {
