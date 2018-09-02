@@ -25,12 +25,14 @@ const reasonablePlayerGuesses = (players) => {
  * @param {*} answer The value set in the key.js file for the given question
  * @param {*} winnerData Comparison data on who the current winner is
  * @param {*} username Username for the person who made the guess
+ * @param {*} isBonusQuestion Boolean for if the question being evaluated is the bonus question
  */
 const playerNumber = ({
   prediction,
   answer,
   winnerData,
   username,
+  isBonusQuestion = false,
 }) => {
   // Regex to break down prediction to just alphanumeric
   const formattedPrediction = prediction.replace(/[^a-z0-9]/gi, '');
@@ -48,13 +50,14 @@ const playerNumber = ({
       username: winnerData.username,
       prediction: parseInt(winnerData.prediction.replace(/[^0-9]/gi, ''), 10),
     } : undefined;
-    // Use the number calculator to determine who is closer to the correct number
+    // Use the number calcs to determine who is closer to the correct number
     // if more than one user guessed the player
     const numberResult = number({
       prediction: predictionNumber,
       answer: answer.number,
       winnerData: numberWinnerData,
       username,
+      isBonusQuestion,
     });
 
     if (numberResult.username.includes(username)) {

@@ -1,17 +1,16 @@
 const puppeteer = require('puppeteer');
 const ora = require('ora');
 const fs = require('fs');
-
 const common = require('./common');
-
-let key;
-let spinner;
 
 const args = process.argv.slice(2);
 const isDebug = args.includes('debug');
 const isLogin = args.includes('login');
 
 const launchSettings = isDebug ? { headless: false, args: ['about:blank'] } : { args: ['about:blank'] };
+
+let key;
+let spinner;
 
 (async () => {
   // If the key is not set, default to the example until it is created
