@@ -18,7 +18,7 @@ $ npm install
 ## Configuration
 To configure new prediction contest results, you will need to create a `key.js` file under the data folder to enter the postgame results into (refer to [key-example.js](https://github.com/andrewmayer515/mu-prediction-contest/blob/master/data/key-example.js) for formatting). It may be easier to copy the contents of [key-example.js](https://github.com/andrewmayer515/mu-prediction-contest/blob/master/data/key-example.js) into `key.js` to start off.
 
-The results object in `key.js` is comprised of two parts: Questions and the URL.
+The results object in `key.js` is comprised of two required parts (Questions and URL) and one that is optional (Bonus).
 
 ### Questions
 A standard question has 4 main parts: an identifier, text, answer, and the type of question:
@@ -46,6 +46,25 @@ In the exaple, this is `type: CONSTANTS.NUMBER`. This designates the type of que
 *  `CONSTANTS.PLAYER` - The answer is a player name.
 *  `CONSTANTS.PLAYER_NUMBER` - The answer is both a number and a player name.
 
+### URL
+This is the URL to the [muscoop.com](https://www.muscoop.com/) prediction post where the script will gather data from:
+```
+url: 'https://www.muscoop.com/index.php?topic=35990.0;all'
+```
+Note: If the prediction post is under 4 pages long, it is advised to use the 'All' page option. The script currently doesn't have a way to go to the next page for more data (all of the user posts must be on the same page).
+
+### Bonus (Optional)
+One question can be given the `bonus` identifier, which marks a question that can be worth a specified number of points. In order for the points to count, a given answer must be exact. It is configured similar to how Questions are configured, plus the `points` option:
+```
+bonus: {
+  answer: 56,
+  type: CONSTANTS.NUMBER,
+  text: 'Predict Marquette\'s shooting percentage:',
+  points: 3,
+}
+```
+#### Points
+In the example, this is `points: 3`. This is an override for the amount of points that a Bonus Question is worth. In this example, if the Bonus Question is guessed exactly, 3 points would be awarded to the user(s) that guessed the correct amount. If the `point` option is omitted, a correct response is defaulted to 1 point.
 
 ## Run Options
 

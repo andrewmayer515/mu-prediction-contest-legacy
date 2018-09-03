@@ -80,6 +80,7 @@ describe('number', () => {
     const expected = {
       username: ['test'],
       prediction: 100,
+      isBonusQuestion: true,
     };
     expect(number(params)).toEqual(expected);
   });
@@ -90,6 +91,7 @@ describe('number', () => {
       winnerData: {
         username: ['test2'],
         prediction: 100,
+        isBonusQuestion: true,
       },
       username: 'test',
       isBonusQuestion: true,
@@ -97,6 +99,7 @@ describe('number', () => {
     const expected = {
       username: ['test2', 'test'],
       prediction: 100,
+      isBonusQuestion: true,
     };
     expect(number(params)).toEqual(expected);
   });
@@ -107,6 +110,7 @@ describe('number', () => {
       winnerData: {
         username: ['test2'],
         prediction: 100,
+        isBonusQuestion: true,
       },
       username: 'test',
       isBonusQuestion: true,
@@ -114,6 +118,7 @@ describe('number', () => {
     const expected = {
       username: ['test2'],
       prediction: 100,
+      isBonusQuestion: true,
     };
     expect(number(params)).toEqual(expected);
   });

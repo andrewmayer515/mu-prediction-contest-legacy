@@ -30,9 +30,10 @@ describe('output', () => {
       username: ['No winner'],
     },
     {
-      answer: 56.4,
-      username: ['Other'],
-      prediction: 57,
+      answer: 56,
+      username: ['Bonus_Winner'],
+      prediction: 56,
+      isBonusQuestion: true,
     },
   ];
   const key = {
@@ -63,9 +64,10 @@ describe('output', () => {
       type: CONSTANTS.PLAYER_NUMBER,
     },
     bonus: {
-      answer: 56.4,
+      answer: 56,
       type: CONSTANTS.NUMBER,
       text: 'Predict Marquette\'s shooting percentage:',
+      points: 3,
     },
   };
   describe('displayResults', () => {
@@ -85,14 +87,14 @@ describe('output', () => {
       expect(console.log.mock.calls[9][0]).toBe('   Andrew (16)');
       expect(console.log.mock.calls[10][0]).toBe('4. MU top rebounder and how many: Sam Hauser - 5');
       expect(console.log.mock.calls[11][0]).toBe('   No winner ');
-      expect(console.log.mock.calls[12][0]).toBe('Bonus. Predict Marquette\'s shooting percentage: 56.4');
-      expect(console.log.mock.calls[13][0]).toBe('   Other (57)');
+      expect(console.log.mock.calls[12][0]).toBe('Bonus. Predict Marquette\'s shooting percentage: 56');
+      expect(console.log.mock.calls[13][0]).toBe('   Bonus_Winner (56)');
       expect(console.log.mock.calls[14][0]).toBe('');
       expect(console.log.mock.calls[15][0]).toBe('');
       expect(console.log.mock.calls[16][0]).toBe('Game Totals:');
       expect(console.log.mock.calls[17][0]).toBe('-----------');
-      expect(console.log.mock.calls[18][0]).toBe('Andrew - 2');
-      expect(console.log.mock.calls[19][0]).toBe('Other - 1');
+      expect(console.log.mock.calls[18][0]).toBe('Bonus_Winner - 3');
+      expect(console.log.mock.calls[19][0]).toBe('Andrew - 2');
       expect(console.log.mock.calls[20][0]).toBe('Test - 1');
     });
   });
@@ -120,8 +122,8 @@ describe('output', () => {
       expect(console.log.mock.calls[5][0]).toBe('   Andrew (16)');
       expect(console.log.mock.calls[6][0]).toBe('4. MU top rebounder and how many: Sam Hauser - 5');
       expect(console.log.mock.calls[7][0]).toBe('   No winner ');
-      expect(console.log.mock.calls[8][0]).toBe('Bonus. Predict Marquette\'s shooting percentage: 56.4');
-      expect(console.log.mock.calls[9][0]).toBe('   Other (57)');
+      expect(console.log.mock.calls[8][0]).toBe('Bonus. Predict Marquette\'s shooting percentage: 56');
+      expect(console.log.mock.calls[9][0]).toBe('   Bonus_Winner (56)');
     });
     test('return console log of error summary if the key file was not set correctly', () => {
       const badKey = {
@@ -150,15 +152,58 @@ describe('output', () => {
   describe('summary', () => {
     test('return console log of summarized game total points for each username', () => {
       console.log = jest.fn();
-      output.summary(results);
+      output.summary(results, key);
+
+      expect(console.log.mock.calls[0][0]).toBe('');
+      expect(console.log.mock.calls[1][0]).toBe('');
+      expect(console.log.mock.calls[2][0]).toBe('Game Totals:');
+      expect(console.log.mock.calls[3][0]).toBe('-----------');
+      expect(console.log.mock.calls[4][0]).toBe('Bonus_Winner - 3');
+      expect(console.log.mock.calls[5][0]).toBe('Andrew - 2');
+      expect(console.log.mock.calls[6][0]).toBe('Test - 1');
+    });
+    test('return console log of summarized game total points for each username (no bonus winner)', () => {
+      const results2 = [
+        {
+          answer: 167,
+          username: ['Test'],
+          prediction: 160,
+        },
+        {
+          answer: 89,
+          username: ['Andrew'],
+          prediction: 80,
+        },
+        {
+          answer: {
+            player: ['Markus Howard'],
+            number: 18,
+          },
+          username: ['Andrew'],
+          prediction: 16,
+        },
+        {
+          answer: {
+            player: ['Sam Hauser'],
+            number: 18,
+          },
+          username: ['No winner'],
+        },
+        {
+          answer: 56,
+          username: ['No winner'],
+        },
+      ];
+
+      console.log = jest.fn();
+      output.summary(results2, key);
 
       expect(console.log.mock.calls[0][0]).toBe('');
       expect(console.log.mock.calls[1][0]).toBe('');
       expect(console.log.mock.calls[2][0]).toBe('Game Totals:');
       expect(console.log.mock.calls[3][0]).toBe('-----------');
       expect(console.log.mock.calls[4][0]).toBe('Andrew - 2');
-      expect(console.log.mock.calls[5][0]).toBe('Other - 1');
-      expect(console.log.mock.calls[6][0]).toBe('Test - 1');
+      expect(console.log.mock.calls[5][0]).toBe('Test - 1');
     });
   });
 });

@@ -37,6 +37,7 @@ const number = ({
       return {
         username: data.username,
         prediction: formattedPrediction,
+        isBonusQuestion,
       };
     }
 

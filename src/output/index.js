@@ -1,4 +1,5 @@
 /* eslint no-console: 0 */
+const _ = require('lodash');
 const CONSTANTS = require('../common/constants');
 
 const header = () => {
@@ -29,15 +30,27 @@ const questionWinners = (results, key) => {
   });
 };
 
-const summary = (results) => {
+const summary = (results, key) => {
   // Create an array of all winners
   const winnerList = [];
-  results.forEach((result) => {
-    result.username.forEach((winner) => {
-      if (winner !== CONSTANTS.NO_WINNER) {
-        winnerList.push(winner);
-      }
-    });
+  _.forEach(results, (result) => {
+    const isBonusQuestion = _.get(result, 'isBonusQuestion', false);
+    // If the question was a Bonus Question, more than 1 point could be awarded depending
+    // on the 'points' value set for the Bonus Question
+    if (isBonusQuestion) {
+      const points = _.get(key, 'bonus.points', 1);
+      result.username.forEach((winner) => {
+        _.times(points, () => {
+          winnerList.push(winner);
+        });
+      });
+    } else { // Process normally
+      result.username.forEach((winner) => {
+        if (winner !== CONSTANTS.NO_WINNER) {
+          winnerList.push(winner);
+        }
+      });
+    }
   });
 
   // Count duplicates
