@@ -7,7 +7,7 @@ A node.js script that scraps the contents of [muscoop.com](https://www.muscoop.c
 ## Rules
 For this project, I based the prediction contest rules off of [this muscoop.com post](https://www.muscoop.com/index.php?topic=10.0).
 
-## Setup:
+## Setup
 Download the latet LTS version of [Node](https://nodejs.org/en/), then run the following:
 ```
 $ git clone https://github.com/andrewmayer515/mu-prediction-contest.git
