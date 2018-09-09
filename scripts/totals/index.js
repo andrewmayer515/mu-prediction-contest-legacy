@@ -2,7 +2,7 @@
 const fs = require('fs');
 
 // Read data from text file, format for processing
-const data = fs.readFileSync('scripts/totals.txt').toString().split('\n');
+const data = fs.readFileSync('scripts/totals/totals.txt').toString().split('\n');
 const formattedData = data
   .filter(item => item)
   .map((item) => {

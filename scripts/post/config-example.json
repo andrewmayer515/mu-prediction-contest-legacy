@@ -1,0 +1,10 @@
+{
+  "login": {
+    "username": "<my username>",
+    "password": "<my password>"
+  },
+  "post": {
+    "team": "Villanova",
+    "bonus": "Bonus (2 points). Predict Davante's combined points and rebounds:"
+  }
+}
