@@ -13,6 +13,19 @@ describe('reasonablePlayerGuesses', () => {
   });
 });
 
+describe('isMatchFound', () => {
+  const playerFormats = ['markushoward', 'markus', 'howard', 'mhoward'];
+  test('return true when a match is found', () => {
+    expect(playerNumber.isMatchFound(playerFormats, 'markus')).toEqual(true);
+    expect(playerNumber.isMatchFound(playerFormats, 'marcus')).toEqual(true); // 1 off
+    expect(playerNumber.isMatchFound(playerFormats, 'marcas')).toEqual(true); // 2 off
+  });
+  test('return false when a match is not found', () => {
+    expect(playerNumber.isMatchFound(playerFormats, 'andrew')).toEqual(false);
+    expect(playerNumber.isMatchFound(playerFormats, 'murcas')).toEqual(false); // 3 off
+  });
+});
+
 describe('playerNumber', () => {
   test('return the current winner data back unmodified if the player guess was wrong', () => {
     const params = {

@@ -1,10 +1,12 @@
 const _ = require('lodash');
+const levenshtein = require('fast-levenshtein');
 const number = require('../number');
 
 /**
  * Breaks apart player name to a an array of reasonable formats for a player name that someone
  * could guess. If the player was Vander Blue, the results would be:
  * ['vanderblue', 'vander', 'blue', 'vblue']
+ * @param {*} players An array of player names, taken from the answer key of the current question
  */
 const reasonablePlayerGuesses = (players) => {
   const results = [];
@@ -18,6 +20,15 @@ const reasonablePlayerGuesses = (players) => {
 
   return results;
 };
+
+/**
+ * Use the Levenshtein algorithm to match a guess with a player name (edit distance 2 or below)
+ * @param {*} playerFormats An array of player names in different formats that someone could guess
+ * @param {*} predictionPlayer The player name that the user guessed
+ */
+const isMatchFound = (playerFormats, predictionPlayer) => playerFormats.some(
+  playerName => levenshtein.get(playerName, predictionPlayer) <= 2,
+);
 
 /**
  * Determines who guess the player as well as had the closest prediction to a given number
@@ -43,7 +54,7 @@ const playerNumber = ({
   const playerFormats = reasonablePlayerGuesses(answer.player);
 
   // The player guess matches a reasonable result
-  if (playerFormats.includes(predictionPlayer)) {
+  if (isMatchFound(playerFormats, predictionPlayer)) {
     // If this is blank (first time through or no correct player guess),
     // automatically return results
     const numberWinnerData = winnerData ? {
@@ -83,4 +94,5 @@ const playerNumber = ({
 module.exports = {
   playerNumber,
   reasonablePlayerGuesses,
+  isMatchFound,
 };
