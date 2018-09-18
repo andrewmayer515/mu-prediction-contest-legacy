@@ -2,6 +2,8 @@
 const output = require('./index');
 const CONSTANTS = require('../common/constants');
 
+const { TYPE } = CONSTANTS;
+
 describe('output', () => {
   const results = [
     {
@@ -40,12 +42,12 @@ describe('output', () => {
     question1: {
       text: 'Total Game Points:',
       answer: 167,
-      type: CONSTANTS.NUMBER,
+      type: TYPE.NUMBER,
     },
     question2: {
       text: 'MU Points:',
       answer: 89,
-      type: CONSTANTS.NUMBER,
+      type: TYPE.NUMBER,
     },
     question3: {
       text: 'MU top scorer and how many:',
@@ -53,7 +55,7 @@ describe('output', () => {
         player: ['Markus Howard'],
         number: 18,
       },
-      type: CONSTANTS.PLAYER_NUMBER,
+      type: TYPE.PLAYER_NUMBER,
     },
     question4: {
       text: 'MU top rebounder and how many:',
@@ -61,11 +63,11 @@ describe('output', () => {
         player: ['Sam Hauser'],
         number: 5,
       },
-      type: CONSTANTS.PLAYER_NUMBER,
+      type: TYPE.PLAYER_NUMBER,
     },
     bonus: {
       answer: 56,
-      type: CONSTANTS.NUMBER,
+      type: TYPE.NUMBER,
       text: 'Predict Marquette\'s shooting percentage:',
       points: 3,
     },

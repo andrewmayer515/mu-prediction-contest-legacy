@@ -1,7 +1,9 @@
 const number = require('./number');
+const player = require('./player');
 const playerNumber = require('./playerNumber');
 
 module.exports = {
   number,
-  playerNumber: playerNumber.playerNumber,
+  player: player.player,
+  playerNumber,
 };

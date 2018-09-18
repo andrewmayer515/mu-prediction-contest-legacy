@@ -1,37 +1,9 @@
 const _ = require('lodash');
-const levenshtein = require('fast-levenshtein');
+const player = require('../player');
 const number = require('../number');
 
 /**
- * Breaks apart player name to a an array of reasonable formats for a player name that someone
- * could guess. If the player was Vander Blue, the results would be:
- * ['vanderblue', 'vander', 'blue', 'vblue']
- * @param {*} players An array of player names, taken from the answer key of the current question
- */
-const reasonablePlayerGuesses = (players) => {
-  const results = [];
-  players.forEach((player) => {
-    const playerData = player
-      .toLowerCase()
-      .split(' ');
-    const initialLastName = `${playerData[0].charAt(0)}${playerData[1]}`;
-    results.push(`${playerData[0]}${playerData[1]}`, playerData[0], playerData[1], initialLastName);
-  });
-
-  return results;
-};
-
-/**
- * Use the Levenshtein algorithm to match a guess with a player name (edit distance 2 or below)
- * @param {*} playerFormats An array of player names in different formats that someone could guess
- * @param {*} predictionPlayer The player name that the user guessed
- */
-const isMatchFound = (playerFormats, predictionPlayer) => playerFormats.some(
-  playerName => levenshtein.get(playerName, predictionPlayer) <= 2,
-);
-
-/**
- * Determines who guess the player as well as had the closest prediction to a given number
+ * Determines who guessed the player as well as had the closest prediction to a given number
  * @param {*} prediction The value that was guessed for a given question
  * @param {*} answer The value set in the key.js file for the given question
  * @param {*} winnerData Comparison data on who the current winner is
@@ -51,10 +23,10 @@ const playerNumber = ({
     .replace(/[^a-z]/gi, '')
     .toLowerCase();
   const predictionNumber = formattedPrediction.replace(/[^0-9]/gi, '');
-  const playerFormats = reasonablePlayerGuesses(answer.player);
+  const playerFormats = player.reasonablePlayerGuesses(answer.player);
 
   // The player guess matches a reasonable result
-  if (isMatchFound(playerFormats, predictionPlayer)) {
+  if (player.isMatchFound(playerFormats, predictionPlayer)) {
     // If this is blank (first time through or no correct player guess),
     // automatically return results
     const numberWinnerData = winnerData ? {
@@ -91,8 +63,4 @@ const playerNumber = ({
   return winnerData;
 };
 
-module.exports = {
-  playerNumber,
-  reasonablePlayerGuesses,
-  isMatchFound,
-};
+module.exports = playerNumber;

@@ -3,11 +3,14 @@ module.exports = {
   QUESTION: 'question',
   BONUS: 'bonus',
 
-  // Calculation Type Functions (should havea function with same name in calcs.js)
-  NUMBER: 'number',
-  PLAYER_NUMBER: 'playerNumber',
-
   NO_WINNER: 'No winner',
+
+  // Calculation Type Functions (should havea function with same name in calcs.js)
+  TYPE: {
+    NUMBER: 'number',
+    PLAYER: 'player',
+    PLAYER_NUMBER: 'playerNumber',
+  },
 
   // ROSTER 2018-2019
   ROSTER: {

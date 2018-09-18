@@ -2,6 +2,8 @@
 const _ = require('lodash');
 const CONSTANTS = require('../common/constants');
 
+const { TYPE } = CONSTANTS;
+
 const header = () => {
   console.log('');
   console.log('');
@@ -12,7 +14,7 @@ const header = () => {
 const questionWinners = (results, key) => {
   Object.keys(key).forEach((question, index) => {
     if (question.indexOf(CONSTANTS.QUESTION) !== -1 || question.indexOf(CONSTANTS.BONUS) !== -1) {
-      const answer = key[question].type === CONSTANTS.PLAYER_NUMBER
+      const answer = key[question].type === TYPE.PLAYER_NUMBER
         ? `${key[question].answer.player} - ${key[question].answer.number}`
         : key[question].answer;
       const prefix = question === 'bonus' ? 'Bonus.' : `${index + 1}.`;
