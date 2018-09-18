@@ -1,7 +1,20 @@
 const puppeteer = require('puppeteer');
+const prompts = require('prompts');
 const config = require('./config.json');
 
 (async () => {
+  const response = await prompts({
+    type: 'confirm',
+    name: 'value',
+    message: `\nOpponent: ${config.post.team}\nBonus Question: ${config.post.bonus}\n\nIs this correct?`,
+    initial: true,
+  });
+
+  // Exit script if the response from the prompt was no
+  if (!response.value) {
+    process.exit();
+  }
+
   const team = config.post.team.toUpperCase();
   const subject = `MAKE YOUR ${team} PREDICTIONS HERE`;
 

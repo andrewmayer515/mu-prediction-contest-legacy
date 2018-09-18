@@ -29,6 +29,7 @@
     "fast-levenshtein": "^2.0.6",
     "lodash": "^4.17.10",
     "ora": "^3.0.0",
+    "prompts": "^1.1.0",
     "puppeteer": "^1.6.0"
   },
   "devDependencies": {
