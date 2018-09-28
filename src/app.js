@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop, no-loop-func */
 const puppeteer = require('puppeteer');
 const ora = require('ora');
 const fs = require('fs');
@@ -11,7 +12,14 @@ const launchSettings = isDebug ? { headless: false, args: ['about:blank'] } : { 
 
 let key;
 let spinner;
+let totalPages;
+let hasAllPageOption;
+let pageIndex = 0;
+let usernameArray = [];
+let commentArray = [];
 
+
+// Async function starts on run
 (async () => {
   // If the key is not set, default to the example until it is created
   try {
@@ -43,8 +51,46 @@ let spinner;
     await page.click('#guest_form > input.button_submit');
     await page.waitForNavigation();
   }
-  const usernameArray = await page.evaluate(() => [...document.querySelectorAll('.poster > h4')].map(elem => elem.innerText)); // eslint-disable-line no-undef
-  const commentArray = await page.evaluate(() => [...document.querySelectorAll('.post > .inner')].map(elem => elem.innerText)); // eslint-disable-line no-undef
+
+  // Check to see if the All page selection exists
+  try {
+    // Will fail if it can't find the All button on page
+    const text = await page.evaluate(() => document.querySelector('.floatleft > a:nth-last-child(1)').textContent); // eslint-disable-line no-undef
+    if (text !== 'All') {
+      throw new Error();
+    }
+    hasAllPageOption = true;
+  } catch (e) {
+    hasAllPageOption = false;
+  }
+
+  // Get the total number of pages
+  try {
+    if (hasAllPageOption) {
+      // More then 1 page, has All option
+      totalPages = await page.evaluate(() => parseInt(document.querySelector('a.navPages:nth-last-child(2)').textContent, 10)); // eslint-disable-line no-undef
+    } else {
+      // More then 1 page, no All option
+      totalPages = await page.evaluate(() => parseInt(document.querySelector('a.navPages:nth-last-child(1)').textContent, 10)); // eslint-disable-line no-undef
+    }
+  } catch (e) {
+    // If it gets here, there is only one page
+    totalPages = 1;
+  }
+
+  // Cycle through the pages on the prediction post, gather username and comment data
+  const updatedURL = key.results.url.slice(0, -1);
+  while (pageIndex < totalPages) {
+    if (pageIndex !== 0) {
+      const index = pageIndex * 25;
+      await page.goto(`${updatedURL}${index}`, { waitUntil: 'networkidle2' });
+      await page.bringToFront();
+    }
+
+    usernameArray = [...usernameArray, ...await page.evaluate(() => [...document.querySelectorAll('.poster > h4')].map(elem => elem.innerText))]; // eslint-disable-line no-undef
+    commentArray = [...commentArray, ...await page.evaluate(() => [...document.querySelectorAll('.post > .inner')].map(elem => elem.innerText))]; // eslint-disable-line no-undef
+    pageIndex += 1;
+  }
 
   // Combine all posts to get prediction data
   const data = [];

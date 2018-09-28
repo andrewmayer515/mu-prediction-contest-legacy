@@ -32,8 +32,6 @@ question1: {
 #### Identifier
 In the example, this is `question1`. Every question will need a unique numerical value after the word 'question'. This is used to parse out the contents of the user comment on the line that starts with '1.'
 
-Additionally, this can be substituted with `bonus`. The `bonus` key acts as a bonus question for the prediction contest, where the prediction must be exact in order for the guess to be correct. Only one `bonus` object can exist in the `key.js` file at a time.
-
 #### Text
 In the example, this is `text: 'Total Game Points:'`. The string here is used on when the app outputs the results.
 
@@ -49,9 +47,8 @@ In the exaple, this is `type: TYPE.NUMBER`. This designates the type of question
 ### URL
 This is the URL to the [muscoop.com](https://www.muscoop.com/) prediction post where the script will gather data from:
 ```
-url: 'https://www.muscoop.com/index.php?topic=35990.0;all'
+url: 'https://www.muscoop.com/index.php?topic=35990.0'
 ```
-Note: If the prediction post is under 4 pages long, it is advised to use the 'All' page option. The script currently doesn't have a way to go to the next page for more data (all of the user posts must be on the same page).
 
 ### Bonus (Optional)
 One question can be given the `bonus` identifier, which marks a question that can be worth a specified number of points. In order for the points to count, a given answer must be exact. It is configured similar to how Questions are configured, plus the `points` option:
