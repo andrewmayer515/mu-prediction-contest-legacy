@@ -25,6 +25,9 @@
     "url": "https://github.com/andrewmayer515/mu-prediction-contest/issues"
   },
   "homepage": "https://github.com/andrewmayer515/mu-prediction-contest#readme",
+  "jest": {
+    "preset": "jest-puppeteer"
+  },
   "dependencies": {
     "fast-levenshtein": "^2.0.6",
     "lodash": "^4.17.10",
@@ -38,6 +41,7 @@
     "eslint-config-airbnb": "^17.0.0",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-import": "^2.13.0",
-    "jest": "^23.4.1"
+    "jest": "^23.4.1",
+    "jest-puppeteer": "^3.4.0"
   }
 }

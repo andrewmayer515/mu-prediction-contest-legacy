@@ -70,7 +70,7 @@ const results = {
     text: 'Predict Marquette\'s shooting percentage:',
     points: 1,
   },
-  url: 'https://www.muscoop.com/index.php?topic=37247.0;all',
+  url: 'https://www.muscoop.com/index.php?topic=37247.0',
 };
 
 module.exports = {
