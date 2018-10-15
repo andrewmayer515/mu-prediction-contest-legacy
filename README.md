@@ -7,6 +7,12 @@ A node.js script that scraps the contents of [muscoop.com](https://www.muscoop.c
 ## Rules
 For this project, I based the prediction contest rules off of [this muscoop.com post](https://www.muscoop.com/index.php?topic=10.0).
 
+Additionally,
+* All answers must be written next to the question being asked (to the right of the colon)
+* If a question asks for a player name, do not use nicknames (use a combination of player first and/or last name)
+  * Acceptable: Markus, Howard, Markus Howard, or MHoward
+  * Unacceptable: M2N, #0, etc.
+
 ## Setup
 Download the latet LTS version of [Node](https://nodejs.org/en/), then run the following:
 ```
@@ -16,7 +22,7 @@ $ npm install
 ```
 
 ## Configuration
-To configure new prediction contest results, you will need to create a `key.js` file under the data folder to enter the postgame results into (refer to [key-example.js](https://github.com/andrewmayer515/mu-prediction-contest/blob/master/data/key-example.js) for formatting). It may be easier to copy the contents of [key-example.js](https://github.com/andrewmayer515/mu-prediction-contest/blob/master/data/key-example.js) into `key.js` to start off.
+To configure new prediction contest results, you will need to create a `key.js` file under the data folder to enter the postgame results into (refer to [key-example.js](https://github.com/andrewmayer515/mu-prediction-contest/blob/master/data/key-example.js) for formatting/location). It may be easier to copy the contents of [key-example.js](https://github.com/andrewmayer515/mu-prediction-contest/blob/master/data/key-example.js) into `key.js` to start off.
 
 The results object in `key.js` is comprised of two required parts (Questions and URL) and one that is optional (Bonus).
 
@@ -42,7 +48,7 @@ In the example, this is `answer: 167`. This value will need to be looked up post
 In the exaple, this is `type: TYPE.NUMBER`. This designates the type of question being asked. There are currently 3 supported types:
 *  `TYPE.NUMBER` - The answer is a number.
 *  `TYPE.PLAYER` - The answer is a player name.
-*  `TYPE.PLAYER_NUMBER` - The answer is both a number and a player name.
+*  `TYPE.PLAYER_NUMBER` - The answer is both a player name and a number.
 
 ### URL
 This is the URL to the [muscoop.com](https://www.muscoop.com/) prediction post where the script will gather data from:
@@ -79,7 +85,7 @@ $ node run debug
 ```
 
 ### Login
-If you want/need the app to sign in to your [muscoop.com](https://www.muscoop.com/) profile, you can create an `auth.json` file under the data folder and provide your username/password (refer to [auth-example.json](https://github.com/andrewmayer515/mu-prediction-contest/blob/master/data/auth-example.json) for formatting). You must then append `:login` to the above node script commands:
+If you want/need the script to sign in to your [muscoop.com](https://www.muscoop.com/) profile, you can create an `auth.json` file under the data folder and provide your username/password (refer to [auth-example.json](https://github.com/andrewmayer515/mu-prediction-contest/blob/master/data/auth-example.json) for formatting). You must then append `:login` to the above node script commands:
 
 ```
 $ node run start:login
