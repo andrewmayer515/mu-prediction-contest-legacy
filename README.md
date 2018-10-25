@@ -8,10 +8,12 @@ A node.js script that scraps the contents of [muscoop.com](https://www.muscoop.c
 For this project, I based the prediction contest rules off of [this muscoop.com post](https://www.muscoop.com/index.php?topic=10.0).
 
 Additionally,
+* Copy/paste the format in the original post
 * All answers must be written next to the question being asked (to the right of the colon)
 * If a question asks for a player name, do not use nicknames (use a combination of player first and/or last name)
   * Acceptable: Markus, Howard, Markus Howard, or MHoward
   * Unacceptable: M2N, #0, etc.
+* Do not 'Quote' another users prediction
 
 ## Setup
 Download the latet LTS version of [Node](https://nodejs.org/en/), then run the following:
@@ -19,6 +21,11 @@ Download the latet LTS version of [Node](https://nodejs.org/en/), then run the f
 $ git clone https://github.com/andrewmayer515/mu-prediction-contest.git
 $ cd mu-prediction-contest
 $ npm install
+```
+## Quick Run
+After following the setup steps if you want to see how the program works, run the following to get the results from [the 2013 NCAA Tournament game against Davidson](https://www.muscoop.com/index.php?topic=37247.0):
+```
+$ npm start
 ```
 
 ## Configuration
