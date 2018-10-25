@@ -13,7 +13,8 @@
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage --coverageReporters=text",
     "totals": "node scripts/totals",
-    "post": "node scripts/post"
+    "post": "node scripts/post",
+    "boxscore": "node scripts/boxscore"
   },
   "repository": {
     "type": "git",
