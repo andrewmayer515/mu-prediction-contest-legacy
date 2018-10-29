@@ -1,7 +1,7 @@
 {
   "name": "mu-prediction-contest",
   "version": "1.0.0",
-  "description": "Web scrapper for muscoop",
+  "description": "Web crawler for muscoop",
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app",
