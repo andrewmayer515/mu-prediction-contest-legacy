@@ -8,7 +8,7 @@ const header = () => {
   console.log('');
   console.log('');
   console.log('Results:');
-  console.log('-------');
+  console.log('----------');
 };
 
 const questionWinners = (results, key) => {
@@ -25,6 +25,7 @@ const questionWinners = (results, key) => {
 
       console.log(`${prefix} ${key[question].text} ${answer}`);
       console.log(`   ${winner} ${prediction}`);
+      console.log('');
     } else if (question !== 'url') {
       console.log(`Error with the following question: ${key[question].text}`);
       console.log('Verify key.js file has been set correctly');
@@ -71,9 +72,8 @@ const summary = (results, key) => {
     .reverse();
 
   console.log('');
-  console.log('');
   console.log('Game Totals:');
-  console.log('-----------');
+  console.log('----------------');
   sortedResults.forEach(result => console.log(`${result[0]} - ${result[1]}`));
 };
 

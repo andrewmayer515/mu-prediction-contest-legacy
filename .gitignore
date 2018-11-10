@@ -1,5 +1,6 @@
 node_modules
 data/auth.json
 data/key.js
+data/historical
 scripts/totals/totals.txt
 scripts/post/config.json
