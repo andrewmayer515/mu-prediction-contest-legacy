@@ -36,5 +36,5 @@ sortedResults
 
 console.log('');
 console.log('Season Totals:');
-console.log('-------------');
+console.log('------------------');
 sortedResults.forEach(result => console.log(`${result[0]} - ${result[1]}`));
