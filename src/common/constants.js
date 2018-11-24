@@ -5,7 +5,7 @@ module.exports = {
 
   NO_WINNER: 'No winner',
 
-  // Calculation Type Functions (should havea function with same name in calcs.js)
+  // Calculation Type Functions (should have a function with same name in calcs.js)
   TYPE: {
     NUMBER: 'number',
     PLAYER: 'player',
@@ -27,12 +27,5 @@ module.exports = {
     JAMAL_CAIN: 'Jamal Cain',
     KOBY_MCEWEN: 'Koby McEwen',
     ED_MORROW: 'Ed Morrow',
-
-
-    // OLD for testing
-    JUNIOR_CADOUGAN: 'Junior Cadougan',
-    CHRIS_OTULE: 'Chris Otule',
-    JAMIL_WILSON: 'Jamil Wilson',
-    VANDER_BLUE: 'Vander Blue',
   },
 };

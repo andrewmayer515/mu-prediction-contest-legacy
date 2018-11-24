@@ -1,6 +1,6 @@
 const CONSTANTS = require('../src/common/constants');
 
-const { ROSTER, TYPE } = CONSTANTS;
+const { TYPE } = CONSTANTS;
 const results = {
   question1: {
     text: 'Total Game Points:',
@@ -35,7 +35,7 @@ const results = {
   question7: {
     text: 'MU top scorer and how many:',
     answer: {
-      player: [ROSTER.VANDER_BLUE],
+      player: ['Vander Blue'],
       number: 16,
     },
     type: TYPE.PLAYER_NUMBER,
@@ -43,7 +43,7 @@ const results = {
   question8: {
     text: 'MU top assist man and how many:',
     answer: {
-      player: [ROSTER.VANDER_BLUE, ROSTER.JAMIL_WILSON],
+      player: ['Vander Blue', 'Jamil Wilson'],
       number: 2,
     },
     type: TYPE.PLAYER_NUMBER,
@@ -51,7 +51,7 @@ const results = {
   question9: {
     text: 'MU top rebounder and how many:',
     answer: {
-      player: [ROSTER.CHRIS_OTULE],
+      player: ['Chris Otule'],
       number: 5,
     },
     type: TYPE.PLAYER_NUMBER,
@@ -59,7 +59,7 @@ const results = {
   question10: {
     text: 'MU top 3-point shooter and how many:',
     answer: {
-      player: [ROSTER.JAMIL_WILSON, ROSTER.VANDER_BLUE],
+      player: ['Jamil Wilson', 'Vander Blue'],
       number: 2,
     },
     type: TYPE.PLAYER_NUMBER,
