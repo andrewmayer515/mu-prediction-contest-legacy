@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const levenshtein = require('fast-levenshtein');
+const CONSTANTS = require('../../common/constants');
 
 /**
  * Breaks apart player name to a an array of reasonable formats for a player name that someone
@@ -15,6 +16,11 @@ const reasonablePlayerGuesses = (players) => {
       .split(' ');
     const initialLastName = `${playerData[0].charAt(0)}${playerData[1]}`;
     results.push(`${playerData[0]}${playerData[1]}`, playerData[0], playerData[1], initialLastName);
+
+    // Allow a defined alias/nickname for a player set in constants
+    if (_.has(CONSTANTS.ALIAS, player)) {
+      results.push(...CONSTANTS.ALIAS[player]);
+    }
   });
 
   return results;

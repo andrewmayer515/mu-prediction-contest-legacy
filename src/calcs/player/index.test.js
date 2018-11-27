@@ -1,14 +1,16 @@
 const player = require('./index');
 
+jest.mock('../../common/constants');
+
 describe('reasonablePlayerGuesses', () => {
-  test('return an array of player names to match', () => {
+  test('return an array of player names to match including alias', () => {
     const players = ['Markus Howard'];
-    const expected = ['markushoward', 'markus', 'howard', 'mhoward'];
+    const expected = ['markushoward', 'markus', 'howard', 'mhoward', 'm2n'];
     expect(player.reasonablePlayerGuesses(players)).toEqual(expected);
   });
   test('return an array of player names to match when the answer lists more than one player', () => {
     const players = ['Markus Howard', 'Sam Hauser'];
-    const expected = ['markushoward', 'markus', 'howard', 'mhoward', 'samhauser', 'sam', 'hauser', 'shauser'];
+    const expected = ['markushoward', 'markus', 'howard', 'mhoward', 'm2n', 'samhauser', 'sam', 'hauser', 'shauser'];
     expect(player.reasonablePlayerGuesses(players)).toEqual(expected);
   });
 });

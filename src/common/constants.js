@@ -28,4 +28,8 @@ module.exports = {
     KOBY_MCEWEN: 'Koby McEwen',
     ED_MORROW: 'Ed Morrow',
   },
+
+  ALIAS: {
+    'Joseph Chartouny': ['joe c'],
+  },
 };
