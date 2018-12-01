@@ -1,4 +1,4 @@
-import { TYPE } from '../common/constants';
+import { TYPE } from '../app/common/constants';
 
 export const results = {
   question1: {
