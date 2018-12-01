@@ -29,7 +29,7 @@ $ npm start
 ```
 
 ## Configuration
-To configure new prediction contest results, you will need to create a `key.js` file under the data folder to enter the postgame results into (refer to [key-example.js](https://github.com/andrewmayer515/mu-prediction-contest/blob/master/data/key-example.js) for formatting/location). It may be easier to copy the contents of [key-example.js](https://github.com/andrewmayer515/mu-prediction-contest/blob/master/data/key-example.js) into `key.js` to start off.
+To configure new prediction contest results, you will need to create a `key.js` file under the src/data folder to enter the postgame results into (refer to [key-example.js](https://github.com/andrewmayer515/mu-prediction-contest/blob/master/src/data/key-example.js) for formatting/location). It may be easier to copy the contents of [key-example.js](https://github.com/andrewmayer515/mu-prediction-contest/blob/master/src/data/key-example.js) into `key.js` to start off.
 
 The results object in `key.js` is comprised of two required parts (Questions and URL) and one that is optional (Bonus).
 
@@ -49,7 +49,7 @@ In the example, this is `question1`. Every question will need a unique numerical
 In the example, this is `text: 'Total Game Points:'`. The string here is used on when the app outputs the results.
 
 #### Answer
-In the example, this is `answer: 167`. This value will need to be looked up post game for the given question and is used in calculating which user has the closest (or exact) answer to a given question. The formatting of this may be different for different types of questions. Refer to [key-example.js](https://github.com/andrewmayer515/mu-prediction-contest/blob/master/data/key-example.js) for examples.
+In the example, this is `answer: 167`. This value will need to be looked up post game for the given question and is used in calculating which user has the closest (or exact) answer to a given question. The formatting of this may be different for different types of questions. Refer to [key-example.js](https://github.com/andrewmayer515/mu-prediction-contest/blob/master/src/data/key-example.js) for examples.
 
 #### Type
 In the exaple, this is `type: TYPE.NUMBER`. This designates the type of question being asked. There are currently 3 supported types:
@@ -92,7 +92,7 @@ $ node run debug
 ```
 
 ### Login
-If you want/need the script to sign in to your [muscoop.com](https://www.muscoop.com/) profile, you can create an `auth.json` file under the data folder and provide your username/password (refer to [auth-example.json](https://github.com/andrewmayer515/mu-prediction-contest/blob/master/data/auth-example.json) for formatting). You must then append `:login` to the above node script commands:
+If you want/need the script to sign in to your [muscoop.com](https://www.muscoop.com/) profile, you can create an `auth.json` file under the src/data folder and provide your username/password (refer to [auth-example.json](https://github.com/andrewmayer515/mu-prediction-contest/blob/master/src/data/auth-example.json) for formatting). You must then append `:login` to the above node script commands:
 
 ```
 $ node run start:login

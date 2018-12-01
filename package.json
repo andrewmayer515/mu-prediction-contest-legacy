@@ -28,17 +28,12 @@
   "homepage": "https://github.com/andrewmayer515/mu-prediction-contest#readme",
   "jest": {
     "preset": "jest-puppeteer",
+    "modulePathIgnorePatterns": [
+      "<rootDir>/lib/"
+    ],
     "transform": {
       "^.+\\.js$": "babel-jest"
-    },
-    "moduleFileExtensions": [
-      "js"
-    ],
-    "moduleDirectories": [
-      "node_modules",
-      "src",
-      "test"
-    ]
+    }
   },
   "dependencies": {
     "fast-levenshtein": "^2.0.6",

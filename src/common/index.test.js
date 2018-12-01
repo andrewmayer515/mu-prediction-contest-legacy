@@ -1,5 +1,5 @@
 import { determineQuestionWinner, main } from './index';
-import { displayResults } from '../output';
+import * as output from '../output';
 
 describe('common', () => {
   const data = [
@@ -67,7 +67,7 @@ describe('common', () => {
   });
   describe('main', () => {
     test('should call displayResults', () => {
-      displayResults = jest.fn();
+      output.displayResults = jest.fn();
 
       const key = {
         question1: {
@@ -93,8 +93,8 @@ describe('common', () => {
       };
 
       main(data, key);
-      expect(displayResults.mock.calls.length).toBe(1);
-      expect(displayResults.mock.calls[0][1]).toBe(key);
+      expect(output.displayResults.mock.calls.length).toBe(1);
+      expect(output.displayResults.mock.calls[0][1]).toBe(key);
     });
   });
 });
