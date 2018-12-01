@@ -1,6 +1,6 @@
-const _ = require('lodash');
-const player = require('../player');
-const number = require('../number');
+import _ from 'lodash';
+import { reasonablePlayerGuesses, isMatchFound } from '../player';
+import { number } from '../number';
 
 /**
  * Determines who guessed the player as well as had the closest prediction to a given number
@@ -10,7 +10,7 @@ const number = require('../number');
  * @param {*} username Username for the person who made the guess
  * @param {*} isBonusQuestion Boolean for if the question being evaluated is the bonus question
  */
-const playerNumber = ({
+export const playerNumber = ({
   prediction,
   answer,
   winnerData,
@@ -23,10 +23,10 @@ const playerNumber = ({
     .replace(/[^a-z]/gi, '')
     .toLowerCase();
   const predictionNumber = formattedPrediction.replace(/[^0-9]/gi, '');
-  const playerFormats = player.reasonablePlayerGuesses(answer.player);
+  const playerFormats = reasonablePlayerGuesses(answer.player);
 
   // The player guess matches a reasonable result
-  if (player.isMatchFound(playerFormats, predictionPlayer)) {
+  if (isMatchFound(playerFormats, predictionPlayer)) {
     // If this is blank (first time through or no correct player guess),
     // automatically return results
     const numberWinnerData = winnerData ? {
@@ -62,5 +62,3 @@ const playerNumber = ({
   // No winner, return what was passed in
   return winnerData;
 };
-
-module.exports = playerNumber;

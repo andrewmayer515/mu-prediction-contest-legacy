@@ -1,8 +1,8 @@
 /* eslint-disable no-await-in-loop, no-loop-func */
-const puppeteer = require('puppeteer');
-const ora = require('ora');
-const fs = require('fs');
-const common = require('./common');
+import puppeteer from 'puppeteer';
+import ora from 'ora';
+import fs from 'fs';
+import { main } from './common';
 
 const args = process.argv.slice(2);
 const isDebug = args.includes('debug');
@@ -23,10 +23,10 @@ let commentArray = [];
 (async () => {
   // If the key is not set, default to the example until it is created
   try {
-    key = await require('../data/key'); // eslint-disable-line global-require, import/no-unresolved
+    key = await require('./data/key'); // eslint-disable-line global-require, import/no-unresolved
     spinner = ora({ text: 'Calculating...', color: 'yellow' }).start();
   } catch (e) {
-    key = await require('../data/key-example'); // eslint-disable-line global-require
+    key = await require('./data/key-example'); // eslint-disable-line global-require
     spinner = ora({ text: '--- RUNNING WITH SAMPLE DATA, REFER TO README.MD ---', color: 'yellow' }).start();
   }
 
@@ -101,7 +101,7 @@ let commentArray = [];
     });
   });
 
-  await common.main(data, key.results);
+  await main(data, key.results);
   spinner.stop();
 
   // Keep browser open while running as debug

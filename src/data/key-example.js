@@ -1,7 +1,6 @@
-const CONSTANTS = require('../src/common/constants');
+import { TYPE } from '../common/constants';
 
-const { TYPE } = CONSTANTS;
-const results = {
+export const results = {
   question1: {
     text: 'Total Game Points:',
     answer: 117,
@@ -71,8 +70,4 @@ const results = {
     points: 1,
   },
   url: 'https://www.muscoop.com/index.php?topic=37247.0',
-};
-
-module.exports = {
-  results,
 };

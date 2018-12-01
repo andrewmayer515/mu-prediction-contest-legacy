@@ -1,7 +1,7 @@
-const _ = require('lodash');
-const output = require('../output');
-const CONSTANTS = require('./constants');
-const calcs = require('../calcs');
+import _ from 'lodash';
+import { displayResults } from '../output';
+import { QUESTION, BONUS, NO_WINNER } from './constants';
+import calcs from '../calcs';
 
 /**
  * Loop through predictions for a given question and call its calculation function
@@ -10,7 +10,7 @@ const calcs = require('../calcs');
  * @param {*} props Properties of question, taken from the key.js file
  * @param {*} isBonusQuestion  Boolean for if the question being evaluated is the bonus question
  */
-const determineQuestionWinner = (data, question, props, isBonusQuestion) => {
+export const determineQuestionWinner = (data, question, props, isBonusQuestion) => {
   // Get the line for the question currently being evaluated (IE 1., 2., Bonus, etc...)
   const questionLine = isBonusQuestion ? 'Bonus' : `${question.replace(/[^0-9]/g, '')}.`;
 
@@ -33,7 +33,7 @@ const determineQuestionWinner = (data, question, props, isBonusQuestion) => {
 
   if (!winnerData) {
     winnerData = {
-      username: [CONSTANTS.NO_WINNER],
+      username: [NO_WINNER],
     };
   }
 
@@ -48,21 +48,16 @@ const determineQuestionWinner = (data, question, props, isBonusQuestion) => {
  * @param {*} data All comments data on the post
  * @param {*} key Contents of the answer file (key.js)
  */
-const main = (data, key) => {
+export const main = (data, key) => {
   const results = [];
   // Loop through each question in the config
   Object.keys(key).forEach((question) => {
-    if (question.indexOf(CONSTANTS.QUESTION) !== -1) {
+    if (question.indexOf(QUESTION) !== -1) {
       results.push(determineQuestionWinner(data, question, key[question], false));
-    } else if (question.indexOf(CONSTANTS.BONUS) !== -1) {
+    } else if (question.indexOf(BONUS) !== -1) {
       results.push(determineQuestionWinner(data, question, key[question], true));
     }
   });
 
-  output.displayResults(results, key);
-};
-
-module.exports = {
-  determineQuestionWinner,
-  main,
+  displayResults(results, key);
 };

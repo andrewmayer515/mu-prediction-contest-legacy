@@ -4,7 +4,7 @@
   "description": "Web crawler for muscoop",
   "main": "src/app.js",
   "scripts": {
-    "start": "node src/app",
+    "start": "npm run build && node lib/app",
     "start:login": "npm start -- login",
     "debug": "npm start -- debug",
     "debug:login": "npm start -- debug login",
@@ -12,6 +12,7 @@
     "test": "jest",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage --coverageReporters=text",
+    "build": "babel src -d lib",
     "totals": "node scripts/totals",
     "post": "node scripts/post"
   },
@@ -26,7 +27,18 @@
   },
   "homepage": "https://github.com/andrewmayer515/mu-prediction-contest#readme",
   "jest": {
-    "preset": "jest-puppeteer"
+    "preset": "jest-puppeteer",
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "src",
+      "test"
+    ]
   },
   "dependencies": {
     "fast-levenshtein": "^2.0.6",
@@ -36,12 +48,18 @@
     "puppeteer": "^1.6.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.0.0-beta.54",
+    "@babel/preset-env": "^7.0.0-beta.54",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.4.0",
     "coveralls": "^3.0.2",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-import": "^2.13.0",
     "jest": "^23.4.1",
-    "jest-puppeteer": "^3.4.0"
+    "jest-puppeteer": "^3.4.0",
+    "regenerator-runtime": "^0.12.0"
   }
 }

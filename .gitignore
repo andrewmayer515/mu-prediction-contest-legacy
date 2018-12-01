@@ -1,6 +1,7 @@
 node_modules
-data/auth.json
-data/key.js
-data/historical
+src/data/auth.json
+src/data/key.js
+src/data/historical
 scripts/totals/totals.txt
 scripts/post/config.json
+lib/

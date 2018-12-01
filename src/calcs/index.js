@@ -1,9 +1,9 @@
-const number = require('./number');
-const player = require('./player');
-const playerNumber = require('./playerNumber');
+import { number } from './number';
+import { player } from './player';
+import { playerNumber } from './playerNumber';
 
-module.exports = {
+export default {
   number,
-  player: player.player,
+  player,
   playerNumber,
 };

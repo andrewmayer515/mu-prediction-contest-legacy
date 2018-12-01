@@ -1,4 +1,4 @@
-const player = require('./index');
+import { reasonablePlayerGuesses, isMatchFound, player } from './index';
 
 jest.mock('../../common/constants');
 
@@ -6,25 +6,25 @@ describe('reasonablePlayerGuesses', () => {
   test('return an array of player names to match including alias', () => {
     const players = ['Markus Howard'];
     const expected = ['markushoward', 'markus', 'howard', 'mhoward', 'm2n'];
-    expect(player.reasonablePlayerGuesses(players)).toEqual(expected);
+    expect(reasonablePlayerGuesses(players)).toEqual(expected);
   });
   test('return an array of player names to match when the answer lists more than one player', () => {
     const players = ['Markus Howard', 'Sam Hauser'];
     const expected = ['markushoward', 'markus', 'howard', 'mhoward', 'm2n', 'samhauser', 'sam', 'hauser', 'shauser'];
-    expect(player.reasonablePlayerGuesses(players)).toEqual(expected);
+    expect(reasonablePlayerGuesses(players)).toEqual(expected);
   });
 });
 
 describe('isMatchFound', () => {
   const playerFormats = ['markushoward', 'markus', 'howard', 'mhoward'];
   test('return true when a match is found', () => {
-    expect(player.isMatchFound(playerFormats, 'markus')).toEqual(true);
-    expect(player.isMatchFound(playerFormats, 'marcus')).toEqual(true); // 1 off
-    expect(player.isMatchFound(playerFormats, 'marcas')).toEqual(true); // 2 off
+    expect(isMatchFound(playerFormats, 'markus')).toEqual(true);
+    expect(isMatchFound(playerFormats, 'marcus')).toEqual(true); // 1 off
+    expect(isMatchFound(playerFormats, 'marcas')).toEqual(true); // 2 off
   });
   test('return false when a match is not found', () => {
-    expect(player.isMatchFound(playerFormats, 'andrew')).toEqual(false);
-    expect(player.isMatchFound(playerFormats, 'murcas')).toEqual(false); // 3 off
+    expect(isMatchFound(playerFormats, 'andrew')).toEqual(false);
+    expect(isMatchFound(playerFormats, 'murcas')).toEqual(false); // 3 off
   });
 });
 
@@ -37,7 +37,7 @@ describe('player', () => {
       username: 'test',
     };
     const expected = params.winnerData;
-    expect(player.player(params)).toEqual(expected);
+    expect(player(params)).toEqual(expected);
   });
   test('return updated winner data when there was no previous winner', () => {
     const params = {
@@ -50,7 +50,7 @@ describe('player', () => {
       username: ['test'],
       prediction: 'Vander Blue',
     };
-    expect(player.player(params)).toEqual(expected);
+    expect(player(params)).toEqual(expected);
   });
   test('return updated winner data when the player and the current winner were both correct', () => {
     const params = {
@@ -66,6 +66,6 @@ describe('player', () => {
       username: ['test2', 'test'],
       prediction: 'Vander Blue',
     };
-    expect(player.player(params)).toEqual(expected);
+    expect(player(params)).toEqual(expected);
   });
 });

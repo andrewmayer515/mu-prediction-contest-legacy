@@ -1,6 +1,6 @@
-const _ = require('lodash');
-const levenshtein = require('fast-levenshtein');
-const CONSTANTS = require('../../common/constants');
+import _ from 'lodash';
+import levenshtein from 'fast-levenshtein';
+import { ALIAS } from '../../common/constants';
 
 /**
  * Breaks apart player name to a an array of reasonable formats for a player name that someone
@@ -8,7 +8,7 @@ const CONSTANTS = require('../../common/constants');
  * ['vanderblue', 'vander', 'blue', 'vblue']
  * @param {*} players An array of player names, taken from the answer key of the current question
  */
-const reasonablePlayerGuesses = (players) => {
+export const reasonablePlayerGuesses = (players) => {
   const results = [];
   players.forEach((player) => {
     const playerData = player
@@ -18,8 +18,8 @@ const reasonablePlayerGuesses = (players) => {
     results.push(`${playerData[0]}${playerData[1]}`, playerData[0], playerData[1], initialLastName);
 
     // Allow a defined alias/nickname for a player set in constants
-    if (_.has(CONSTANTS.ALIAS, player)) {
-      results.push(...CONSTANTS.ALIAS[player]);
+    if (_.has(ALIAS, player)) {
+      results.push(...ALIAS[player]);
     }
   });
 
@@ -31,7 +31,7 @@ const reasonablePlayerGuesses = (players) => {
  * @param {*} playerFormats An array of player names in different formats that someone could guess
  * @param {*} predictionPlayer The player name that the user guessed
  */
-const isMatchFound = (playerFormats, predictionPlayer) => playerFormats.some(
+export const isMatchFound = (playerFormats, predictionPlayer) => playerFormats.some(
   playerName => levenshtein.get(playerName, predictionPlayer) <= 2,
 );
 
@@ -43,7 +43,7 @@ const isMatchFound = (playerFormats, predictionPlayer) => playerFormats.some(
  * @param {*} username Username for the person who made the guess
  * @param {*} isBonusQuestion Boolean for if the question being evaluated is the bonus question
  */
-const player = ({
+export const player = ({
   prediction,
   answer,
   winnerData,
@@ -76,10 +76,4 @@ const player = ({
 
   // No winner, return what was passed in
   return winnerData;
-};
-
-module.exports = {
-  player,
-  reasonablePlayerGuesses,
-  isMatchFound,
 };

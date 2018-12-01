@@ -9,6 +9,12 @@
         "rules": {
           "no-undef": 0
         }
+      },
+      {
+        "files": [ "*.js" ],
+        "rules": {
+          "import/prefer-default-export": 0
+        }
       }
     ]
 }

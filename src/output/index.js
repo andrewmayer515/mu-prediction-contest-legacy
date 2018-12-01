@@ -1,19 +1,22 @@
 /* eslint no-console: 0 */
-const _ = require('lodash');
-const CONSTANTS = require('../common/constants');
+import _ from 'lodash';
+import {
+  TYPE,
+  QUESTION,
+  BONUS,
+  NO_WINNER,
+} from '../common/constants';
 
-const { TYPE } = CONSTANTS;
-
-const header = () => {
+export const header = () => {
   console.log('');
   console.log('');
   console.log('Results:');
   console.log('----------');
 };
 
-const questionWinners = (results, key) => {
+export const questionWinners = (results, key) => {
   Object.keys(key).forEach((question, index) => {
-    if (question.indexOf(CONSTANTS.QUESTION) !== -1 || question.indexOf(CONSTANTS.BONUS) !== -1) {
+    if (question.indexOf(QUESTION) !== -1 || question.indexOf(BONUS) !== -1) {
       const answer = key[question].type === TYPE.PLAYER_NUMBER
         ? `${key[question].answer.player} - ${key[question].answer.number}`
         : key[question].answer;
@@ -33,7 +36,7 @@ const questionWinners = (results, key) => {
   });
 };
 
-const summary = (results, key) => {
+export const summary = (results, key) => {
   // Create an array of all winners
   const winnerList = [];
   _.forEach(results, (result) => {
@@ -49,7 +52,7 @@ const summary = (results, key) => {
       });
     } else { // Process normally
       result.username.forEach((winner) => {
-        if (winner !== CONSTANTS.NO_WINNER) {
+        if (winner !== NO_WINNER) {
           winnerList.push(winner);
         }
       });
@@ -77,15 +80,8 @@ const summary = (results, key) => {
   sortedResults.forEach(result => console.log(`${result[0]} - ${result[1]}`));
 };
 
-const displayResults = (results, key) => {
+export const displayResults = (results, key) => {
   header();
   questionWinners(results, key);
   summary(results, key);
-};
-
-module.exports = {
-  displayResults,
-  header,
-  questionWinners,
-  summary,
 };

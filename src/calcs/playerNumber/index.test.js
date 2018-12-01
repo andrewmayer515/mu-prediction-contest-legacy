@@ -1,4 +1,4 @@
-const playerNumber = require('./index');
+import { playerNumber } from './index';
 
 describe('playerNumber', () => {
   test('return the current winner data back unmodified if the player guess was wrong', () => {

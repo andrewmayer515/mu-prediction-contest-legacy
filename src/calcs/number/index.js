@@ -1,4 +1,4 @@
-const _ = require('lodash');
+import _ from 'lodash';
 
 /**
  * Determines who had the closest prediction to a given number
@@ -8,7 +8,7 @@ const _ = require('lodash');
  * @param {*} username Username for the person who made the guess
  * @param {*} isBonusQuestion Boolean for if the question being evaluated is the bonus question
  */
-const number = ({
+export const number = ({
   prediction,
   answer,
   winnerData,
@@ -63,5 +63,3 @@ const number = ({
   // No winner, return what was passed in
   return winnerData;
 };
-
-module.exports = number;

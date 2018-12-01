@@ -1,4 +1,4 @@
-const number = require('./index');
+import { number } from './index';
 
 describe('number', () => {
   test('return the passed in username and prediction when there is no winner data', () => {

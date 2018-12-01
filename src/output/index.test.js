@@ -1,8 +1,11 @@
 /* eslint no-console: 0 */
-const output = require('./index');
-const CONSTANTS = require('../common/constants');
-
-const { TYPE } = CONSTANTS;
+import {
+  displayResults,
+  header,
+  questionWinners,
+  summary,
+} from './index';
+import { TYPE } from '../common/constants';
 
 describe('output', () => {
   const results = [
@@ -75,7 +78,7 @@ describe('output', () => {
   describe('displayResults', () => {
     test('should console log all of the output sections', () => {
       console.log = jest.fn();
-      output.displayResults(results, key);
+      displayResults(results, key);
 
       expect(console.log.mock.calls[0][0]).toBe('');
       expect(console.log.mock.calls[1][0]).toBe('');
@@ -107,7 +110,7 @@ describe('output', () => {
   describe('header', () => {
     test('return console log headers for output', () => {
       console.log = jest.fn();
-      output.header();
+      header();
 
       expect(console.log.mock.calls[0][0]).toBe('');
       expect(console.log.mock.calls[1][0]).toBe('');
@@ -118,7 +121,7 @@ describe('output', () => {
   describe('questionWinners', () => {
     test('return console log of question winners and answers', () => {
       console.log = jest.fn();
-      output.questionWinners(results, key);
+      questionWinners(results, key);
 
       expect(console.log.mock.calls[0][0]).toBe('1. Total Game Points: 167');
       expect(console.log.mock.calls[1][0]).toBe('   Test (160)');
@@ -141,11 +144,11 @@ describe('output', () => {
         wrongFormat: {
           text: 'Total Game Points:',
           answer: 167,
-          type: CONSTANTS.NUMBER,
+          type: TYPE.NUMBER,
         },
       };
       console.log = jest.fn();
-      output.questionWinners(results, badKey);
+      questionWinners(results, badKey);
 
       expect(console.log.mock.calls[0][0]).toBe('Error with the following question: Total Game Points:');
       expect(console.log.mock.calls[1][0]).toBe('Verify key.js file has been set correctly');
@@ -155,7 +158,7 @@ describe('output', () => {
         url: 'https://www.muscoop.com/index.php?topic=35990.0;all',
       };
       console.log = jest.fn();
-      output.questionWinners(results, badKey);
+      questionWinners(results, badKey);
 
       expect(console.log).not.toHaveBeenCalled();
     });
@@ -163,7 +166,7 @@ describe('output', () => {
   describe('summary', () => {
     test('return console log of summarized game total points for each username', () => {
       console.log = jest.fn();
-      output.summary(results, key);
+      summary(results, key);
 
       expect(console.log.mock.calls[1][0]).toBe('Game Totals:');
       expect(console.log.mock.calls[2][0]).toBe('----------------');
@@ -205,7 +208,7 @@ describe('output', () => {
       ];
 
       console.log = jest.fn();
-      output.summary(results2, key);
+      summary(results2, key);
 
       expect(console.log.mock.calls[1][0]).toBe('Game Totals:');
       expect(console.log.mock.calls[2][0]).toBe('----------------');

@@ -1,5 +1,5 @@
-const common = require('./index');
-const output = require('../output');
+import { determineQuestionWinner, main } from './index';
+import { displayResults } from '../output';
 
 describe('common', () => {
   const data = [
@@ -42,7 +42,7 @@ describe('common', () => {
         prediction: 151,
         username: ['Test'],
       };
-      expect(common.determineQuestionWinner(data, result, params)).toEqual(expected);
+      expect(determineQuestionWinner(data, result, params)).toEqual(expected);
     });
     test('return no winner when no winner data was returned', () => {
       const result = 'question2';
@@ -62,12 +62,12 @@ describe('common', () => {
         },
         username: ['No winner'],
       };
-      expect(common.determineQuestionWinner(data, result, params)).toEqual(expected);
+      expect(determineQuestionWinner(data, result, params)).toEqual(expected);
     });
   });
   describe('main', () => {
     test('should call displayResults', () => {
-      output.displayResults = jest.fn();
+      displayResults = jest.fn();
 
       const key = {
         question1: {
@@ -92,9 +92,9 @@ describe('common', () => {
         },
       };
 
-      common.main(data, key);
-      expect(output.displayResults.mock.calls.length).toBe(1);
-      expect(output.displayResults.mock.calls[0][1]).toBe(key);
+      main(data, key);
+      expect(displayResults.mock.calls.length).toBe(1);
+      expect(displayResults.mock.calls[0][1]).toBe(key);
     });
   });
 });
