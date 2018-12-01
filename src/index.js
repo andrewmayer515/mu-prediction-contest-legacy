@@ -2,7 +2,7 @@
 import puppeteer from 'puppeteer';
 import ora from 'ora';
 import fs from 'fs';
-import { main } from './common';
+import { main } from './app/common';
 
 const args = process.argv.slice(2);
 const isDebug = args.includes('debug');

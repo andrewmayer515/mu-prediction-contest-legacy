@@ -29,5 +29,5 @@ export const ROSTER = {
 };
 
 export const ALIAS = {
-  'Joseph Chartouny': ['joe c'],
+  [ROSTER.JOESPH_CHARTOUNY]: ['joe c'],
 };

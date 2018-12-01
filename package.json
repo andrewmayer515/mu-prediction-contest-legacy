@@ -2,9 +2,9 @@
   "name": "mu-prediction-contest",
   "version": "1.0.0",
   "description": "Web crawler for muscoop",
-  "main": "src/app.js",
+  "main": "src",
   "scripts": {
-    "start": "npm run build && node lib/app",
+    "start": "npm run build && node lib",
     "start:login": "npm start -- login",
     "debug": "npm start -- debug",
     "debug:login": "npm start -- debug login",
