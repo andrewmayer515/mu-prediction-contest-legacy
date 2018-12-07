@@ -3,6 +3,9 @@
     "rules": {
       "no-else-return": ["error", { "allowElseIf": true }]
     },
+    "plugins": [
+      "json"
+    ],
     "overrides": [
       {
         "files": [ "*.test.js" ],
@@ -14,6 +17,12 @@
         "files": [ "*.js" ],
         "rules": {
           "import/prefer-default-export": 0
+        }
+      },
+      {
+        "files": [ "*" ],
+        "rules": {
+          "linebreak-style": 0
         }
       }
     ]
