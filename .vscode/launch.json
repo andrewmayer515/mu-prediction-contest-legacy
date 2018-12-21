@@ -5,7 +5,13 @@
       "type": "node",
       "request": "launch",
       "name": "Debug",
-      "program": "${workspaceFolder}/src/app.js"
+      "program": "${workspaceFolder}/src/index.js",
+      "sourceMaps": true,
+      "runtimeArgs": [
+        "--nolazy",
+        "--require",
+        "@babel/register"
+      ],
     }
   ]
 }
