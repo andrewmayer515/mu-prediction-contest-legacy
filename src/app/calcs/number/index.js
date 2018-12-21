@@ -25,7 +25,7 @@ export const number = ({
     // if the question is not a Bonus Question. Bonus Question guess always has to be exact
     return {
       username: [username],
-      prediction: formattedPrediction,
+      prediction: [formattedPrediction],
     };
   }
 
@@ -36,7 +36,7 @@ export const number = ({
       data.username.push(username);
       return {
         username: data.username,
-        prediction: formattedPrediction,
+        prediction: [formattedPrediction],
         isBonusQuestion,
       };
     }
@@ -46,17 +46,19 @@ export const number = ({
   }
 
   // Determine closest guess or if there is a tie
-  if (Math.abs(answer - formattedPrediction) < Math.abs(answer - winnerData.prediction)) {
+  if (Math.abs(answer - formattedPrediction) < Math.abs(answer - winnerData.prediction[0])) {
     return {
       username: [username],
-      prediction: formattedPrediction,
+      prediction: [formattedPrediction],
     };
-  } else if (Math.abs(answer - formattedPrediction) === Math.abs(answer - winnerData.prediction)) {
+  } else if (Math.abs(answer - formattedPrediction) === Math.abs(answer - winnerData.prediction[0])) { // eslint-disable-line max-len
     const data = _.cloneDeep(winnerData);
     data.username.push(username);
     return {
       username: data.username,
-      prediction: formattedPrediction,
+      prediction: data.prediction.includes(formattedPrediction)
+        ? data.prediction
+        : [...data.prediction, formattedPrediction].sort(),
     };
   }
 

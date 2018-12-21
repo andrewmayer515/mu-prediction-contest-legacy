@@ -31,7 +31,7 @@ export const playerNumber = ({
     // automatically return results
     const numberWinnerData = winnerData ? {
       username: winnerData.username,
-      prediction: parseInt(winnerData.prediction.replace(/[^0-9]/gi, ''), 10),
+      prediction: [parseInt(winnerData.prediction.replace(/[^0-9]/gi, ''), 10)],
     } : undefined;
     // Use the number calcs to determine who is closer to the correct number
     // if more than one user guessed the player
