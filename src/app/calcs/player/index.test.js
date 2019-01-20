@@ -10,7 +10,17 @@ describe('reasonablePlayerGuesses', () => {
   });
   test('return an array of player names to match when the answer lists more than one player', () => {
     const players = ['Markus Howard', 'Sam Hauser'];
-    const expected = ['markushoward', 'markus', 'howard', 'mhoward', 'm2n', 'samhauser', 'sam', 'hauser', 'shauser'];
+    const expected = [
+      'markushoward',
+      'markus',
+      'howard',
+      'mhoward',
+      'm2n',
+      'samhauser',
+      'sam',
+      'hauser',
+      'shauser',
+    ];
     expect(reasonablePlayerGuesses(players)).toEqual(expected);
   });
 });

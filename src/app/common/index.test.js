@@ -83,7 +83,7 @@ describe('common', () => {
         bonus: {
           answer: 56.4,
           type: 'number',
-          text: 'Predict Marquette\'s shooting percentage:',
+          text: "Predict Marquette's shooting percentage:",
         },
         badData: {
           answer: 4681233,

@@ -17,12 +17,12 @@ export const results = {
     type: TYPE.NUMBER,
   },
   question4: {
-    text: 'TO\'s forced by MU:',
+    text: "TO's forced by MU:",
     answer: 11,
     type: TYPE.NUMBER,
   },
   question5: {
-    text: 'TO\'s forced by Opponent:',
+    text: "TO's forced by Opponent:",
     answer: 9,
     type: TYPE.NUMBER,
   },
@@ -66,7 +66,7 @@ export const results = {
   bonus: {
     answer: 35,
     type: TYPE.NUMBER,
-    text: 'Predict Marquette\'s shooting percentage:',
+    text: "Predict Marquette's shooting percentage:",
     points: 1,
   },
   url: 'https://www.muscoop.com/index.php?topic=37247.0',

@@ -8,13 +8,7 @@ import _ from 'lodash';
  * @param {*} username Username for the person who made the guess
  * @param {*} isBonusQuestion Boolean for if the question being evaluated is the bonus question
  */
-export const number = ({
-  prediction,
-  answer,
-  winnerData,
-  username,
-  isBonusQuestion = false,
-}) => {
+export const number = ({ prediction, answer, winnerData, username, isBonusQuestion = false }) => {
   const formattedPrediction = parseInt(prediction, 10);
   // If the prediction is not a number or there is no winner data (first time through),
   // automatically return the results

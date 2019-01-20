@@ -8,12 +8,10 @@ import { ALIAS } from '../../common/constants';
  * ['vanderblue', 'vander', 'blue', 'vblue']
  * @param {*} players An array of player names, taken from the answer key of the current question
  */
-export const reasonablePlayerGuesses = (players) => {
+export const reasonablePlayerGuesses = players => {
   const results = [];
-  players.forEach((player) => {
-    const playerData = player
-      .toLowerCase()
-      .split(' ');
+  players.forEach(player => {
+    const playerData = player.toLowerCase().split(' ');
     const initialLastName = `${playerData[0].charAt(0)}${playerData[1]}`;
     results.push(`${playerData[0]}${playerData[1]}`, playerData[0], playerData[1], initialLastName);
 
@@ -31,9 +29,8 @@ export const reasonablePlayerGuesses = (players) => {
  * @param {*} playerFormats An array of player names in different formats that someone could guess
  * @param {*} predictionPlayer The player name that the user guessed
  */
-export const isMatchFound = (playerFormats, predictionPlayer) => playerFormats.some(
-  playerName => levenshtein.get(playerName, predictionPlayer) <= 2,
-);
+export const isMatchFound = (playerFormats, predictionPlayer) =>
+  playerFormats.some(playerName => levenshtein.get(playerName, predictionPlayer) <= 2);
 
 /**
  * Determines who guessed the correct player
@@ -43,15 +40,8 @@ export const isMatchFound = (playerFormats, predictionPlayer) => playerFormats.s
  * @param {*} username Username for the person who made the guess
  * @param {*} isBonusQuestion Boolean for if the question being evaluated is the bonus question
  */
-export const player = ({
-  prediction,
-  answer,
-  winnerData,
-  username,
-}) => {
-  const predictionPlayer = prediction
-    .replace(/[^a-z]/gi, '')
-    .toLowerCase();
+export const player = ({ prediction, answer, winnerData, username }) => {
+  const predictionPlayer = prediction.replace(/[^a-z]/gi, '').toLowerCase();
   const playerFormats = reasonablePlayerGuesses(answer);
 
   // The player guess matches a reasonable result

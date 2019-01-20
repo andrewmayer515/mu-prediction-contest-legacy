@@ -1,10 +1,12 @@
 {
-    "extends": "airbnb-base",
+    "extends": ["airbnb-base", "prettier"],
     "rules": {
-      "no-else-return": ["error", { "allowElseIf": true }]
+      "no-else-return": ["error", { "allowElseIf": true }],
+      "prettier/prettier": ["error"]
     },
     "plugins": [
-      "json"
+      "json",
+      "prettier"
     ],
     "overrides": [
       {

@@ -1,4 +1,4 @@
-/* eslint-disable no-await-in-loop, no-loop-func */
+/* eslint-disable no-await-in-loop, no-loop-func, no-undef */
 import puppeteer from 'puppeteer';
 import ora from 'ora';
 import fs from 'fs';
@@ -8,7 +8,9 @@ const args = process.argv.slice(2);
 const isDebug = args.includes('debug');
 const isLogin = args.includes('login');
 
-const launchSettings = isDebug ? { headless: false, args: ['about:blank'] } : { args: ['about:blank'] };
+const launchSettings = isDebug
+  ? { headless: false, args: ['about:blank'] }
+  : { args: ['about:blank'] };
 
 let key;
 let spinner;
@@ -18,7 +20,6 @@ let pageIndex = 0;
 let usernameArray = [];
 let commentArray = [];
 
-
 // Async function starts on run
 (async () => {
   // If the key is not set, default to the example until it is created
@@ -27,7 +28,10 @@ let commentArray = [];
     spinner = ora({ text: 'Calculating...', color: 'yellow' }).start();
   } catch (e) {
     key = await require('./data/key-example'); // eslint-disable-line global-require
-    spinner = ora({ text: '--- RUNNING WITH SAMPLE DATA, REFER TO README.MD ---', color: 'yellow' }).start();
+    spinner = ora({
+      text: '--- RUNNING WITH SAMPLE DATA, REFER TO README.MD ---',
+      color: 'yellow',
+    }).start();
   }
 
   const browser = await puppeteer.launch(launchSettings);
@@ -55,7 +59,9 @@ let commentArray = [];
   // Check to see if the All page selection exists
   try {
     // Will fail if it can't find the All button on page
-    const text = await page.evaluate(() => document.querySelector('.floatleft > a:nth-last-child(1)').textContent); // eslint-disable-line no-undef
+    const text = await page.evaluate(
+      () => document.querySelector('.floatleft > a:nth-last-child(1)').textContent
+    ); // eslint-disable-line no-undef
     if (text !== 'All') {
       throw new Error();
     }
@@ -68,10 +74,14 @@ let commentArray = [];
   try {
     if (hasAllPageOption) {
       // More then 1 page, has All option
-      totalPages = await page.evaluate(() => parseInt(document.querySelector('a.navPages:nth-last-child(2)').textContent, 10)); // eslint-disable-line no-undef
+      totalPages = await page.evaluate(() =>
+        parseInt(document.querySelector('a.navPages:nth-last-child(2)').textContent, 10)
+      ); // eslint-disable-line no-undef
     } else {
       // More then 1 page, no All option
-      totalPages = await page.evaluate(() => parseInt(document.querySelector('a.navPages:nth-last-child(1)').textContent, 10)); // eslint-disable-line no-undef
+      totalPages = await page.evaluate(() =>
+        parseInt(document.querySelector('a.navPages:nth-last-child(1)').textContent, 10)
+      ); // eslint-disable-line no-undef
     }
   } catch (e) {
     // If it gets here, there is only one page
@@ -87,8 +97,18 @@ let commentArray = [];
       await page.bringToFront();
     }
 
-    usernameArray = [...usernameArray, ...await page.evaluate(() => [...document.querySelectorAll('.poster > h4')].map(elem => elem.innerText))]; // eslint-disable-line no-undef
-    commentArray = [...commentArray, ...await page.evaluate(() => [...document.querySelectorAll('.post > .inner')].map(elem => elem.innerText))]; // eslint-disable-line no-undef
+    usernameArray = [
+      ...usernameArray,
+      ...(await page.evaluate(() =>
+        [...document.querySelectorAll('.poster > h4')].map(elem => elem.innerText)
+      )),
+    ]; // eslint-disable-line no-undef
+    commentArray = [
+      ...commentArray,
+      ...(await page.evaluate(() =>
+        [...document.querySelectorAll('.post > .inner')].map(elem => elem.innerText)
+      )),
+    ]; // eslint-disable-line no-undef
     pageIndex += 1;
   }
 

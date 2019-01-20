@@ -15,8 +15,11 @@ export const determineQuestionWinner = (data, question, props, isBonusQuestion) 
   const questionLine = isBonusQuestion ? 'Bonus' : `${question.replace(/[^0-9]/g, '')}.`;
 
   let winnerData;
-  data.forEach((entry) => {
-    const predictionLine = _.find(entry.comment, commentLine => commentLine.indexOf(`${questionLine}`) !== -1);
+  data.forEach(entry => {
+    const predictionLine = _.find(
+      entry.comment,
+      commentLine => commentLine.indexOf(`${questionLine}`) !== -1
+    );
     if (predictionLine && predictionLine.indexOf(':') !== -1) {
       const prediction = predictionLine.split(':')[1].trim();
       if (prediction !== '') {
@@ -51,7 +54,7 @@ export const determineQuestionWinner = (data, question, props, isBonusQuestion) 
 export const main = (data, key) => {
   const results = [];
   // Loop through each question in the config
-  Object.keys(key).forEach((question) => {
+  Object.keys(key).forEach(question => {
     if (question.indexOf(QUESTION) !== -1) {
       results.push(determineQuestionWinner(data, question, key[question], false));
     } else if (question.indexOf(BONUS) !== -1) {

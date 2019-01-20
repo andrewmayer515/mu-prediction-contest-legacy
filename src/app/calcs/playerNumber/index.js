@@ -19,9 +19,7 @@ export const playerNumber = ({
 }) => {
   // Regex to break down prediction to just alphanumeric
   const formattedPrediction = prediction.replace(/[^a-z0-9]/gi, '');
-  const predictionPlayer = formattedPrediction
-    .replace(/[^a-z]/gi, '')
-    .toLowerCase();
+  const predictionPlayer = formattedPrediction.replace(/[^a-z]/gi, '').toLowerCase();
   const predictionNumber = formattedPrediction.replace(/[^0-9]/gi, '');
   const playerFormats = reasonablePlayerGuesses(answer.player);
 
@@ -29,10 +27,12 @@ export const playerNumber = ({
   if (isMatchFound(playerFormats, predictionPlayer)) {
     // If this is blank (first time through or no correct player guess),
     // automatically return results
-    const numberWinnerData = winnerData ? {
-      username: winnerData.username,
-      prediction: parseInt(winnerData.prediction.replace(/[^0-9]/gi, ''), 10),
-    } : undefined;
+    const numberWinnerData = winnerData
+      ? {
+          username: winnerData.username,
+          prediction: parseInt(winnerData.prediction.replace(/[^0-9]/gi, ''), 10),
+        }
+      : undefined;
     // Use the number calcs to determine who is closer to the correct number
     // if more than one user guessed the player
     const numberResult = number({

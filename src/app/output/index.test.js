@@ -1,10 +1,5 @@
 /* eslint no-console: 0 */
-import {
-  displayResults,
-  header,
-  questionWinners,
-  summary,
-} from './index';
+import { displayResults, header, questionWinners, summary } from './index';
 import { TYPE } from '../common/constants';
 
 describe('output', () => {
@@ -71,7 +66,7 @@ describe('output', () => {
     bonus: {
       answer: 56,
       type: TYPE.NUMBER,
-      text: 'Predict Marquette\'s shooting percentage:',
+      text: "Predict Marquette's shooting percentage:",
       points: 3,
     },
   };
@@ -90,13 +85,19 @@ describe('output', () => {
       expect(console.log.mock.calls[7][0]).toBe('2. MU Points: 89');
       expect(console.log.mock.calls[8][0]).toBe('   Andrew (80)');
       expect(console.log.mock.calls[9][0]).toBe('');
-      expect(console.log.mock.calls[10][0]).toBe('3. MU top scorer and how many: Markus Howard - 18');
+      expect(console.log.mock.calls[10][0]).toBe(
+        '3. MU top scorer and how many: Markus Howard - 18'
+      );
       expect(console.log.mock.calls[11][0]).toBe('   Andrew (16)');
       expect(console.log.mock.calls[12][0]).toBe('');
-      expect(console.log.mock.calls[13][0]).toBe('4. MU top rebounder and how many: Sam Hauser - 5');
+      expect(console.log.mock.calls[13][0]).toBe(
+        '4. MU top rebounder and how many: Sam Hauser - 5'
+      );
       expect(console.log.mock.calls[14][0]).toBe('   No winner ');
       expect(console.log.mock.calls[15][0]).toBe('');
-      expect(console.log.mock.calls[16][0]).toBe('Bonus. Predict Marquette\'s shooting percentage: 56');
+      expect(console.log.mock.calls[16][0]).toBe(
+        "Bonus. Predict Marquette's shooting percentage: 56"
+      );
       expect(console.log.mock.calls[17][0]).toBe('   Bonus_Winner (56)');
       expect(console.log.mock.calls[18][0]).toBe('');
       expect(console.log.mock.calls[19][0]).toBe('');
@@ -129,13 +130,17 @@ describe('output', () => {
       expect(console.log.mock.calls[3][0]).toBe('2. MU Points: 89');
       expect(console.log.mock.calls[4][0]).toBe('   Andrew (80)');
       expect(console.log.mock.calls[5][0]).toBe('');
-      expect(console.log.mock.calls[6][0]).toBe('3. MU top scorer and how many: Markus Howard - 18');
+      expect(console.log.mock.calls[6][0]).toBe(
+        '3. MU top scorer and how many: Markus Howard - 18'
+      );
       expect(console.log.mock.calls[7][0]).toBe('   Andrew (16)');
       expect(console.log.mock.calls[8][0]).toBe('');
       expect(console.log.mock.calls[9][0]).toBe('4. MU top rebounder and how many: Sam Hauser - 5');
       expect(console.log.mock.calls[10][0]).toBe('   No winner ');
       expect(console.log.mock.calls[11][0]).toBe('');
-      expect(console.log.mock.calls[12][0]).toBe('Bonus. Predict Marquette\'s shooting percentage: 56');
+      expect(console.log.mock.calls[12][0]).toBe(
+        "Bonus. Predict Marquette's shooting percentage: 56"
+      );
       expect(console.log.mock.calls[13][0]).toBe('   Bonus_Winner (56)');
       expect(console.log.mock.calls[14][0]).toBe('');
     });
@@ -150,7 +155,9 @@ describe('output', () => {
       console.log = jest.fn();
       questionWinners(results, badKey);
 
-      expect(console.log.mock.calls[0][0]).toBe('Error with the following question: Total Game Points:');
+      expect(console.log.mock.calls[0][0]).toBe(
+        'Error with the following question: Total Game Points:'
+      );
       expect(console.log.mock.calls[1][0]).toBe('Verify key.js file has been set correctly');
     });
     test('return no console log if the line being read is the url', () => {

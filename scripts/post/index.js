@@ -6,7 +6,9 @@ const config = require('./config.json');
   const response = await prompts({
     type: 'confirm',
     name: 'value',
-    message: `\nOpponent: ${config.post.team}\nBonus Question: ${config.post.bonus}\n\nIs this correct?`,
+    message: `\nOpponent: ${config.post.team}\nBonus Question: ${
+      config.post.bonus
+    }\n\nIs this correct?`,
     initial: true,
   });
 
@@ -24,7 +26,9 @@ const config = require('./config.json');
   // Forces the browser view to fill the viewport size while running as debug
   await page._client.send('Emulation.clearDeviceMetricsOverride'); // eslint-disable-line no-underscore-dangle
 
-  await page.goto('https://www.muscoop.com/index.php?action=post;board=2.0', { waitUntil: 'networkidle2' });
+  await page.goto('https://www.muscoop.com/index.php?action=post;board=2.0', {
+    waitUntil: 'networkidle2',
+  });
   await page.bringToFront();
 
   // Login (credentials needed in config file)
@@ -39,7 +43,13 @@ const config = require('./config.json');
   await page.click('#post_header > dd:nth-child(2) > input');
   await page.keyboard.type(subject);
   await page.click('#message');
-  await page.keyboard.type(`1. Total Game Points:\n2. MU points:\n3. ${config.post.team} points:\n4. TO's forced by MU:\n5. TO's forced by ${config.post.team}:\n6. MU total made 3's:\n7. MU top scorer and how many:\n8. MU top assist man and how many:\n9. MU top rebounder and how many:\n10. MU top 3-point shooter and how many:\n\n`);
+  await page.keyboard.type(
+    `1. Total Game Points:\n2. MU points:\n3. ${
+      config.post.team
+    } points:\n4. TO's forced by MU:\n5. TO's forced by ${
+      config.post.team
+    }:\n6. MU total made 3's:\n7. MU top scorer and how many:\n8. MU top assist man and how many:\n9. MU top rebounder and how many:\n10. MU top 3-point shooter and how many:\n\n`
+  );
   if (config.post.bonus) {
     await page.keyboard.type(config.post.bonus);
   }
