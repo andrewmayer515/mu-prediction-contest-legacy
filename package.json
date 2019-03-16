@@ -28,7 +28,11 @@
   "homepage": "https://github.com/andrewmayer515/mu-prediction-contest#readme",
   "dependencies": {
     "fast-levenshtein": "^2.0.6",
-    "lodash": "^4.17.10",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.find": "^4.6.0",
+    "lodash.get": "^4.4.2",
+    "lodash.has": "^4.5.2",
+    "lodash.times": "^4.3.2",
     "ora": "^3.0.0",
     "prompts": "^1.1.0",
     "puppeteer": "^1.6.0"

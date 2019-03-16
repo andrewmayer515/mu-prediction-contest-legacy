@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import _has from 'lodash.has';
+import _cloneDeep from 'lodash.clonedeep';
 import levenshtein from 'fast-levenshtein';
 import { ALIAS } from '../../common/constants';
 
@@ -16,7 +17,7 @@ export const reasonablePlayerGuesses = players => {
     results.push(`${playerData[0]}${playerData[1]}`, playerData[0], playerData[1], initialLastName);
 
     // Allow a defined alias/nickname for a player set in constants
-    if (_.has(ALIAS, player)) {
+    if (_has(ALIAS, player)) {
       results.push(...ALIAS[player]);
     }
   });
@@ -56,7 +57,7 @@ export const player = ({ prediction, answer, winnerData, username }) => {
     }
 
     // Combine and return results
-    const data = _.cloneDeep(winnerData);
+    const data = _cloneDeep(winnerData);
     data.username.push(username);
     return {
       username: data.username,

@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _find from 'lodash.find';
 import { displayResults } from '../output';
 import { QUESTION, BONUS, NO_WINNER } from './constants';
 import calcs from '../calcs';
@@ -16,7 +16,7 @@ export const determineQuestionWinner = (data, question, props, isBonusQuestion) 
 
   let winnerData;
   data.forEach(entry => {
-    const predictionLine = _.find(
+    const predictionLine = _find(
       entry.comment,
       commentLine => commentLine.indexOf(`${questionLine}`) !== -1
     );

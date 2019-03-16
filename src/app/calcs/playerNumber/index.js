@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _cloneDeep from 'lodash.clonedeep';
 import { reasonablePlayerGuesses, isMatchFound } from '../player';
 import { number } from '../number';
 
@@ -29,9 +29,9 @@ export const playerNumber = ({
     // automatically return results
     const numberWinnerData = winnerData
       ? {
-          username: winnerData.username,
-          prediction: parseInt(winnerData.prediction.replace(/[^0-9]/gi, ''), 10),
-        }
+        username: winnerData.username,
+        prediction: parseInt(winnerData.prediction.replace(/[^0-9]/gi, ''), 10),
+      }
       : undefined;
     // Use the number calcs to determine who is closer to the correct number
     // if more than one user guessed the player
@@ -50,7 +50,7 @@ export const playerNumber = ({
           prediction: `${answer.player} - ${predictionNumber}`,
         };
       }
-      const data = _.cloneDeep(winnerData);
+      const data = _cloneDeep(winnerData);
       data.username.push(username);
       return {
         username: data.username,

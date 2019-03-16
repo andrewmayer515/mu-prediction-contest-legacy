@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _cloneDeep from 'lodash.cloneDeep';
 
 /**
  * Determines who had the closest prediction to a given number
@@ -26,7 +26,7 @@ export const number = ({ prediction, answer, winnerData, username, isBonusQuesti
   // If the current question being evaluated is a Bonus Question, the prediction has to be exact
   if (isBonusQuestion) {
     if (formattedPrediction === answer) {
-      const data = winnerData ? _.cloneDeep(winnerData) : { username: [] };
+      const data = winnerData ? _cloneDeep(winnerData) : { username: [] };
       data.username.push(username);
       return {
         username: data.username,
@@ -46,7 +46,7 @@ export const number = ({ prediction, answer, winnerData, username, isBonusQuesti
       prediction: formattedPrediction,
     };
   } else if (Math.abs(answer - formattedPrediction) === Math.abs(answer - winnerData.prediction)) {
-    const data = _.cloneDeep(winnerData);
+    const data = _cloneDeep(winnerData);
     data.username.push(username);
     return {
       username: data.username,

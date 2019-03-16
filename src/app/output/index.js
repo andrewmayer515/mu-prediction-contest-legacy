@@ -1,5 +1,6 @@
 /* eslint no-console: 0 */
-import _ from 'lodash';
+import _get from 'lodash.get';
+import _times from 'lodash.times';
 import { TYPE, QUESTION, BONUS, NO_WINNER } from '../common/constants';
 
 export const header = () => {
@@ -33,14 +34,14 @@ export const questionWinners = (results, key) => {
 export const summary = (results, key) => {
   // Create an array of all winners
   const winnerList = [];
-  _.forEach(results, result => {
-    const isBonusQuestion = _.get(result, 'isBonusQuestion', false);
+  results.forEach((result) => {
+    const isBonusQuestion = _get(result, 'isBonusQuestion', false);
     // If the question was a Bonus Question, more than 1 point could be awarded depending
     // on the 'points' value set for the Bonus Question
     if (isBonusQuestion) {
-      const points = _.get(key, 'bonus.points', 1);
+      const points = _get(key, 'bonus.points', 1);
       result.username.forEach(winner => {
-        _.times(points, () => {
+        _times(points, () => {
           winnerList.push(winner);
         });
       });
