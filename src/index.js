@@ -1,6 +1,5 @@
 /* eslint-disable no-await-in-loop, no-loop-func, no-undef */
 import puppeteer from 'puppeteer';
-import ora from 'ora';
 import fs from 'fs';
 import { main } from './app/common';
 
@@ -13,7 +12,6 @@ const launchSettings = isDebug
   : { args: ['about:blank'] };
 
 let key;
-let spinner;
 let totalPages;
 let hasAllPageOption;
 let pageIndex = 0;
@@ -21,17 +19,12 @@ let usernameArray = [];
 let commentArray = [];
 
 // Async function starts on run
-(async () => {
+export const results = async () => {
   // If the key is not set, default to the example until it is created
   try {
     key = await require('./data/key'); // eslint-disable-line global-require, import/no-unresolved
-    spinner = ora({ text: 'Calculating...', color: 'yellow' }).start();
   } catch (e) {
     key = await require('./data/key-example'); // eslint-disable-line global-require
-    spinner = ora({
-      text: '--- RUNNING WITH SAMPLE DATA, REFER TO README.MD ---',
-      color: 'yellow',
-    }).start();
   }
 
   const browser = await puppeteer.launch(launchSettings);
@@ -122,10 +115,9 @@ let commentArray = [];
   });
 
   await main(data, key.results);
-  spinner.stop();
 
   // Keep browser open while running as debug
   if (!isDebug) {
     await browser.close();
   }
-})();
+};

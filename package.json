@@ -14,7 +14,8 @@
     "test-coverage": "jest --coverage --coverageReporters=text",
     "build": "babel src -d lib",
     "totals": "node scripts/totals",
-    "post": "node scripts/post"
+    "post": "node scripts/post",
+    "server": "nodemon  --inspect --exec babel-node src/server"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,7 @@
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.0.0-beta.54",
+    "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.0.0-beta.54",
     "@babel/register": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
@@ -56,6 +58,7 @@
     "eslint-plugin-prettier": "^3.0.1",
     "jest": "^24.5.0",
     "jest-puppeteer": "^3.4.0",
+    "nodemon": "^1.18.10",
     "prettier": "1.16.0",
     "regenerator-runtime": "^0.12.0"
   }
