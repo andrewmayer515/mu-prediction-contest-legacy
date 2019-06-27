@@ -34,7 +34,7 @@ export const questionWinners = (results, key) => {
 export const summary = (results, key) => {
   // Create an array of all winners
   const winnerList = [];
-  results.forEach((result) => {
+  results.forEach(result => {
     const isBonusQuestion = _get(result, 'isBonusQuestion', false);
     // If the question was a Bonus Question, more than 1 point could be awarded depending
     // on the 'points' value set for the Bonus Question

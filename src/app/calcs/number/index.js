@@ -1,4 +1,4 @@
-import _cloneDeep from 'lodash.cloneDeep';
+import _cloneDeep from 'lodash.clonedeep';
 
 /**
  * Determines who had the closest prediction to a given number
