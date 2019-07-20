@@ -1,18 +1,18 @@
 import _find from 'lodash.find';
 import { displayResults } from '../output';
-import { QUESTION, BONUS, NO_WINNER } from './constants';
+import { NO_WINNER } from './constants';
 import calcs from '../calcs';
 
 /**
  * Loop through predictions for a given question and call its calculation function
- * @param {*} data All comments data on the post
- * @param {*} question The current question being evaluated from the key.js file
- * @param {*} props Properties of question, taken from the key.js file
- * @param {*} isBonusQuestion  Boolean for if the question being evaluated is the bonus question
+ * @param {Object} data All comments data on the post
+ * @param {Number} index The current question being evaluated from the key.js file
+ * @param {Object} props Properties of question
+ * @param {Boolean} isBonusQuestion  Boolean for if the question being evaluated is the bonus question
  */
-export const determineQuestionWinner = (data, question, props, isBonusQuestion) => {
+export const determineQuestionWinner = (data, index, props, isBonusQuestion) => {
   // Get the line for the question currently being evaluated (IE 1., 2., Bonus, etc...)
-  const questionLine = isBonusQuestion ? 'Bonus' : `${question.replace(/[^0-9]/g, '')}.`;
+  const questionLine = props.bonus ? 'Bonus' : index;
 
   let winnerData;
   data.forEach(entry => {
@@ -54,11 +54,11 @@ export const determineQuestionWinner = (data, question, props, isBonusQuestion) 
 export const main = (data, key) => {
   const results = [];
   // Loop through each question in the config
-  Object.keys(key).forEach(question => {
-    if (question.indexOf(QUESTION) !== -1) {
-      results.push(determineQuestionWinner(data, question, key[question], false));
-    } else if (question.indexOf(BONUS) !== -1) {
-      results.push(determineQuestionWinner(data, question, key[question], true));
+  key.forEach((question, index) => {
+    if (question.bonus) {
+      results.push(determineQuestionWinner(data, index, question, true));
+    } else {
+      results.push(determineQuestionWinner(data, index, question, false));
     }
   });
 

@@ -7,27 +7,17 @@ const args = process.argv.slice(2);
 const isDebug = args.includes('debug');
 const isLogin = args.includes('login');
 
-const launchSettings = isDebug
-  ? { headless: false, args: ['about:blank'] }
-  : { args: ['about:blank'] };
-
-let key;
-let totalPages;
-let hasAllPageOption;
-let pageIndex = 0;
-let usernameArray = [];
-let commentArray = [];
-
 // Async function starts on run
-export const results = async () => {
-  // If the key is not set, default to the example until it is created
-  try {
-    key = await require('./data/key'); // eslint-disable-line global-require, import/no-unresolved
-  } catch (e) {
-    key = await require('./data/key-example'); // eslint-disable-line global-require
-  }
+export const results = async ctx => {
+  let totalPages;
+  let hasAllPageOption;
+  let pageIndex = 0;
+  let usernameArray = [];
+  let commentArray = [];
 
-  const browser = await puppeteer.launch(launchSettings);
+  const { key, postNumber } = ctx.request.body;
+  const url = `https://www.muscoop.com/index.php?topic=${postNumber}`;
+  const browser = await puppeteer.launch({ headless: true, args: ['about:blank'] });
   const page = await browser.newPage();
 
   // Forces the browser view to fill the viewport size while running as debug
@@ -35,7 +25,9 @@ export const results = async () => {
     await page._client.send('Emulation.clearDeviceMetricsOverride'); // eslint-disable-line no-underscore-dangle
   }
 
-  await page.goto(key.results.url, { waitUntil: 'networkidle2' });
+  await page.goto(url, {
+    waitUntil: 'networkidle2',
+  });
   await page.bringToFront();
 
   // Login if the arg was passed in
@@ -82,11 +74,10 @@ export const results = async () => {
   }
 
   // Cycle through the pages on the prediction post, gather username and comment data
-  const updatedURL = key.results.url.slice(0, -1);
   while (pageIndex < totalPages) {
     if (pageIndex !== 0) {
       const index = pageIndex * 25;
-      await page.goto(`${updatedURL}${index}`, { waitUntil: 'networkidle2' });
+      await page.goto(`${url}${index}`, { waitUntil: 'networkidle2' });
       await page.bringToFront();
     }
 
@@ -114,7 +105,7 @@ export const results = async () => {
     });
   });
 
-  await main(data, key.results);
+  await main(data, key);
 
   // Keep browser open while running as debug
   if (!isDebug) {
