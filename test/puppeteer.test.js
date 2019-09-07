@@ -7,7 +7,7 @@ const usernames = [
   'bilsu',
   'mubb34',
   'MUfan12',
-  'MUeagle1090',
+  'BM1090',
   'Scooter22',
   'Scooter22',
   'WayOfTheWarrior',
@@ -52,13 +52,17 @@ describe('Puppeteer tests on MUSCOOP', () => {
 
   test('should get all the username data on the first page', async () => {
     // Copy seletor used in app.js
-    const usernameArray = await page.evaluate(() => [...document.querySelectorAll('.poster > h4')].map(elem => elem.innerText));
+    const usernameArray = await page.evaluate(() =>
+      [...document.querySelectorAll('.poster > h4')].map(elem => elem.innerText)
+    );
     expect(usernameArray).toEqual(usernames);
   });
 
   test('should get single user comment data on the first page', async () => {
     // Copy seletor used in app.js
-    const commentArray = await page.evaluate(() => [...document.querySelectorAll('.post > .inner')].map(elem => elem.innerText));
+    const commentArray = await page.evaluate(() =>
+      [...document.querySelectorAll('.post > .inner')].map(elem => elem.innerText)
+    );
     expect(commentArray[1]).toEqual(commentSample);
   });
 });
