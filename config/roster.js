@@ -1,20 +1,22 @@
-// ROSTER 2018-2019
+// ROSTER 2021-2022
 export const ROSTER = {
-  MARKUS_HOWARD: 'Markus Howard',
-  BRENDEN_BAILEY: 'Brenden Bailey',
-  SACAR_ANIM: 'Sacar Anim',
-  THEO_JOHN: 'Theo John',
-  GREG_ELLIOT: 'Greg Elliot',
-  SAM_HAUSER: 'Sam Hauser',
-  MATT_HELDT: 'Matt Heldt',
-  IKE_EKE: 'Ike Eke',
-  JOESPH_CHARTOUNY: 'Joseph Chartouny',
-  JOEY_HAUSER: 'Joey Hauser',
-  JAMAL_CAIN: 'Jamal Cain',
-  KOBY_MCEWEN: 'Koby McEwen',
-  ED_MORROW: 'Ed Morrow',
+  GREG_ELLIOTT: 'Greg Elliott',
+  JOSE_PEREZ: 'Jose Perez',
+  DJ_CARTON: 'D.J. Carton',
+  DEXTER_AKANNO: 'Dexter Akanno',
+  JUSTIN_LEWIS: 'Justin Lewis',
+  OSASERE_IGHODARO: 'Osasere Ighodaro',
+  DAWSON_GARCIA: 'Dawson Garcia',
+  TYLER_KOLEK: 'Tyler Kolek',
+  OLIVIER_MAXENCE_PROSPER: 'Olivier-Maxence Prosper',
+  KAMERON_JONES: 'Kameron Jones',
+  STEVIE_MITCHELL: 'Stevie Mitchell',
+  EMARION_ELLIS: 'Emarion Ellis',
+  DAVID_JOPLIN: 'David Joplin',
+  KEEYAN_ITEJERE: 'Keeyan Itejere',
 };
 
 export const ALIAS = {
-  [ROSTER.JOESPH_CHARTOUNY]: ['joe c'],
+  [ROSTER.DEXTER_AKANNO]: ['Dex'],
+  [ROSTER.OLIVIER_MAXENCE_PROSPER]: ['OMP'],
 };
