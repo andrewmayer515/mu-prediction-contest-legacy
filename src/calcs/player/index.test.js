@@ -1,6 +1,6 @@
 import { reasonablePlayerGuesses, isMatchFound, player } from './index';
 
-jest.mock('../../common/constants');
+jest.mock('../../../config/roster');
 
 describe('reasonablePlayerGuesses', () => {
   test('return an array of player names to match including alias', () => {
