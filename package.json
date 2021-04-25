@@ -4,11 +4,11 @@
   "description": "Web crawler for muscoop",
   "main": "src",
   "scripts": {
-    "start": "npm run build && node lib",
+    "start": "babel-node src/index.js",
     "start:login": "npm start -- login",
     "debug": "npm start -- debug",
     "debug:login": "npm start -- debug login",
-    "eslint": "./node_modules/.bin/eslint --quiet src/**",
+    "lint": "./node_modules/.bin/eslint --quiet src/**",
     "test": "jest",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage --coverageReporters=text",
@@ -40,6 +40,7 @@
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.0.0-beta.54",
+    "@babel/node": "^7.13.13",
     "@babel/preset-env": "^7.0.0-beta.54",
     "@babel/register": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",

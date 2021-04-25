@@ -2,7 +2,7 @@
 import puppeteer from 'puppeteer';
 import ora from 'ora';
 import fs from 'fs';
-import { main } from './app/common';
+import { main } from './common';
 
 const args = process.argv.slice(2);
 const isDebug = args.includes('debug');
@@ -24,10 +24,10 @@ let commentArray = [];
 (async () => {
   // If the key is not set, default to the example until it is created
   try {
-    key = await require('./data/key'); // eslint-disable-line global-require, import/no-unresolved
+    key = await require('../config/key'); // eslint-disable-line global-require, import/no-unresolved
     spinner = ora({ text: 'Calculating...', color: 'yellow' }).start();
   } catch (e) {
-    key = await require('./data/key-example'); // eslint-disable-line global-require
+    key = await require('../config/key-example'); // eslint-disable-line global-require
     spinner = ora({
       text: '--- RUNNING WITH SAMPLE DATA, REFER TO README.MD ---',
       color: 'yellow',

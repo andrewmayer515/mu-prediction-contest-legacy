@@ -1,73 +1,74 @@
-import { TYPE } from '../app/common/constants';
+import { TYPE } from '../src/common/constants';
+import { ROSTER } from './roster';
 
 export const results = {
   question1: {
     text: 'Total Game Points:',
-    answer: 117,
+    answer: 160,
     type: TYPE.NUMBER,
   },
   question2: {
     text: 'MU Points:',
-    answer: 59,
+    answer: 79,
     type: TYPE.NUMBER,
   },
   question3: {
     text: 'Opponent Points:',
-    answer: 58,
+    answer: 81,
     type: TYPE.NUMBER,
   },
   question4: {
     text: "TO's forced by MU:",
-    answer: 11,
+    answer: 8,
     type: TYPE.NUMBER,
   },
   question5: {
     text: "TO's forced by Opponent:",
-    answer: 9,
+    answer: 11,
     type: TYPE.NUMBER,
   },
   question6: {
     text: 'MU total made 3s:',
-    answer: 4,
+    answer: 8,
     type: TYPE.NUMBER,
   },
   question7: {
     text: 'MU top scorer and how many:',
     answer: {
-      player: ['Vander Blue'],
-      number: 16,
+      player: [ROSTER.SAM_HAUSER],
+      number: 22,
     },
     type: TYPE.PLAYER_NUMBER,
   },
   question8: {
     text: 'MU top assist man and how many:',
     answer: {
-      player: ['Vander Blue', 'Jamil Wilson'],
-      number: 2,
+      player: [ROSTER.MARKUS_HOWARD],
+      number: 4,
     },
     type: TYPE.PLAYER_NUMBER,
   },
   question9: {
     text: 'MU top rebounder and how many:',
     answer: {
-      player: ['Chris Otule'],
-      number: 5,
+      player: [ROSTER.SAM_HAUSER],
+      number: 9,
     },
     type: TYPE.PLAYER_NUMBER,
   },
   question10: {
     text: 'MU top 3-point shooter and how many:',
     answer: {
-      player: ['Jamil Wilson', 'Vander Blue'],
-      number: 2,
+      player: [ROSTER.SAM_HAUSER],
+      number: 4,
     },
     type: TYPE.PLAYER_NUMBER,
   },
   bonus: {
-    answer: 35,
+    answer: 11,
     type: TYPE.NUMBER,
-    text: "Predict Marquette's shooting percentage:",
-    points: 1,
+    text: '(2 points). Predict how many points MU scores in the first 5 minutes:',
+    points: 2,
   },
-  url: 'https://www.muscoop.com/index.php?topic=37247.0',
+  url: 'https://www.muscoop.com/index.php?topic=58228.0',
 };
