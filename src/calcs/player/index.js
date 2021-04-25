@@ -36,7 +36,7 @@ export const isMatchFound = (playerFormats, predictionPlayer) =>
 /**
  * Determines who guessed the correct player
  * @param {*} prediction The value that was guessed for a given question
- * @param {*} answer The value set in the key.js file for the given question
+ * @param {*} answer The value set in the config for the given question
  * @param {*} winnerData Comparison data on who the current winner is
  * @param {*} username Username for the person who made the guess
  * @param {*} isBonusQuestion Boolean for if the question being evaluated is the bonus question
