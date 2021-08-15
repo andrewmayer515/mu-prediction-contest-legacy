@@ -41,7 +41,7 @@ export const isMatchFound = (playerFormats, predictionPlayer) =>
  * @param {*} username Username for the person who made the guess
  * @param {*} isBonusQuestion Boolean for if the question being evaluated is the bonus question
  */
-export const player = ({ prediction, answer, winnerData, username }) => {
+export default ({ prediction, answer, winnerData, username }) => {
   const predictionPlayer = prediction.replace(/[^a-z]/gi, '').toLowerCase();
   const playerFormats = reasonablePlayerGuesses(answer);
 

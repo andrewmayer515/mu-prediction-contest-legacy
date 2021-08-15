@@ -102,7 +102,7 @@ $ node run debug:login
 ```
 
 ## Maintenance
-Since some of the questions may refer to an individual player on the roster, the roster found in [src/common/constants](https://github.com/andrewmayer515/mu-prediction-contest/blob/master/src/common/constants.js) will need to be updated with the player names in a given year.
+Since some of the questions may refer to an individual player on the roster, the roster found in [src/constants](https://github.com/andrewmayer515/mu-prediction-contest/blob/master/src/constants/index.js) will need to be updated with the player names in a given year.
 
 If a player has a nickname or alias they go by, to have the name included it can be added to the `ALIAS` object. The `key` being the name of the player, `value` being an array of aliases. 
 

@@ -1,7 +1,7 @@
 /* eslint no-console: 0 */
 import _get from 'lodash.get';
 import _times from 'lodash.times';
-import { TYPE, QUESTION, BONUS, NO_WINNER } from '../common/constants';
+import { TYPE, QUESTION, BONUS, NO_WINNER } from '../constants';
 
 export const header = () => {
   console.log('');

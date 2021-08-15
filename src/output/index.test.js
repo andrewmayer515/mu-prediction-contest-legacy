@@ -1,6 +1,6 @@
 /* eslint no-console: 0 */
 import { displayResults, header, questionWinners, summary } from './index';
-import { TYPE } from '../common/constants';
+import { TYPE } from '../constants';
 
 describe('output', () => {
   const results = [

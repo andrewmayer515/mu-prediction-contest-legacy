@@ -1,8 +1,6 @@
 module.exports = {
   preset: 'jest-puppeteer',
-  modulePathIgnorePatterns: [
-    '<rootDir>/lib/',
-  ],
+  modulePathIgnorePatterns: ['<rootDir>/lib/'],
   transform: {
     '^.+\\.js$': 'babel-jest',
   },

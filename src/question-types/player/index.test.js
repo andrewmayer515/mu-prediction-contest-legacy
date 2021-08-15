@@ -1,4 +1,4 @@
-import { reasonablePlayerGuesses, isMatchFound, player } from './index';
+import player, { reasonablePlayerGuesses, isMatchFound } from './index';
 
 jest.mock('../../../config/roster');
 

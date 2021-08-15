@@ -1,5 +1,5 @@
-import { determineQuestionWinner, main } from './index';
-import * as output from '../output';
+import { determineQuestionWinner, main } from './app';
+import * as output from './output';
 
 describe('common', () => {
   const data = [

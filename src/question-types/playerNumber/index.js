@@ -1,6 +1,6 @@
 import _cloneDeep from 'lodash.clonedeep';
 import { reasonablePlayerGuesses, isMatchFound } from '../player';
-import { number } from '../number';
+import number from '../number';
 
 /**
  * Determines who guessed the player as well as had the closest prediction to a given number
@@ -10,13 +10,7 @@ import { number } from '../number';
  * @param {*} username Username for the person who made the guess
  * @param {*} isBonusQuestion Boolean for if the question being evaluated is the bonus question
  */
-export const playerNumber = ({
-  prediction,
-  answer,
-  winnerData,
-  username,
-  isBonusQuestion = false,
-}) => {
+const playerNumber = ({ prediction, answer, winnerData, username, isBonusQuestion = false }) => {
   // Regex to break down prediction to just alphanumeric
   const formattedPrediction = prediction.replace(/[^a-z0-9]/gi, '');
   const predictionPlayer = formattedPrediction.replace(/[^a-z]/gi, '').toLowerCase();
@@ -62,3 +56,5 @@ export const playerNumber = ({
   // No winner, return what was passed in
   return winnerData;
 };
+
+export default playerNumber;

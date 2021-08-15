@@ -1,7 +1,7 @@
 import _find from 'lodash.find';
-import { displayResults } from '../output';
+import { displayResults } from './output';
 import { QUESTION, BONUS, NO_WINNER } from './constants';
-import calcs from '../calcs';
+import questionTypes from './question-types';
 
 /**
  * Loop through predictions for a given question and call its calculation function
@@ -23,7 +23,7 @@ export const determineQuestionWinner = (data, question, props, isBonusQuestion) 
     if (predictionLine && predictionLine.indexOf(':') !== -1) {
       const prediction = predictionLine.split(':')[1].trim();
       if (prediction !== '') {
-        winnerData = calcs[props.type]({
+        winnerData = questionTypes[props.type]({
           prediction,
           answer: props.answer,
           winnerData,
