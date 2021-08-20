@@ -1,4 +1,4 @@
-/* eslint no-console: 0 */
+import fs from 'fs';
 import { displayResults, header, questionWinners, summary } from './index';
 import { TYPE } from '../constants';
 
@@ -72,77 +72,75 @@ describe('output', () => {
   };
   describe('displayResults', () => {
     test('should console log all of the output sections', () => {
-      console.log = jest.fn();
+      fs.appendFileSync = jest.fn();
       displayResults(results, key);
 
-      expect(console.log.mock.calls[0][0]).toBe('');
-      expect(console.log.mock.calls[1][0]).toBe('');
-      expect(console.log.mock.calls[2][0]).toBe('Results:');
-      expect(console.log.mock.calls[3][0]).toBe('----------');
-      expect(console.log.mock.calls[4][0]).toBe('1. Total Game Points: 167');
-      expect(console.log.mock.calls[5][0]).toBe('   Test (160)');
-      expect(console.log.mock.calls[6][0]).toBe('');
-      expect(console.log.mock.calls[7][0]).toBe('2. MU Points: 89');
-      expect(console.log.mock.calls[8][0]).toBe('   Andrew (80)');
-      expect(console.log.mock.calls[9][0]).toBe('');
-      expect(console.log.mock.calls[10][0]).toBe(
-        '3. MU top scorer and how many: Markus Howard - 18'
+      expect(fs.appendFileSync.mock.calls[0][1]).toBe('Results:\n');
+      expect(fs.appendFileSync.mock.calls[1][1]).toBe('----------\n');
+      expect(fs.appendFileSync.mock.calls[2][1]).toBe('1. Total Game Points: 167\n');
+      expect(fs.appendFileSync.mock.calls[3][1]).toBe('   Test (160)\n');
+      expect(fs.appendFileSync.mock.calls[4][1]).toBe('\n');
+      expect(fs.appendFileSync.mock.calls[5][1]).toBe('2. MU Points: 89\n');
+      expect(fs.appendFileSync.mock.calls[6][1]).toBe('   Andrew (80)\n');
+      expect(fs.appendFileSync.mock.calls[7][1]).toBe('\n');
+      expect(fs.appendFileSync.mock.calls[8][1]).toBe(
+        '3. MU top scorer and how many: Markus Howard - 18\n'
       );
-      expect(console.log.mock.calls[11][0]).toBe('   Andrew (16)');
-      expect(console.log.mock.calls[12][0]).toBe('');
-      expect(console.log.mock.calls[13][0]).toBe(
-        '4. MU top rebounder and how many: Sam Hauser - 5'
+      expect(fs.appendFileSync.mock.calls[9][1]).toBe('   Andrew (16)\n');
+      expect(fs.appendFileSync.mock.calls[10][1]).toBe('\n');
+      expect(fs.appendFileSync.mock.calls[11][1]).toBe(
+        '4. MU top rebounder and how many: Sam Hauser - 5\n'
       );
-      expect(console.log.mock.calls[14][0]).toBe('   No winner ');
-      expect(console.log.mock.calls[15][0]).toBe('');
-      expect(console.log.mock.calls[16][0]).toBe(
-        "Bonus. Predict Marquette's shooting percentage: 56"
+      expect(fs.appendFileSync.mock.calls[12][1]).toBe('   No winner \n');
+      expect(fs.appendFileSync.mock.calls[13][1]).toBe('\n');
+      expect(fs.appendFileSync.mock.calls[14][1]).toBe(
+        "Bonus. Predict Marquette's shooting percentage: 56\n"
       );
-      expect(console.log.mock.calls[17][0]).toBe('   Bonus_Winner (56)');
-      expect(console.log.mock.calls[18][0]).toBe('');
-      expect(console.log.mock.calls[19][0]).toBe('');
-      expect(console.log.mock.calls[20][0]).toBe('Game Totals:');
-      expect(console.log.mock.calls[21][0]).toBe('----------------');
-      expect(console.log.mock.calls[22][0]).toBe('Bonus_Winner - 3');
-      expect(console.log.mock.calls[23][0]).toBe('Andrew - 2');
-      expect(console.log.mock.calls[24][0]).toBe('Test - 1');
+      expect(fs.appendFileSync.mock.calls[15][1]).toBe('   Bonus_Winner (56)\n');
+      expect(fs.appendFileSync.mock.calls[16][1]).toBe('\n');
+      expect(fs.appendFileSync.mock.calls[17][1]).toBe('\n');
+      expect(fs.appendFileSync.mock.calls[18][1]).toBe('Game Totals:\n');
+      expect(fs.appendFileSync.mock.calls[19][1]).toBe('----------------\n');
+      expect(fs.appendFileSync.mock.calls[20][1]).toBe('Bonus_Winner - 3\n');
+      expect(fs.appendFileSync.mock.calls[21][1]).toBe('Andrew - 2\n');
+      expect(fs.appendFileSync.mock.calls[22][1]).toBe('Test - 1\n');
     });
   });
   describe('header', () => {
     test('return console log headers for output', () => {
-      console.log = jest.fn();
+      fs.appendFileSync = jest.fn();
       header();
 
-      expect(console.log.mock.calls[0][0]).toBe('');
-      expect(console.log.mock.calls[1][0]).toBe('');
-      expect(console.log.mock.calls[2][0]).toBe('Results:');
-      expect(console.log.mock.calls[3][0]).toBe('----------');
+      expect(fs.appendFileSync.mock.calls[0][1]).toBe('Results:\n');
+      expect(fs.appendFileSync.mock.calls[1][1]).toBe('----------\n');
     });
   });
   describe('questionWinners', () => {
     test('return console log of question winners and answers', () => {
-      console.log = jest.fn();
+      fs.appendFileSync = jest.fn();
       questionWinners(results, key);
 
-      expect(console.log.mock.calls[0][0]).toBe('1. Total Game Points: 167');
-      expect(console.log.mock.calls[1][0]).toBe('   Test (160)');
-      expect(console.log.mock.calls[2][0]).toBe('');
-      expect(console.log.mock.calls[3][0]).toBe('2. MU Points: 89');
-      expect(console.log.mock.calls[4][0]).toBe('   Andrew (80)');
-      expect(console.log.mock.calls[5][0]).toBe('');
-      expect(console.log.mock.calls[6][0]).toBe(
-        '3. MU top scorer and how many: Markus Howard - 18'
+      expect(fs.appendFileSync.mock.calls[0][1]).toBe('1. Total Game Points: 167\n');
+      expect(fs.appendFileSync.mock.calls[1][1]).toBe('   Test (160)\n');
+      expect(fs.appendFileSync.mock.calls[2][1]).toBe('\n');
+      expect(fs.appendFileSync.mock.calls[3][1]).toBe('2. MU Points: 89\n');
+      expect(fs.appendFileSync.mock.calls[4][1]).toBe('   Andrew (80)\n');
+      expect(fs.appendFileSync.mock.calls[5][1]).toBe('\n');
+      expect(fs.appendFileSync.mock.calls[6][1]).toBe(
+        '3. MU top scorer and how many: Markus Howard - 18\n'
       );
-      expect(console.log.mock.calls[7][0]).toBe('   Andrew (16)');
-      expect(console.log.mock.calls[8][0]).toBe('');
-      expect(console.log.mock.calls[9][0]).toBe('4. MU top rebounder and how many: Sam Hauser - 5');
-      expect(console.log.mock.calls[10][0]).toBe('   No winner ');
-      expect(console.log.mock.calls[11][0]).toBe('');
-      expect(console.log.mock.calls[12][0]).toBe(
-        "Bonus. Predict Marquette's shooting percentage: 56"
+      expect(fs.appendFileSync.mock.calls[7][1]).toBe('   Andrew (16)\n');
+      expect(fs.appendFileSync.mock.calls[8][1]).toBe('\n');
+      expect(fs.appendFileSync.mock.calls[9][1]).toBe(
+        '4. MU top rebounder and how many: Sam Hauser - 5\n'
       );
-      expect(console.log.mock.calls[13][0]).toBe('   Bonus_Winner (56)');
-      expect(console.log.mock.calls[14][0]).toBe('');
+      expect(fs.appendFileSync.mock.calls[10][1]).toBe('   No winner \n');
+      expect(fs.appendFileSync.mock.calls[11][1]).toBe('\n');
+      expect(fs.appendFileSync.mock.calls[12][1]).toBe(
+        "Bonus. Predict Marquette's shooting percentage: 56\n"
+      );
+      expect(fs.appendFileSync.mock.calls[13][1]).toBe('   Bonus_Winner (56)\n');
+      expect(fs.appendFileSync.mock.calls[14][1]).toBe('\n');
     });
     test('return console log of error summary if the key file was not set correctly', () => {
       const badKey = {
@@ -152,34 +150,36 @@ describe('output', () => {
           type: TYPE.NUMBER,
         },
       };
-      console.log = jest.fn();
+      fs.appendFileSync = jest.fn();
       questionWinners(results, badKey);
 
-      expect(console.log.mock.calls[0][0]).toBe(
-        'Error with the following question: Total Game Points:'
+      expect(fs.appendFileSync.mock.calls[0][1]).toBe(
+        'Error with the following question: Total Game Points:\n'
       );
-      expect(console.log.mock.calls[1][0]).toBe('Verify key.js file has been set correctly');
+      expect(fs.appendFileSync.mock.calls[1][1]).toBe(
+        'Verify key.js file has been set correctly\n'
+      );
     });
     test('return no console log if the line being read is the url', () => {
       const badKey = {
         url: 'https://www.muscoop.com/index.php?topic=35990.0;all',
       };
-      console.log = jest.fn();
+      fs.appendFileSync = jest.fn();
       questionWinners(results, badKey);
 
-      expect(console.log).not.toHaveBeenCalled();
+      expect(fs.appendFileSync).not.toHaveBeenCalled();
     });
   });
   describe('summary', () => {
     test('return console log of summarized game total points for each username', () => {
-      console.log = jest.fn();
+      fs.appendFileSync = jest.fn();
       summary(results, key);
 
-      expect(console.log.mock.calls[1][0]).toBe('Game Totals:');
-      expect(console.log.mock.calls[2][0]).toBe('----------------');
-      expect(console.log.mock.calls[3][0]).toBe('Bonus_Winner - 3');
-      expect(console.log.mock.calls[4][0]).toBe('Andrew - 2');
-      expect(console.log.mock.calls[5][0]).toBe('Test - 1');
+      expect(fs.appendFileSync.mock.calls[1][1]).toBe('Game Totals:\n');
+      expect(fs.appendFileSync.mock.calls[2][1]).toBe('----------------\n');
+      expect(fs.appendFileSync.mock.calls[3][1]).toBe('Bonus_Winner - 3\n');
+      expect(fs.appendFileSync.mock.calls[4][1]).toBe('Andrew - 2\n');
+      expect(fs.appendFileSync.mock.calls[5][1]).toBe('Test - 1\n');
     });
     test('return console log of summarized game total points for each username (no bonus winner)', () => {
       const results2 = [
@@ -214,13 +214,13 @@ describe('output', () => {
         },
       ];
 
-      console.log = jest.fn();
+      fs.appendFileSync = jest.fn();
       summary(results2, key);
 
-      expect(console.log.mock.calls[1][0]).toBe('Game Totals:');
-      expect(console.log.mock.calls[2][0]).toBe('----------------');
-      expect(console.log.mock.calls[3][0]).toBe('Andrew - 2');
-      expect(console.log.mock.calls[4][0]).toBe('Test - 1');
+      expect(fs.appendFileSync.mock.calls[1][1]).toBe('Game Totals:\n');
+      expect(fs.appendFileSync.mock.calls[2][1]).toBe('----------------\n');
+      expect(fs.appendFileSync.mock.calls[3][1]).toBe('Andrew - 2\n');
+      expect(fs.appendFileSync.mock.calls[4][1]).toBe('Test - 1\n');
     });
   });
 });

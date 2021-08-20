@@ -1,13 +1,15 @@
-/* eslint no-console: 0 */
 import _get from 'lodash.get';
 import _times from 'lodash.times';
+import fs from 'fs';
 import { TYPE, QUESTION, BONUS, NO_WINNER } from '../constants';
 
+const output = text => {
+  fs.appendFileSync('results.txt', `${text}\n`);
+};
+
 export const header = () => {
-  console.log('');
-  console.log('');
-  console.log('Results:');
-  console.log('----------');
+  output('Results:');
+  output('----------');
 };
 
 export const questionWinners = (results, key) => {
@@ -21,12 +23,12 @@ export const questionWinners = (results, key) => {
       const winner = results[index].username.join(', ');
       const prediction = results[index].prediction ? `(${results[index].prediction})` : '';
 
-      console.log(`${prefix} ${key[question].text} ${answer}`);
-      console.log(`   ${winner} ${prediction}`);
-      console.log('');
+      output(`${prefix} ${key[question].text} ${answer}`);
+      output(`   ${winner} ${prediction}`);
+      output('');
     } else if (question !== 'url') {
-      console.log(`Error with the following question: ${key[question].text}`);
-      console.log('Verify key.js file has been set correctly');
+      output(`Error with the following question: ${key[question].text}`);
+      output('Verify key.js file has been set correctly');
     }
   });
 };
@@ -68,13 +70,17 @@ export const summary = (results, key) => {
   });
   sortedResults.sort((a, b) => a[1] - b[1]).reverse();
 
-  console.log('');
-  console.log('Game Totals:');
-  console.log('----------------');
-  sortedResults.forEach(result => console.log(`${result[0]} - ${result[1]}`));
+  output('');
+  output('Game Totals:');
+  output('----------------');
+  sortedResults.forEach(result => output(`${result[0]} - ${result[1]}`));
 };
 
 export const displayResults = (results, key) => {
+  // Create result file
+  fs.writeFileSync('results.txt', '');
+
+  // Write to it
   header();
   questionWinners(results, key);
   summary(results, key);

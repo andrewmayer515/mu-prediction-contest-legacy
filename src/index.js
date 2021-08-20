@@ -155,6 +155,8 @@ const muPredictionContest = async () => {
 
   await main(postData, key.results);
   spinner.stop();
+  // eslint-disable-next-line no-console
+  console.log('---- results.txt successfully created ----');
 
   // Keep browser open while running as debug
   if (!debugArg) {
