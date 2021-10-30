@@ -1,6 +1,7 @@
 name: Build
 
 on:
+  workflow_dispath:
   pull_request:
     branches: [main]
 
