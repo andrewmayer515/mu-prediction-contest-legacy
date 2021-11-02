@@ -4,7 +4,7 @@ import { QUESTION, BONUS, NO_WINNER } from './constants';
 import questionTypes from './question-types';
 
 /**
- * Loop through predictions for a given question and call its calculation function
+ * Loop through predictions for a given question and call its question typw function
  * @param {*} data All comments data on the post
  * @param {*} question The current question being evaluated from the key.js file
  * @param {*} props Properties of question, taken from the key.js file

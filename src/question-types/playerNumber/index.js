@@ -27,7 +27,7 @@ const playerNumber = ({ prediction, answer, winnerData, username, isBonusQuestio
           prediction: parseInt(winnerData.prediction.replace(/[^0-9]/gi, ''), 10),
         }
       : undefined;
-    // Use the number calcs to determine who is closer to the correct number
+    // Use the number question type to determine who is closer to the correct number
     // if more than one user guessed the player
     const numberResult = number({
       prediction: predictionNumber,
