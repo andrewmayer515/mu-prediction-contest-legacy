@@ -11,7 +11,7 @@
     "lint": "./node_modules/.bin/eslint --quiet src/**",
     "test": "jest",
     "test-watch": "jest --watch",
-    "test-coverage": "jest --coverage --coverageReporters=text",
+    "test-coverage": "jest --coverage",
     "build": "babel src -d lib",
     "totals": "node scripts/totals",
     "post": "node scripts/post"

@@ -1,8 +1,8 @@
 node_modules
 config/auth.json
 config/key.js
-src/data/historical
 scripts/totals/totals.txt
 scripts/post/config.json
 lib/
+coverage/
 results.txt
