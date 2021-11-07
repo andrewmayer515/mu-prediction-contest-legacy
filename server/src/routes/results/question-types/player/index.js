@@ -1,7 +1,7 @@
 import _has from 'lodash.has';
 import _cloneDeep from 'lodash.clonedeep';
 import levenshtein from 'fast-levenshtein';
-import { ALIAS } from '../../../config/roster';
+import { ALIAS } from '../../../../../config/roster';
 
 /**
  * Breaks apart player name to a an array of reasonable formats for a player name that someone

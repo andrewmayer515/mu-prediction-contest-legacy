@@ -1,7 +1,16 @@
+import puppeteer from 'puppeteer';
+import express from 'express';
 import _find from 'lodash.find';
+
+// Local modules
+import { getConfig, hasAllPageOption, getTotalPages, getPredictionData } from './helpers';
 import { displayResults } from './output';
-import { QUESTION, BONUS, NO_WINNER } from './constants';
 import questionTypes from './question-types';
+import { QUESTION, BONUS, NO_WINNER } from '../../constants';
+
+//---------------------------------------------------------------------
+
+const router = express.Router();
 
 /**
  * Loop through predictions for a given question and call its question typw function
@@ -51,7 +60,7 @@ export const determineQuestionWinner = (data, question, props, isBonusQuestion) 
  * @param {*} data All comments data on the post
  * @param {*} key Contents of the answer file (key.js)
  */
-export const main = (data, key) => {
+export const questionRunner = (data, key) => {
   const results = [];
   // Loop through each question in the config
   Object.keys(key).forEach(question => {
@@ -62,5 +71,39 @@ export const main = (data, key) => {
     }
   });
 
-  displayResults(results, key);
+  return displayResults(results, key);
 };
+
+// Async function starts on run
+const muPredictionContest = async () => {
+  const { key, spinner } = await getConfig();
+
+  const browser = await puppeteer.launch({ args: ['about:blank'] });
+  const page = await browser.newPage();
+
+  await page.goto(key.results.url, { waitUntil: 'networkidle2' });
+  await page.bringToFront();
+
+  // Check to see if the All page selection exists
+  const allPageOption = await hasAllPageOption(page);
+
+  // Get the total number of pages
+  const totalPages = await getTotalPages(page, allPageOption);
+
+  // Cycle through the pages on the prediction post, gather username and comment data
+  const postData = await getPredictionData(page, totalPages, key);
+
+  const result = await questionRunner(postData, key.results);
+  spinner.stop();
+  // eslint-disable-next-line no-console
+  console.log('---- results.txt successfully created ----');
+
+  return result;
+};
+
+router.get('/results', async (req, res) => {
+  const results = await muPredictionContest(req);
+  res.send(results);
+});
+
+export default router;

@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { displayResults, header, questionWinners, summary } from './index';
-import { TYPE } from '../constants';
+import { TYPE } from '../../../constants';
 
 describe('output', () => {
   const results = [

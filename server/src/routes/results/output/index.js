@@ -1,7 +1,9 @@
 import _get from 'lodash.get';
 import _times from 'lodash.times';
-import fs from 'fs';
-import { TYPE, QUESTION, BONUS, NO_WINNER } from '../constants';
+import fs, { readFileSync } from 'fs';
+import { TYPE, QUESTION, BONUS, NO_WINNER } from '../../../constants';
+
+//---------------------------------------------------------------------
 
 const output = text => {
   fs.appendFileSync('results.txt', `${text}\n`);
@@ -84,4 +86,8 @@ export const displayResults = (results, key) => {
   header();
   questionWinners(results, key);
   summary(results, key);
+
+  const content = fs.readFileSync('results.txt', 'utf8');
+
+  return content;
 };
