@@ -1,5 +1,5 @@
 {
-  "extends": ["airbnb-base", "prettier", "plugin:react/recommended"],
+  "extends": ["airbnb-base", "prettier", "plugin:react/recommended", "plugin:react-hooks/recommended"],
   "rules": {
     "no-else-return": ["error", { "allowElseIf": true }],
     "prettier/prettier": ["error"]

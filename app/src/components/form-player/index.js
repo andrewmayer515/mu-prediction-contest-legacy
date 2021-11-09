@@ -1,50 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import Checkbox from '@mui/material/Checkbox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+
+import { RosterContext } from '../../contexts';
+import { getPlayerOptions } from './helpers';
 
 //---------------------------------------------------------------------
 
-export const ROSTER = {
-  KAM_JONES: 'Kam Jones',
-  EMARION_ELLIS: 'Emarion Ellis',
-  STEVIE_MITCHELL: 'Stevie Mitchell',
-  GREG_ELLIOTT: 'Greg Elliott',
-  JUSTIN_LEWIS: 'Justin Lewis',
-  OLIVIER_MAXENCE_PROSPER: 'Olivier-Maxence Prosper',
-  OSO_IGHODARO: 'Oso Ighodaro',
-  CAMERON_BROWN: 'Cameron Brown',
-  TYLER_KOLEK: 'Tyler Kolek',
-  DAVID_JOPLIN: 'David Joplin',
-  DARRYL_MORSELL: 'Darryl Morsell',
-  KUR_KUATH: 'Kur Kuath',
-  KEEYAN_ITEJERE: 'Keeyan Itejere',
-  BRENDAN_CARNEY: 'Brendan Carney',
-  MICHAEL_KENNEDY: 'Michael Kennedy',
-};
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 const FormPlayer = ({ label }) => {
+  const roster = useContext(RosterContext);
   const [player, setPlayer] = useState('');
 
   const handleChange = e => {
     setPlayer(e.target.value);
   };
 
-  const getPlayerOptions = () => {
-    return Object.keys(ROSTER).map(player => {
-      return {
-        label: ROSTER[player],
-      };
-    });
-  };
-
   return (
     <>
       <FormControl sx={{ m: 1, minWidth: 250 }}>
         <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={getPlayerOptions()}
+          multiple
+          disableCloseOnSelect
+          getOptionLabel={option => option.label}
+          renderOption={(props, option, { selected }) => (
+            <li {...props}>
+              <Checkbox
+                icon={icon}
+                checkedIcon={checkedIcon}
+                style={{ marginRight: 8 }}
+                checked={selected}
+              />
+              {option.label}
+            </li>
+          )}
+          options={getPlayerOptions(roster)}
           renderInput={params => <TextField {...params} label={label} />}
         />
       </FormControl>

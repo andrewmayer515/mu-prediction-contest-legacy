@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/andrewmayer515/mu-prediction-contest#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "fast-levenshtein": "^2.0.6",
     "lodash.clonedeep": "^4.5.0",

@@ -6,14 +6,14 @@ import { ResultContext, SetResultContext } from '../../contexts';
 
 //---------------------------------------------------------------------
 
-const FormNumber = ({ label, order }) => {
+const PostURL = () => {
   const results = useContext(ResultContext);
   const setResults = useContext(SetResultContext);
 
   const handleChange = e => {
     setResults({
       ...results,
-      [order]: { text: `${label}:`, answer: e.target.value, type: 'number' },
+      url: e.target.value,
     });
   };
 
@@ -21,14 +21,19 @@ const FormNumber = ({ label, order }) => {
     <Box
       component="form"
       sx={{
-        '& > :not(style)': { m: 1, minWidth: 250 },
+        '& > :not(style)': { m: 1, mt: 2, minWidth: 500 },
       }}
       noValidate
       autoComplete="off"
     >
-      <TextField id="outlined-basic" label={label} variant="outlined" onChange={handleChange} />
+      <TextField
+        id="outlined-basic"
+        label="MU Scoop Post URL"
+        variant="outlined"
+        onChange={handleChange}
+      />
     </Box>
   );
 };
 
-export default FormNumber;
+export default PostURL;
