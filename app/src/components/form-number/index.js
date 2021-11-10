@@ -6,15 +6,21 @@ import { ResultContext, SetResultContext } from '../../contexts';
 
 //---------------------------------------------------------------------
 
-const FormNumber = ({ label, order }) => {
+const FormNumber = ({ label, order, playerNumberFn }) => {
   const results = useContext(ResultContext);
   const setResults = useContext(SetResultContext);
 
   const handleChange = e => {
-    setResults({
-      ...results,
-      [order]: { text: `${label}:`, answer: e.target.value, type: 'number' },
-    });
+    const number = parseInt(e.target.value);
+
+    if (playerNumberFn) {
+      playerNumberFn(number);
+    } else {
+      setResults({
+        ...results,
+        [order]: { text: `${label}:`, answer: number, type: 'number' },
+      });
+    }
   };
 
   return (

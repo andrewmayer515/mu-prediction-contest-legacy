@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Box from '@mui/material/Box';
 
 import FormPlayer from '../form-player';
@@ -7,26 +7,39 @@ import { ResultContext, SetResultContext } from '../../contexts';
 
 //---------------------------------------------------------------------
 
-const FormPlayerNumber = ({ primaryLabel, secondaryLabel }) => {
+const FormPlayerNumber = ({ primaryLabel, secondaryLabel, order }) => {
   const results = useContext(ResultContext);
   const setResults = useContext(SetResultContext);
 
   const [player, setPlayer] = useState();
   const [number, setNumber] = useState();
 
-  const handlePlayerChange = e => {
-    setPlayer({
+  useEffect(() => {
+    setResults({
       ...results,
       [order]: {
-        text: `${label} and how many:`,
+        text: `${primaryLabel} and how many?:`,
+        answer: {
+          player,
+          number,
+        },
+        type: 'playerNumber',
       },
     });
+  }, [player, number]);
+
+  const handlePlayerChange = player => {
+    setPlayer(player);
+  };
+
+  const handleNumberChange = number => {
+    setNumber(number);
   };
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <FormPlayer label={primaryLabel} />
-      <FormNumber label={secondaryLabel} />
+      <FormPlayer label={primaryLabel} playerNumberFn={handlePlayerChange} />
+      <FormNumber label={secondaryLabel} playerNumberFn={handleNumberChange} />
     </Box>
   );
 };

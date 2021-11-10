@@ -6,7 +6,7 @@ import Checkbox from '@mui/material/Checkbox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
-import { RosterContext } from '../../contexts';
+import { RosterContext, ResultContext, SetResultContext } from '../../contexts';
 import { getPlayerOptions } from './helpers';
 
 //---------------------------------------------------------------------
@@ -14,12 +14,21 @@ import { getPlayerOptions } from './helpers';
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-const FormPlayer = ({ label }) => {
+const FormPlayer = ({ label, playerNumberFn }) => {
   const roster = useContext(RosterContext);
-  const [player, setPlayer] = useState('');
+  const results = useContext(ResultContext);
+  const setResults = useContext(SetResultContext);
 
-  const handleChange = e => {
-    setPlayer(e.target.value);
+  const handleChange = (e, values) => {
+    if (playerNumberFn) {
+      console.log(values);
+      playerNumberFn(e.target.value);
+    } else {
+      setResults({
+        ...results,
+        [order]: { text: `${label}:`, answer: number, type: 'number' },
+      });
+    }
   };
 
   return (
@@ -27,8 +36,8 @@ const FormPlayer = ({ label }) => {
       <FormControl sx={{ m: 1, minWidth: 250 }}>
         <Autocomplete
           multiple
-          disableCloseOnSelect
           getOptionLabel={option => option.label}
+          onChange={handleChange}
           renderOption={(props, option, { selected }) => (
             <li {...props}>
               <Checkbox

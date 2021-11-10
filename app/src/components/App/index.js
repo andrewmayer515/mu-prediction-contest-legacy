@@ -18,7 +18,6 @@ const App = () => {
   useEffect(() => {
     async function fetchRoster() {
       const { data } = await axios('http://localhost:3000/api/roster');
-      console.log(data);
       setRoster(data);
     }
 
