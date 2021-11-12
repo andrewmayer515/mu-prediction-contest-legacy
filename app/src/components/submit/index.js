@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from '@mui/material/Button';
+import axios from 'axios';
+
+import { InputContext, ResultContext } from '../../contexts';
 
 //---------------------------------------------------------------------
 
-const Submit = ({ results }) => {
-  const handleClick = () => {
-    console.log(results);
+const sortObject = o =>
+  Object.keys(o)
+    .sort()
+    .reduce((r, k) => ((r[k] = o[k]), r), {});
+
+const Submit = () => {
+  const { input } = useContext(InputContext);
+  const { setResult } = useContext(ResultContext);
+
+  const handleClick = async () => {
+    const { data } = await axios.post('http://localhost:3000/api/results', sortObject(input));
+    setResult(data);
   };
 
   return (

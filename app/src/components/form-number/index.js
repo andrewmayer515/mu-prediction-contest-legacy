@@ -2,13 +2,12 @@ import React, { useContext } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-import { ResultContext, SetResultContext } from '../../contexts';
+import { InputContext } from '../../contexts';
 
 //---------------------------------------------------------------------
 
 const FormNumber = ({ label, order, playerNumberFn }) => {
-  const results = useContext(ResultContext);
-  const setResults = useContext(SetResultContext);
+  const { input, setInput } = useContext(InputContext);
 
   const handleChange = e => {
     const number = parseInt(e.target.value);
@@ -16,9 +15,9 @@ const FormNumber = ({ label, order, playerNumberFn }) => {
     if (playerNumberFn) {
       playerNumberFn(number);
     } else {
-      setResults({
-        ...results,
-        [order]: { text: `${label}:`, answer: number, type: 'number' },
+      setInput({
+        ...input,
+        [`question${order}`]: { text: `${label}:`, answer: number, type: 'number' },
       });
     }
   };

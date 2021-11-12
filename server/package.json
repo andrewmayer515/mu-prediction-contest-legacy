@@ -1,20 +1,15 @@
 {
   "name": "mu-prediction-contest-server",
   "version": "1.0.0",
-  "description": "Web crawler for muscoop prediction contest",
-  "main": "src",
+  "description": "Express backend for muscoop prediction contest",
   "scripts": {
     "start": "babel-node src/index.js",
-    "start:login": "npm start -- login",
     "debug": "npm start -- debug",
-    "debug:login": "npm start -- debug login",
     "lint": "./node_modules/.bin/eslint --quiet src/**",
     "test": "jest",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
-    "build": "babel src -d lib",
-    "totals": "node scripts/totals",
-    "post": "node scripts/post"
+    "build": "babel src -d lib"
   },
   "repository": {
     "type": "git",

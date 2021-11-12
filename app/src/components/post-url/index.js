@@ -2,17 +2,16 @@ import React, { useContext } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-import { ResultContext, SetResultContext } from '../../contexts';
+import { InputContext } from '../../contexts';
 
 //---------------------------------------------------------------------
 
 const PostURL = () => {
-  const results = useContext(ResultContext);
-  const setResults = useContext(SetResultContext);
+  const { input, setInput } = useContext(InputContext);
 
   const handleChange = e => {
-    setResults({
-      ...results,
+    setInput({
+      ...input,
       url: e.target.value,
     });
   };

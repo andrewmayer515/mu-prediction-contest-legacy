@@ -1,28 +1,8 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-await-in-loop, no-loop-func, no-undef */
-import ora from 'ora';
 import fs from 'fs';
 
 //---------------------------------------------------------------------
-
-export async function getConfig() {
-  let key;
-  let spinner;
-
-  // If the key is not set, default to the example until it is created
-  try {
-    key = await require('../../../config/key'); // eslint-disable-line global-require, import/no-unresolved
-    spinner = ora({ text: 'Calculating...', color: 'yellow' }).start();
-  } catch (e) {
-    key = await require('../../../config/key-example'); // eslint-disable-line global-require
-    spinner = ora({
-      text: '--- RUNNING WITH SAMPLE DATA, REFER TO README.MD ---',
-      color: 'yellow',
-    }).start();
-  }
-
-  return { key, spinner };
-}
 
 export async function loginSteps() {
   const auth = await JSON.parse(fs.readFileSync('data/auth.json'));
@@ -81,7 +61,7 @@ export async function getPredictionData(page, totalPages, key) {
   let pageIndex = 0;
   let usernameArray = [];
   let commentArray = [];
-  const updatedURL = key.results.url.slice(0, -1);
+  const updatedURL = key.url.slice(0, -1);
 
   while (pageIndex < totalPages) {
     if (pageIndex !== 0) {

@@ -3,22 +3,21 @@ import Box from '@mui/material/Box';
 
 import FormPlayer from '../form-player';
 import FormNumber from '../form-number';
-import { ResultContext, SetResultContext } from '../../contexts';
+import { InputContext } from '../../contexts';
 
 //---------------------------------------------------------------------
 
 const FormPlayerNumber = ({ primaryLabel, secondaryLabel, order }) => {
-  const results = useContext(ResultContext);
-  const setResults = useContext(SetResultContext);
+  const { input, setInput } = useContext(InputContext);
 
   const [player, setPlayer] = useState();
   const [number, setNumber] = useState();
 
   useEffect(() => {
-    setResults({
-      ...results,
-      [order]: {
-        text: `${primaryLabel} and how many?:`,
+    setInput({
+      ...input,
+      [`question${order}`]: {
+        text: `${primaryLabel} and how many:`,
         answer: {
           player,
           number,
