@@ -39,7 +39,7 @@ const FormNumber = ({ label, order, playerNumberFn }) => {
 
 FormNumber.propTypes = {
   label: PropTypes.string.isRequired,
-  order: PropTypes.number.isRequired,
+  order: PropTypes.number,
   playerNumberFn: PropTypes.func,
 };
 

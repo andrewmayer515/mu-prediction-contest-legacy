@@ -22,8 +22,6 @@ export const questionWinners = (results, key) => {
           ? `${key[question].answer.player} - ${key[question].answer.number}`
           : key[question].answer;
       const prefix = question === 'bonus' ? 'Bonus.' : `${index + 1}.`;
-      console.log(results);
-      console.log(index);
       const winner = results[index].username.join(', ');
       const prediction = results[index].prediction ? `(${results[index].prediction})` : '';
 

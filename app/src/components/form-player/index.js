@@ -35,8 +35,11 @@ const FormPlayer = ({ label, order, playerNumberFn }) => {
     <>
       <FormControl sx={{ m: 1, minWidth: 250 }}>
         <Autocomplete
+          autoHighlight
+          autoSelect
           multiple
           getOptionLabel={option => option.value}
+          isOptionEqualToValue={(option, value) => option.value === value.value}
           onChange={handleChange}
           renderOption={(props, option, { selected }) => (
             <li {...props}>
@@ -59,7 +62,7 @@ const FormPlayer = ({ label, order, playerNumberFn }) => {
 
 FormPlayer.propTypes = {
   label: PropTypes.string.isRequired,
-  order: PropTypes.number.isRequired,
+  order: PropTypes.number,
   playerNumberFn: PropTypes.func,
 };
 

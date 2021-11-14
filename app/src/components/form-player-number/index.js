@@ -15,18 +15,21 @@ const FormPlayerNumber = ({ primaryLabel, secondaryLabel, order }) => {
   const [number, setNumber] = useState();
 
   useEffect(() => {
-    setInput({
-      ...input,
-      [`question${order}`]: {
-        text: `${primaryLabel} and how many:`,
-        answer: {
-          player,
-          number,
+    // Don't fire on initial render
+    if (player && number) {
+      setInput({
+        ...input,
+        [`question${order}`]: {
+          text: `${primaryLabel} and how many:`,
+          answer: {
+            player,
+            number,
+          },
+          type: 'playerNumber',
         },
-        type: 'playerNumber',
-      },
-    });
-  }, [player, number, primaryLabel, order, input, setInput]);
+      });
+    }
+  }, [player, number]);
 
   const handlePlayerChange = e => {
     setPlayer(e);
