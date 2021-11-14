@@ -1,6 +1,7 @@
 import puppeteer from 'puppeteer';
 import express from 'express';
 import _find from 'lodash.find';
+import _clone from 'lodash.clonedeep';
 
 // Local modules
 import { hasAllPageOption, getTotalPages, getPredictionData } from './helpers';
@@ -75,7 +76,8 @@ export const questionRunner = (data, key) => {
 };
 
 // Async function starts on run
-const muPredictionContest = async key => {
+const muPredictionContest = async _key => {
+  const key = _clone(_key);
   const browser = await puppeteer.launch({ args: ['about:blank'] });
   const page = await browser.newPage();
 
@@ -90,6 +92,10 @@ const muPredictionContest = async key => {
 
   // Cycle through the pages on the prediction post, gather username and comment data
   const postData = await getPredictionData(page, totalPages, key);
+
+  // Cleanup key
+  delete key.url;
+
   const result = await questionRunner(postData, key);
   // eslint-disable-next-line no-console
   console.log('---- results.txt successfully created ----');
