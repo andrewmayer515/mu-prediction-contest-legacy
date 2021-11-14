@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 
 import FormPlayer from '../form-player';
@@ -25,14 +26,14 @@ const FormPlayerNumber = ({ primaryLabel, secondaryLabel, order }) => {
         type: 'playerNumber',
       },
     });
-  }, [player, number]);
+  }, [player, number, primaryLabel, order, input, setInput]);
 
-  const handlePlayerChange = player => {
-    setPlayer(player);
+  const handlePlayerChange = e => {
+    setPlayer(e);
   };
 
-  const handleNumberChange = number => {
-    setNumber(number);
+  const handleNumberChange = e => {
+    setNumber(e);
   };
 
   return (
@@ -41,6 +42,12 @@ const FormPlayerNumber = ({ primaryLabel, secondaryLabel, order }) => {
       <FormNumber label={secondaryLabel} playerNumberFn={handleNumberChange} />
     </Box>
   );
+};
+
+FormPlayerNumber.propTypes = {
+  primaryLabel: PropTypes.string.isRequired,
+  secondaryLabel: PropTypes.string.isRequired,
+  order: PropTypes.number.isRequired,
 };
 
 export default FormPlayerNumber;

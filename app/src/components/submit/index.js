@@ -3,13 +3,9 @@ import Button from '@mui/material/Button';
 import axios from 'axios';
 
 import { InputContext, ResultContext } from '../../contexts';
+import { sortObject } from './helpers';
 
 //---------------------------------------------------------------------
-
-const sortObject = o =>
-  Object.keys(o)
-    .sort()
-    .reduce((r, k) => ((r[k] = o[k]), r), {});
 
 const Submit = () => {
   const { input } = useContext(InputContext);

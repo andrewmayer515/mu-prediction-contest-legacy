@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -14,14 +15,13 @@ import { getPlayerOptions } from './helpers';
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-const FormPlayer = ({ label, playerNumberFn }) => {
+const FormPlayer = ({ label, order, playerNumberFn }) => {
   const roster = useContext(RosterContext);
   const { input, setInput } = useContext(InputContext);
 
   const handleChange = (e, values) => {
     const player = values.map(value => value.value);
     if (playerNumberFn) {
-      console.log(player);
       playerNumberFn(player);
     } else {
       setInput({
@@ -55,6 +55,12 @@ const FormPlayer = ({ label, playerNumberFn }) => {
       </FormControl>
     </>
   );
+};
+
+FormPlayer.propTypes = {
+  label: PropTypes.string.isRequired,
+  order: PropTypes.number.isRequired,
+  playerNumberFn: PropTypes.func,
 };
 
 export default FormPlayer;
