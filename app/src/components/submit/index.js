@@ -14,14 +14,19 @@ const Submit = () => {
 
   const handleClick = async () => {
     setLoading(true);
-    const { data } = await axios.post('http://localhost:3000/api/results', sortObject(input));
+    try {
+      const { data } = await axios.post('http://localhost:3000/api/results', sortObject(input));
+      setResult(data);
+    } catch (e) {
+      console.log(e);
+    }
+
     setLoading(false);
-    setResult(data);
   };
 
   return (
     <div>
-      <LoadingButton sx={{ m: 1 }} variant="contained" loading={loading} onClick={handleClick}>
+      <LoadingButton sx={{ mt: 1 }} variant="contained" loading={loading} onClick={handleClick}>
         Submit
       </LoadingButton>
     </div>

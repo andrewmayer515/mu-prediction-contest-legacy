@@ -8,6 +8,7 @@ import AppBar from '../app-bar';
 import PostURL from '../post-url';
 import FormNumber from '../form-number';
 import FormPlayerNumber from '../form-player-number';
+import Bonus from '../bonus';
 import Submit from '../submit';
 import { InputContext, RosterContext, ResultContext } from '../../contexts';
 
@@ -35,7 +36,7 @@ const App = () => {
           <PostURL />
           <Divider sx={{ m: 1, my: 2 }} />
           <Grid container spacing={2} justifyContent="flex-start">
-            <Grid item xs={12} lg={5} minWidth={550}>
+            <Grid sx={{ m: 1 }} item xs={12} lg={5} minWidth={550}>
               <FormNumber label="Total Game Points" order={1} />
               <FormNumber label="MU Points" order={2} />
               <FormNumber label="Opponent Points" order={3} />
@@ -58,6 +59,7 @@ const App = () => {
                 secondaryLabel="How Many?"
                 order={10}
               />
+              <Bonus />
               <Submit />
             </Grid>
             <Grid item xs={12} lg={5} sx={{ pr: 1 }}>

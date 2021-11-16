@@ -27,7 +27,7 @@ const FormNumber = ({ label, order, playerNumberFn }) => {
     <Box
       component="form"
       sx={{
-        '& > :not(style)': { m: 1, minWidth: 250 },
+        '& > :not(style)': { my: 1, minWidth: 250 },
       }}
       noValidate
       autoComplete="off"
