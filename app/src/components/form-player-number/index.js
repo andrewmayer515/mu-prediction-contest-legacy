@@ -8,7 +8,7 @@ import { InputContext } from '../../contexts';
 
 //---------------------------------------------------------------------
 
-const FormPlayerNumber = ({ primaryLabel, secondaryLabel, order }) => {
+const FormPlayerNumber = ({ primaryLabel, secondaryLabel, order, overrideDefault }) => {
   const { input, setInput } = useContext(InputContext);
 
   const [player, setPlayer] = useState();
@@ -17,17 +17,24 @@ const FormPlayerNumber = ({ primaryLabel, secondaryLabel, order }) => {
   useEffect(() => {
     // Don't fire on initial render
     if (player && number) {
-      setInput({
-        ...input,
-        [`question${order}`]: {
-          text: `${primaryLabel} and how many:`,
-          answer: {
-            player,
-            number,
+      if (overrideDefault) {
+        overrideDefault({
+          player,
+          number,
+        });
+      } else {
+        setInput({
+          ...input,
+          [`question${order}`]: {
+            text: `${primaryLabel} and how many:`,
+            answer: {
+              player,
+              number,
+            },
+            type: 'playerNumber',
           },
-          type: 'playerNumber',
-        },
-      });
+        });
+      }
     }
   }, [player, number]);
 
@@ -41,8 +48,8 @@ const FormPlayerNumber = ({ primaryLabel, secondaryLabel, order }) => {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <FormPlayer label={primaryLabel} playerNumberFn={handlePlayerChange} />
-      <FormNumber label={secondaryLabel} playerNumberFn={handleNumberChange} />
+      <FormPlayer label={primaryLabel} overrideDefault={handlePlayerChange} />
+      <FormNumber label={secondaryLabel} overrideDefault={handleNumberChange} />
     </Box>
   );
 };
@@ -50,7 +57,8 @@ const FormPlayerNumber = ({ primaryLabel, secondaryLabel, order }) => {
 FormPlayerNumber.propTypes = {
   primaryLabel: PropTypes.string.isRequired,
   secondaryLabel: PropTypes.string.isRequired,
-  order: PropTypes.number.isRequired,
+  order: PropTypes.number,
+  overrideDefault: PropTypes.func,
 };
 
 export default FormPlayerNumber;

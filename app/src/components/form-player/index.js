@@ -15,14 +15,14 @@ import { getPlayerOptions } from './helpers';
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-const FormPlayer = ({ label, order, playerNumberFn }) => {
+const FormPlayer = ({ label, order, overrideDefault }) => {
   const roster = useContext(RosterContext);
   const { input, setInput } = useContext(InputContext);
 
   const handleChange = (e, values) => {
     const player = values.map(value => value.value);
-    if (playerNumberFn) {
-      playerNumberFn(player);
+    if (overrideDefault) {
+      overrideDefault(player);
     } else {
       setInput({
         ...input,
@@ -63,7 +63,7 @@ const FormPlayer = ({ label, order, playerNumberFn }) => {
 FormPlayer.propTypes = {
   label: PropTypes.string.isRequired,
   order: PropTypes.number,
-  playerNumberFn: PropTypes.func,
+  overrideDefault: PropTypes.func,
 };
 
 export default FormPlayer;

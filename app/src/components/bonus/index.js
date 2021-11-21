@@ -23,6 +23,7 @@ const Bonus = () => {
   const [question, setQuestion] = useState('');
   const [points, setPoints] = useState('');
   const [questionType, setQuestionType] = useState('');
+  const [bonusResult, setBonusResult] = useState();
 
   const handleSwitchChange = () => {
     setChecked(!checked);
@@ -43,11 +44,17 @@ const Bonus = () => {
   const renderQuestionType = () => {
     switch (questionType) {
       case 'player':
-        return <FormPlayer label="Enter Player" />;
+        return <FormPlayer label="Enter Player" overrideDefault={setBonusResult} />;
       case 'number':
-        return <FormNumber label="Enter Number" />;
+        return <FormNumber label="Enter Number" overrideDefault={setBonusResult} />;
       case 'playerNumber':
-        return <FormPlayerNumber primaryLabel="Enter Player" secondaryLabel="Enter Number" />;
+        return (
+          <FormPlayerNumber
+            primaryLabel="Enter Player"
+            secondaryLabel="Enter Number"
+            overrideDefault={setBonusResult}
+          />
+        );
       default:
         return null;
     }
@@ -61,10 +68,11 @@ const Bonus = () => {
           type: questionType,
           point: parseInt(points, 10),
           text: `${question}:`,
+          answer: bonusResult,
         },
       });
     }
-  }, [question, points, questionType]);
+  }, [question, points, questionType, bonusResult]);
 
   return (
     <FormGroup>

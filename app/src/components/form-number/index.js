@@ -7,14 +7,14 @@ import { InputContext } from '../../contexts';
 
 //---------------------------------------------------------------------
 
-const FormNumber = ({ label, order, playerNumberFn }) => {
+const FormNumber = ({ label, order, overrideDefault }) => {
   const { input, setInput } = useContext(InputContext);
 
   const handleChange = e => {
     const number = parseInt(e.target.value, 10);
 
-    if (playerNumberFn) {
-      playerNumberFn(number);
+    if (overrideDefault) {
+      overrideDefault(number);
     } else {
       setInput({
         ...input,
@@ -40,7 +40,7 @@ const FormNumber = ({ label, order, playerNumberFn }) => {
 FormNumber.propTypes = {
   label: PropTypes.string.isRequired,
   order: PropTypes.number,
-  playerNumberFn: PropTypes.func,
+  overrideDefault: PropTypes.func,
 };
 
 export default FormNumber;
