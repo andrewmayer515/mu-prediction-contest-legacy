@@ -19,6 +19,10 @@ const App = () => {
   const [roster, setRoster] = useState({});
   const [result, setResult] = useState();
 
+  const handleOnChange = e => {
+    setResult(e.target.value);
+  };
+
   useEffect(() => {
     async function fetchRoster() {
       const { data } = await axios('http://localhost:3000/api/roster');
@@ -69,6 +73,7 @@ const App = () => {
                 minRows={30}
                 placeholder="Results appear here"
                 value={result}
+                onChange={handleOnChange}
               />
             </Grid>
           </Grid>

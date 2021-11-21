@@ -33,7 +33,7 @@ const FormPlayer = ({ label, order, overrideDefault }) => {
 
   return (
     <>
-      <FormControl sx={{ my: 1, mr: 1, minWidth: 250 }}>
+      <FormControl sx={{ my: 1, mr: 1, width: 250 }}>
         <Autocomplete
           autoHighlight
           autoSelect

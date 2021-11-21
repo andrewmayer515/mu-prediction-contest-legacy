@@ -18,7 +18,7 @@ const Submit = () => {
       const { data } = await axios.post('http://localhost:3000/api/results', sortObject(input));
       setResult(data);
     } catch (e) {
-      console.log(e);
+      console.log(e); // eslint-disable-line
     }
 
     setLoading(false);

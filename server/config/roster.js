@@ -18,5 +18,5 @@ export const ROSTER = {
 };
 
 export const ALIAS = {
-  [ROSTER.OLIVIER_MAXENCE_PROSPER]: ['OMP'],
+  [ROSTER.OLIVIER_MAXENCE_PROSPER]: ['OMP', 'OMAX'],
 };
