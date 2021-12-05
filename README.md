@@ -1,4 +1,4 @@
-# mu-prediction-contest
+# mu-prediction-contest-legacy (deprecated)
 ![example workflow](https://github.com/andrewmayer515/mu-prediction-contest/actions/workflows/build.yml/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/andrewmayer515/mu-prediction-contest/badge.svg)](https://coveralls.io/github/andrewmayer515/mu-prediction-contest)
 
